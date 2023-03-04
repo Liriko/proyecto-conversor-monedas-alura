@@ -19,5 +19,7 @@ A continuación podrán visualizar el paso a paso de este conversor
   Tras marcar la casilla de "Yo, <nombre>, acepto", se deshabilita el botón "No acepto" y se habilita el botón "Continuar".
   
   ![Términos y condiciones - Acepto](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev03.png)
+  
+  test
 
 
