@@ -476,7 +476,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                 if (Objects.equals(cbx_temperatura1.getSelectedItem(), SELECCIONE) ||
                         Objects.equals(cbx_temperatura2.getSelectedItem(), SELECCIONE)) {
 
-                    JOptionPane.showMessageDialog(null, VALOR_INVALIDO_DIVISA_SAME,
+                    JOptionPane.showMessageDialog(null, VALOR_INVALIDO_TEMPERATURA_SAME,
                             ERROR_MSG, JOptionPane.ERROR_MESSAGE);
                 } else {
 
