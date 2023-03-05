@@ -91,7 +91,6 @@ public final class Constantes {
     public static final String VALOR_INVALIDO_MENOR = "Valor inválido, debe ser mayor a 0";
     public static final String VALOR_INVALIDO_DIVISA = "Debe seleccionar ambas divisas para proceder con el cambio";
     public static final String VALOR_INVALIDO_DIVISA_SAME = "Las divisas no pueden ser iguales. Favor reintentar";
-    public static final String VALOR_INVALIDO_TEMPERATURA = "Debe seleccionar ambas temperaturas para proceder con el cambio";
     public static final String VALOR_INVALIDO_TEMPERATURA_SAME = "Las temperaturas no pueden ser iguales. Favor reintentar";
     public static final String WON_SURCOREANO = "KRW ₩ - Won Surcoreano";
     public static final char WON_SURCOREANO_S = '₩';
