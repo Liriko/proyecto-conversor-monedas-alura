@@ -111,7 +111,7 @@ Proyecto de conversión de monedas y temperaturas correspondiente al Challenge d
   El resultado de esta operación se muestra finalmente en el campo de texto que está situado en la zona inferior de la pantalla.
   
   # Validaciones del campo Valor
-  Existen 3 reglas de negocio en forma de validaciones para el campo Valor.
+  Existen 6 reglas de negocio en forma de validaciones para el campo Valor.
   
   ![Regla de negocio 1 - El campo Valido no permite carácteres, ni puede ser vacío](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev16.png)
   
