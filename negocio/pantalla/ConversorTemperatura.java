@@ -33,8 +33,7 @@ import static constantes.Constantes.*;
 	las implementaciones de interfaz gráfica.
  */
 public class ConversorTemperatura extends JFrame implements ActionListener, Front {
-
-    private final JMenuItem menuItemConversorTemperatura;
+    private final JMenuItem menuItemConversorDivisa;
     private final JMenuItem menuItemAutor;
     private final JMenuItem menuItemColorRojo;
     private final JMenuItem menuItemColorNegro;
@@ -88,10 +87,10 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         JMenuItem menuItemColorFondo = creaMenu(COLOR_FONDO, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        JMenuItem menuItemConversorDivisa = creaMenuItem(CONVERSOR_MONEDA,
+        this.menuItemConversorDivisa = creaMenuItem(CONVERSOR_MONEDA,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemConversorTemperatura = creaMenuItem(CONVERSOR_TEMPERATURA,
+        JMenuItem menuItemConversorTemperatura = creaMenuItem(CONVERSOR_TEMPERATURA,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
         menuItemColorRojo = creaMenuItem(ROJO,
@@ -576,12 +575,12 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         }
 
 
-        if (e.getSource() == menuItemConversorTemperatura) {
-            ConversorTemperatura ventanaConversorTemperatura = new ConversorTemperatura(); // instancia principal
-            ventanaConversorTemperatura.setBounds(0, 0, 640, 535); // dimensiones
-            ventanaConversorTemperatura.setVisible(true); // principal visible
-            ventanaConversorTemperatura.setResizable(false); // ventana redimensionable
-            ventanaConversorTemperatura.setLocationRelativeTo(null); // posición relativa
+        if (e.getSource() == menuItemConversorDivisa) {
+            ConversorDivisas ventanaConversorDivisa = new ConversorDivisas(); // instancia principal
+            ventanaConversorDivisa.setBounds(0, 0, 640, 535); // dimensiones
+            ventanaConversorDivisa.setVisible(true); // principal visible
+            ventanaConversorDivisa.setResizable(false); // ventana redimensionable
+            ventanaConversorDivisa.setLocationRelativeTo(null); // posición relativa
             this.setVisible(false); // esconde la pantalla de licencia
         }
 
@@ -634,16 +633,15 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
             txf_valor.setText("");
             txa_area_01.setText(AQUI_RESULTADO_TEMPERATURA);
         }
-
     }
 
 
     public static void main(String[] args) {
 
-        ConversorTemperatura ventanaConversorDivisas = new ConversorTemperatura();
-        ventanaConversorDivisas.setBounds(0, 0, 640, 535);
-        ventanaConversorDivisas.setVisible(true);
-        ventanaConversorDivisas.setResizable(false);
-        ventanaConversorDivisas.setLocationRelativeTo(null);
+        ConversorTemperatura ventanaConversorTemperatura = new ConversorTemperatura();
+        ventanaConversorTemperatura.setBounds(0, 0, 640, 535);
+        ventanaConversorTemperatura.setVisible(true);
+        ventanaConversorTemperatura.setResizable(false);
+        ventanaConversorTemperatura.setLocationRelativeTo(null);
     }
 }
