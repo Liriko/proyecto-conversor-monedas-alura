@@ -50,5 +50,178 @@ Proyecto de conversión de monedas y temperaturas correspondiente al Challenge d
   
   ![Submenu de opciones - Color de fondo](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev09.png)
   
+  # Submenus Nuevo, Salir y Limpiar campos
+  
+  Estos submenú en cuestión, presentan las siguientes funcionalidades:
+  - Nuevo - Abre una nueva instancia de la aplicación.
+  - Salir - Cierra la aplicación.
+  - Limpiar campos - En la misma instancia, limpia todos los campos a su estado inicial por defecto.
+  
+  # Menu conversores
+  ![Submenu de opciones - Conversores](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev10.png)
+  
+  Este menú despliega las opciones:
+  - Conversor de divisas - Abre una nueva instancia del conversor de divisas
+  - Conversor de temperaturas - Abre una nueva instancia del conversor de temperaturas
+  
+  # Menu Sobre mí
+  ![Submenu de opciones - Conversores](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev11.png)
+  
+  El menú Sobre mí solo cuenta con un módulo llamado Autor, y que entrega algunos datos del autor de esta aplicación;
+  
+  ![Submenu de opciones - Conversores](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev12.png)
+  
+  # Campos Nombres, Apellido Paterno y Apellido Materno
+  ![Submenu de opciones - Conversores](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev13.png)
+  
+  A la izquierda de la aplicación se encuentran tres campos completables:
+  - Nombre
+  - Apellido Paterno
+  - Apellido Materno
+  
+  Llenar estos cambios hará que el nombre del usuario de la aplicación se muestre como parte del mensaje de respuesta que entregará la aplicación.
+  Estos campos no son obligatorios, por lo que pueden omitirse para esconder la identidad del usuario de la aplicación.
+  
+  # Campos desplegables
+  
+  Existen dos campos completables, los cuales se alimentarán dinámicamente dependiendo de si la pantalla es un conversor de divisas o de temperatura.
+  Para el primer caso, ambos campos se llenarán con las siguientes divisas ordenadas alfabéticamente:
+  
+  ![Submenu de opciones - Conversor de divisa](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev14.png)
+  
+  - CLP $ - Peso Chileno
+  - Eur € - Euro
+  - GBP £ - Libra Esterlina
+  - JPY ¥ - Yen Japonés
+  - KRW ₩ - Won Surcoreano
+  - USD $ - Dólar estadounidense
+  
+  Para el caso del conversor de temperaturas, la lista será la siguiente, ordenada alfabéticamente:
+  
+  ![Submenu de opciones - Conversor de temperatura](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev15.png)
+  
+  - Celsius
+  - Fahrenheit
+  - Kelvin
+  
+  # Campo Valor, = y campo de texto
+  
+  Finalmente, a la derecha, figura un campo llamado Valor, que posee algunas validaciones y cuyo propósito representa el valor que el usuario desea transformar.
+  El botón marcado con un signo igual (=) ejecuta la lógica del cálculo que permite transformar el valor de una divisa a otra, o de una temperatura a otra.
+  El resultado de esta operación se muestra finalmente en el campo de texto que está situado en la zona inferior de la pantalla.
+  
+  # Validaciones del campo Valor
+  Existen 3 reglas de negocio en forma de validaciones para el campo Valor.
+  
+  ![Regla de negocio 1 - El campo Valido no permite carácteres, ni puede ser vacío](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev16.png)
+  
+  1. Regla de negocio I - Valor inválido, no se permiten carácteres, ni debe ser vacío.
+  Dejar el campo Valor vacío, o bien digitar un caracter alfanumérico puede desencadenar un mensaje de Error alertando esta situación sin permitir progresar con la operación a menos que se modifique la condición que gatilla esta alerta.
+  
+  ![Regla de negocio 2 - Debe seleccionar ambas temperaturas para proceder con el cambio](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev17.png)
+  
+  2. Regla de negocio II - Debe seleccionar ambas temperaturas para proceder con el cambio.
+  La siguiente regla de negocio solo aplica sobre el conversor de temperaturas, en donde dejar alguno de los campos desplegables de temperaturas queda como - Seleccionar -. Modificar esta condición permitirá avanzar con la operación.
+  
+  ![Regla de negocio 3 - Debe seleccionar ambas divisas para proceder con el cambio](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev18.png)
+  
+  3. Regla de negocio III - Debe seleccionar ambas divisas para proceder con el cambio.
+  En contraste, para el conversor de divisas la alerta es similar, gatillada por la misma acción.
+  
+  ![Regla de negocio 4 - Debe seleccionar ambas temperaturas para proceder con el cambio](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev19.png)
+  
+  4. Regla de negocio IV - Las temperaturas no pueden ser iguales. Favor reintentar.
+  Otra regla de negocio se dispara cuando ambas temperaturas seleccionadas resultan ser la misma, ya que no tiene sentido transformar una temperatura, a la misma temperatura.
+  
+  ![Regla de negocio 5 - Las divisas no pueden ser iguales. Favor reintentar.](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev19.png)
+  
+  5. Regla de negocio V - Las divisas no pueden ser iguales. Favor reintentar.
+  Para el caso del conversor de divisas, la alerta es similar, gatillada por la misma acción.
+  
+  ![Regla de negocio6 - Valor inválido, debe ser mayor a 0.](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev20.png)
+  
+  6. Regla de negocio VI - Valor inválido, debe ser mayor a 0.
+  Finalmente, existe una regla de negocio aplicable solo para el gestor de divisas, donde el valor a cambiar debe ser mayor a 0.
+  
+  # Ejemplo del completado de los campos 
+  
+  1. Convertor de divisas
+  
+  ![Ejemplo 1.1](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev21.png)
+  
+  2. Convertor de temperaturas
+  
+  ![Ejemplo 1.2](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev23.png)
+  
+  # Ejemplo del resultado tras presionar el botón '='
+  
+  1. Convertor de divisas
+  
+  ![Ejemplo 2.1](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev22.png)
+  
+  2. Convertor de temperaturas
+  
+  ![Ejemplo 2.1](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev24.png)
+  
+  # Estructura del proyecto
+  ![Estructura del proyecto](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev25.png)
+  
+  En la estructura encontramos el proyecto divido en capas. 
+  Los packages que representan esta jerarquía son los siguientes:
+  
+  - constantes (en su interior, la clase abstracta Constantes de la cual se referencian los distintos mensajes de la aplicación).
+  - images (las imagenes del proyecto).
+  - interfaces (en su interior la interfaz Front, destinada a la implementación de la parte visual de la aplicación).
+  - model
+    - divisas
+      - Divisa (clase abstracta)
+      - Dólar
+      - Euro
+      - LibraEsterlina
+      - PesoChileno
+      - WonSurcoreano
+      - YenJapones
+    - temperaturas
+      - Temperatura (clase abstracta)
+      - Celsius
+      - Fahrenheit
+      - Kelvin
+  - negocio
+    - logica
+      - GestorDivisa
+      - GestorTemperatura
+    - pantalla
+      - Bienvenida
+      - ConversorDivisas
+      - ConversorTemperatura
+      - Licencia
+  
+  # Clases
+  ![Detalle clases](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev26.png)
+  
+  Todas las clases, interfaces, y componentes se encuentran cuidadosamente comentados para el mejor entendimiento de su análisis.
+  
+  # Diseño
+  En cuanto al diseño de esta aplicación; la solución implementada hace uso de la Programación orientada a objetos y sus paradigmas, Abstracción, Encapsulamiento, Herencia y Polimorfismo y adelanta el uso de la Colección HashMap como manipulador de divisas y temperaturas, para lo cuál se implementaron gestores, constantes, validaciones e interfaces, con el objetivo de desacoplar las distintas capas del proyecto, permitiendo la escalabilidad de la aplicación, asegurando la calidad y rendimiento de la misma.
+  
+  # Conclusión
+  Este proyecto me permitió aplicar los conceptos impartidos en clases. Espero en el futuro poder modificar un poco el diseño para permitir un mantenedor de temperaturas y divisas para que el usuario pueda eliminar e incorporar sus propios elementos. En este minuto, gracias al diseño actual de la aplicación, ésto es posible solo a través de un requerimiento que, tras evaluado, puede constituir una mejora y posterior planificación de desarrollo.
+  
+  #¡Gracias Alura Latam!
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
