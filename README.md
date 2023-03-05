@@ -34,4 +34,21 @@ Proyecto de conversión de monedas y temperaturas correspondiente al Challenge d
   - Salir
   - Limpiar campos
   
+  # Submenu Opciones - Color de fondo
+  ![Submenu de opciones - Color de fondo](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev06.png)
+  
+  Este submenu despliega las opciones:
+  - Rojo
+  - Negro
+  - Morado
+  
+  Esta funcionalidad cambia el color de fondo de la pantalla, como se muestra a continuación:
+  
+  ![Submenu de opciones - Color de fondo](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev07.png)
+  
+  ![Submenu de opciones - Color de fondo](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev08.png)
+  
+  ![Submenu de opciones - Color de fondo](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev09.png)
+  
+  
   
