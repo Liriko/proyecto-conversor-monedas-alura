@@ -260,30 +260,35 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
             case CELSIUS_S -> {
 
-                switch (medida2){
+                switch (medida2) {
 
-                    case FAHRENHEIT_S -> resultado = Math.round((((valor * 9) /5) + temperatura2.getvalorCelcius()) * 100d) / 100d;
+                    case FAHRENHEIT_S ->
+                            resultado = Math.round((((valor * 9) / 5) + temperatura2.getvalorCelcius()) * 100d) / 100d;
 
                     case KELVIN_S -> resultado = Math.round((temperatura2.getvalorCelcius() + valor) * 100d) / 100d;
                 }
-            } case FAHRENHEIT_S -> {
+            }
+            case FAHRENHEIT_S -> {
 
-                switch (medida2){
+                switch (medida2) {
 
-                    case CELSIUS_S -> resultado = Math.round((((valor - temperatura1.getvalorCelcius()) * 5) / 9) * 100d) / 100d;
+                    case CELSIUS_S ->
+                            resultado = Math.round((((valor - temperatura1.getvalorCelcius()) * 5) / 9) * 100d) / 100d;
 
                     case KELVIN_S -> resultado = Math.round((((valor + 459.67) * 5) / 9) * 100d) / 100d;
                 }
-            } case KELVIN_S -> {
+            }
+            case KELVIN_S -> {
 
-                switch (medida2){
+                switch (medida2) {
 
                     case CELSIUS_S -> resultado = Math.round((valor - temperatura1.getvalorCelcius()) * 100d) / 100d;
 
-                    case FAHRENHEIT_S -> resultado = Math.round((valor * 1.8 - 459.67) * 100d) /100d;
+                    case FAHRENHEIT_S -> resultado = Math.round((valor * 1.8 - 459.67) * 100d) / 100d;
                 }
             }
-            default -> resultado = Math.round(((valor / temperatura1.getvalorCelcius()) * temperatura2.getvalorCelcius()) * 100d) / 100d;
+            default ->
+                    resultado = Math.round(((valor / temperatura1.getvalorCelcius()) * temperatura2.getvalorCelcius()) * 100d) / 100d;
         }
 
         return resultado;
@@ -442,6 +447,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
             double valor = 0;
             double resultado = 0;
             boolean fail = Boolean.FALSE;
+            boolean esMenorCeroAbsoluto = Boolean.FALSE;
 
             Fahrenheit fahrenheit = (Fahrenheit) gestor.getTemperatura(FAHRENHEIT);
             Kelvin kelvin = (Kelvin) gestor.getTemperatura(KELVIN);
@@ -486,89 +492,120 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
                             temp1 = celsius.getNombre();
                             medida1 = celsius.getMedidas();
+                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, CELSIUS);
 
-                            switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
+                            if (esMenorCeroAbsoluto) {
 
-                                case FAHRENHEIT -> {
+                                JOptionPane.showMessageDialog(null, VALIDACION_TEMPERATURA,
+                                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                    temp2 = fahrenheit.getNombre();
-                                    medida2 = fahrenheit.getMedida();
+                                switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
 
-                                    resultado = this.cambioTemperatura(celsius,
-                                            valor, fahrenheit, medida1, medida2);
+                                    case FAHRENHEIT -> {
 
+                                        temp2 = fahrenheit.getNombre();
+                                        medida2 = fahrenheit.getMedida();
+
+                                        resultado = this.cambioTemperatura(celsius,
+                                                valor, fahrenheit, medida1, medida2);
+
+                                    }
+                                    case KELVIN -> {
+
+                                        temp2 = kelvin.getNombre();
+                                        medida2 = kelvin.getMedida();
+
+                                        resultado = this.cambioTemperatura(celsius,
+                                                valor, kelvin, medida1, medida2);
+                                    }
+                                    default -> fail = Boolean.TRUE;
                                 }
-                                case KELVIN -> {
-
-                                    temp2 = kelvin.getNombre();
-                                    medida2 = kelvin.getMedida();
-
-                                    resultado = this.cambioTemperatura(celsius,
-                                            valor, kelvin, medida1, medida2);
-                                }
-                                default -> fail = Boolean.TRUE;
                             }
+
                         }
                         case FAHRENHEIT -> {
 
                             temp1 = fahrenheit.getNombre();
                             medida1 = fahrenheit.getMedida();
+                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, FAHRENHEIT);
 
-                            switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
+                            if (esMenorCeroAbsoluto) {
 
-                                case CELSIUS -> {
+                                JOptionPane.showMessageDialog(null, VALIDACION_TEMPERATURA,
+                                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                    temp2 = celsius.getNombre();
-                                    medida2 = celsius.getMedidas();
+                                switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
 
-                                    resultado = this.cambioTemperatura(fahrenheit,
-                                            valor, celsius, medida1, medida2);
+                                    case CELSIUS -> {
+
+                                        temp2 = celsius.getNombre();
+                                        medida2 = celsius.getMedidas();
+
+                                        resultado = this.cambioTemperatura(fahrenheit,
+                                                valor, celsius, medida1, medida2);
+                                    }
+                                    case KELVIN -> {
+
+                                        temp2 = kelvin.getNombre();
+                                        medida2 = kelvin.getMedida();
+
+                                        resultado = this.cambioTemperatura(fahrenheit,
+                                                valor, kelvin, medida1, medida2);
+                                    }
+                                    default -> fail = Boolean.TRUE;
                                 }
-                                case KELVIN -> {
-
-                                    temp2 = kelvin.getNombre();
-                                    medida2 = kelvin.getMedida();
-
-                                    resultado = this.cambioTemperatura(fahrenheit,
-                                            valor, kelvin, medida1, medida2);
-                                }
-                                default -> fail = Boolean.TRUE;
                             }
                         }
                         case KELVIN -> {
 
                             temp1 = kelvin.getNombre();
                             medida1 = kelvin.getMedida();
+                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, KELVIN);
 
-                            switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
+                            if (esMenorCeroAbsoluto) {
 
-                                case FAHRENHEIT -> {
+                                JOptionPane.showMessageDialog(null, VALIDACION_TEMPERATURA,
+                                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                    temp2 = fahrenheit.getNombre();
-                                    medida2 = fahrenheit.getMedida();
+                                switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
 
-                                    resultado = this.cambioTemperatura(kelvin,
-                                            valor, fahrenheit, medida1, medida2);
+                                    case FAHRENHEIT -> {
+
+                                        temp2 = fahrenheit.getNombre();
+                                        medida2 = fahrenheit.getMedida();
+
+                                        resultado = this.cambioTemperatura(kelvin,
+                                                valor, fahrenheit, medida1, medida2);
+                                    }
+                                    case CELSIUS -> {
+
+                                        temp2 = celsius.getNombre();
+                                        medida2 = celsius.getMedidas();
+
+                                        resultado = this.cambioTemperatura(kelvin,
+                                                valor, celsius, medida1, medida2);
+                                    }
+                                    default -> fail = Boolean.TRUE;
                                 }
-                                case CELSIUS -> {
-
-                                    temp2 = celsius.getNombre();
-                                    medida2 = celsius.getMedidas();
-
-                                    resultado = this.cambioTemperatura(kelvin,
-                                            valor, celsius, medida1, medida2);
-                                }
-                                default -> fail = Boolean.TRUE;
                             }
                         }
                     }
 
-                    if (fail) {
-                        JOptionPane.showMessageDialog(null, VALOR_INVALIDO_TEMPERATURA_SAME,
-                                ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                    if(esMenorCeroAbsoluto){
+
+                        JOptionPane.showMessageDialog(null, "Favor vuelva a intentarlo");
                     } else {
-                        establecerTexto(nombreUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, temp1, temp2,
-                                medida2, valor, resultado);
+
+                        if (fail) {
+                            JOptionPane.showMessageDialog(null, VALOR_INVALIDO_TEMPERATURA_SAME,
+                                    ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            establecerTexto(nombreUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, temp1, temp2,
+                                    medida2, valor, resultado);
+                        }
                     }
                 }
             }
@@ -635,6 +672,19 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         }
     }
 
+    public boolean esMenorACeroAbsoluto(double valor, String medida) {
+
+        boolean esMenor;
+
+        esMenor = switch (medida) {
+            case CELSIUS -> (-273.15d > valor) ? Boolean.TRUE : Boolean.FALSE;
+            case FAHRENHEIT -> (-459.67d > valor) ? Boolean.TRUE : Boolean.FALSE;
+            case KELVIN -> (0 > valor) ? Boolean.TRUE : Boolean.FALSE;
+            default -> Boolean.FALSE;
+        };
+
+        return esMenor;
+    }
 
     public static void main(String[] args) {
 

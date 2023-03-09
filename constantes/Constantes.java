@@ -86,6 +86,7 @@ public final class Constantes {
                       SI USTED NO ACEPTA ESTOS TÉRMINOS, HAGA CLIC EN (NO ACEPTO) Y NO UTILICE ESTE SOFTWARE.\
             """;
     public static final String TITULO_BIENVENIDA = "Bienvenido/a";
+    public static final String VALIDACION_TEMPERATURA = "Su dato de entrada no puede ser inferior al cero absoluto";
     public static final String VALOR = "Valor";
     public static final String VALOR_INVALIDO = "Valor inválido, no se permiten carácteres, ni debe ser vacío";
     public static final String VALOR_INVALIDO_MENOR = "Valor inválido, debe ser mayor a 0";
