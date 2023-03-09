@@ -1,6 +1,11 @@
 # proyecto-conversor-monedas-alura
 Proyecto de conversión de monedas y temperaturas correspondiente al Challenge de Alura Latam Oracle-One Next Education que forma parte de su curso Backend
 
+#Fichero .jar incluido, comprimido en winrar, para que puedan ejecutar directamente.
+Se ha incluído en el proyecto el fichero .jar para su ejecución directa.
+De esta manera podrán hacer pruebas directas sobre la aplicación:
+https://github.com/Liriko/proyecto-conversor-monedas-alura/blob/master/proyecto_conversor_monedas_jar.rar
+
 # Paso a paso de la aplicación
   A continuación podrán visualizar el paso a paso de este conversor
 
