@@ -69,7 +69,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
         // Inicio configuración de menú ********************************************************************
 
         // Menu Bar
-        JMenuBar barraMenu = creaBarraMenu(147, 82, 210);
+        JMenuBar barraMenu = creaBarraDeMenu(147, 82, 210);
         // Menu
         JMenu menuOpciones = creaMenu(OPCIONES, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
@@ -223,12 +223,12 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
         estableceScroll(txa_area_01, 220, 333, 385, 90);
 
         // Se añaden las divisas a la lista de divisas
-        this.gestor.addDivisa(DOLAR, new Dolar(DOLAR, 1.00d));
-        this.gestor.addDivisa(EURO, new Euro(EURO, 0.94d));
-        this.gestor.addDivisa(LIBRA_ESTERLINA, new LibraEsterlina(LIBRA_ESTERLINA, 0.84d));
-        this.gestor.addDivisa(PESO_CHILENO, new PesoChileno(PESO_CHILENO, 802.50d));
-        this.gestor.addDivisa(WON_SURCOREANO, new WonSurcoreano(WON_SURCOREANO, 1306.03d));
-        this.gestor.addDivisa(YEN_JAPONES, new YenJapones(YEN_JAPONES, 136.53d));
+        this.gestor.agregarDivisa(DOLAR, new Dolar(DOLAR, 1.00d));
+        this.gestor.agregarDivisa(EURO, new Euro(EURO, 0.94d));
+        this.gestor.agregarDivisa(LIBRA_ESTERLINA, new LibraEsterlina(LIBRA_ESTERLINA, 0.84d));
+        this.gestor.agregarDivisa(PESO_CHILENO, new PesoChileno(PESO_CHILENO, 802.50d));
+        this.gestor.agregarDivisa(WON_SURCOREANO, new WonSurcoreano(WON_SURCOREANO, 1306.03d));
+        this.gestor.agregarDivisa(YEN_JAPONES, new YenJapones(YEN_JAPONES, 136.53d));
 
         // Poblar ComboBox
         anhiadirMonedas(cbx_divisa1, gestor);
@@ -242,11 +242,11 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
 
         combobox.addItem(SELECCIONE);
 
-        Set<String> keys = gestor.getMap().keySet();
+        Set<String> keys = gestor.obtenerMapa().keySet();
 
         for (String key : keys) {
 
-            Divisa value = gestor.getMap().get(key);
+            Divisa value = gestor.obtenerMapa().get(key);
             combobox.addItem(value.getNombre());
         }
     }
@@ -305,7 +305,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
     }
 
     @Override
-    public JMenuBar creaBarraMenu(int red, int green, int blue) {
+    public JMenuBar creaBarraDeMenu(int red, int green, int blue) {
 
         JMenuBar menuBar = new JMenuBar(); // establece barra de menu
         menuBar.setBackground(new Color(red, green, blue)); // color de fondo de la barra
@@ -415,12 +415,12 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
             double resultado = 0;
             boolean fail = Boolean.FALSE;
 
-            Dolar dolar = (Dolar) gestor.getDivisa(DOLAR);
-            Euro euro = (Euro) gestor.getDivisa(EURO);
-            LibraEsterlina libra = (LibraEsterlina) gestor.getDivisa(LIBRA_ESTERLINA);
-            PesoChileno peso = (PesoChileno) gestor.getDivisa(PESO_CHILENO);
-            WonSurcoreano won = (WonSurcoreano) gestor.getDivisa(WON_SURCOREANO);
-            YenJapones yen = (YenJapones) gestor.getDivisa(YEN_JAPONES);
+            Dolar dolar = (Dolar) gestor.obtenerDivisa(DOLAR);
+            Euro euro = (Euro) gestor.obtenerDivisa(EURO);
+            LibraEsterlina libra = (LibraEsterlina) gestor.obtenerDivisa(LIBRA_ESTERLINA);
+            PesoChileno peso = (PesoChileno) gestor.obtenerDivisa(PESO_CHILENO);
+            WonSurcoreano won = (WonSurcoreano) gestor.obtenerDivisa(WON_SURCOREANO);
+            YenJapones yen = (YenJapones) gestor.obtenerDivisa(YEN_JAPONES);
 
             String nombreUsuario = this.txf_nombre.getText();
             String apellidoPaternoUsuario = this.txf_apellidoPaterno.getText();

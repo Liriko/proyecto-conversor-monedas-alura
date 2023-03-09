@@ -170,7 +170,7 @@ public class Bienvenida extends JFrame implements ActionListener, Front {
     }
 
     @Override
-    public JMenuBar creaBarraMenu(int red, int green, int blue) {
+    public JMenuBar creaBarraDeMenu(int red, int green, int blue) {
         return null;
     }
 

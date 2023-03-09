@@ -72,7 +72,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         // Inicio configuración de menú ********************************************************************
 
         // Menu Bar
-        JMenuBar barraMenu = creaBarraMenu(147, 82, 210);
+        JMenuBar barraMenu = creaBarraDeMenu(147, 82, 210);
         // Menu
         JMenu menuOpciones = creaMenu(OPCIONES, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
@@ -226,9 +226,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         estableceScroll(txa_area_01, 220, 333, 385, 90);
 
         // Se añaden las temperaturas a la lista de temperaturas
-        this.gestor.addTemperatura(CELSIUS, new Celsius(CELSIUS, 0d));
-        this.gestor.addTemperatura(KELVIN, new Kelvin(KELVIN, 273.15d));
-        this.gestor.addTemperatura(FAHRENHEIT, new Fahrenheit(FAHRENHEIT, 32d));
+        this.gestor.agregarTemperatura(CELSIUS, new Celsius(CELSIUS, 0d));
+        this.gestor.agregarTemperatura(KELVIN, new Kelvin(KELVIN, 273.15d));
+        this.gestor.agregarTemperatura(FAHRENHEIT, new Fahrenheit(FAHRENHEIT, 32d));
 
         // Poblar ComboBox
         anhiadirTemperaturas(cbx_temperatura1, gestor);
@@ -242,11 +242,11 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
         combobox.addItem(SELECCIONE);
 
-        Set<String> keys = gestor.getMap().keySet();
+        Set<String> keys = gestor.obtenerMapa().keySet();
 
         for (String key : keys) {
 
-            model.temperaturas.Temperatura value = gestor.getMap().get(key);
+            model.temperaturas.Temperatura value = gestor.obtenerMapa().get(key);
             combobox.addItem(value.getNombre());
         }
     }
@@ -338,7 +338,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
     }
 
     @Override
-    public JMenuBar creaBarraMenu(int red, int green, int blue) {
+    public JMenuBar creaBarraDeMenu(int red, int green, int blue) {
 
         JMenuBar menuBar = new JMenuBar(); // establece barra de menu
         menuBar.setBackground(new Color(red, green, blue)); // color de fondo de la barra
@@ -449,9 +449,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
             boolean fail = Boolean.FALSE;
             boolean esMenorCeroAbsoluto = Boolean.FALSE;
 
-            Fahrenheit fahrenheit = (Fahrenheit) gestor.getTemperatura(FAHRENHEIT);
-            Kelvin kelvin = (Kelvin) gestor.getTemperatura(KELVIN);
-            Celsius celsius = (Celsius) gestor.getTemperatura(CELSIUS);
+            Fahrenheit fahrenheit = (Fahrenheit) gestor.obtenerTemperatura(FAHRENHEIT);
+            Kelvin kelvin = (Kelvin) gestor.obtenerTemperatura(KELVIN);
+            Celsius celsius = (Celsius) gestor.obtenerTemperatura(CELSIUS);
 
             String nombreUsuario = this.txf_nombre.getText();
             String apellidoPaternoUsuario = this.txf_apellidoPaterno.getText();

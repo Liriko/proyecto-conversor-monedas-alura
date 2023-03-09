@@ -163,7 +163,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	}
 
 	@Override
-	public JMenuBar creaBarraMenu(int red, int green, int blue) {
+	public JMenuBar creaBarraDeMenu(int red, int green, int blue) {
 		return null;
 	}
 

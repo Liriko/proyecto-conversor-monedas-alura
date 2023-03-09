@@ -18,16 +18,17 @@ public class GestorDivisa {
         this.divisas = new HashMap<>();
     }
 
-    public void addDivisa(String key, Divisa value) {
-        this.divisas.put(key, value);
+    public void agregarDivisa(String nombreDivisa, Divisa divisa) {
+        this.divisas.put(nombreDivisa, divisa);
     }
 
-    public Object getDivisa(String key) {
-        return this.divisas.get(key);
+    public Divisa obtenerDivisa(String nombreDivisa) {
+        return this.divisas.get(nombreDivisa);
     }
 
-    public Map<String, Divisa> getMap(){
+    public Map<String, Divisa> obtenerMapa(){
 
+        // el TreeMap ordenada mi mapa alfabéticamente
         return new TreeMap<>(this.divisas);
     }
 }

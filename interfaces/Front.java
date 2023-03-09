@@ -53,7 +53,7 @@ public interface Front {
                            String font, int style, int size);
 
     // Barra de menu
-    JMenuBar creaBarraMenu(int red, int green, int blue);
+    JMenuBar creaBarraDeMenu(int red, int green, int blue);
 
     // Menu
     JMenu creaMenu(String nombre, int red, int green, int blue, String font, int style, int size,

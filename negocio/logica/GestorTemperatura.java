@@ -20,16 +20,17 @@ public class GestorTemperatura {
         this.temperaturas = new HashMap<>();
     }
 
-    public void addTemperatura(String key, Temperatura value) {
-        this.temperaturas.put(key, value);
+    public void agregarTemperatura(String nombreTemperatura, Temperatura temperatura) {
+        this.temperaturas.put(nombreTemperatura, temperatura);
     }
 
-    public Object getTemperatura(String key) {
-        return this.temperaturas.get(key);
+    public Object obtenerTemperatura(String nombreTemperatura) {
+        return this.temperaturas.get(nombreTemperatura);
     }
 
-    public Map<String, Temperatura> getMap(){
+    public Map<String, Temperatura> obtenerMapa(){
 
+        // Este TreeMap ordena mi mapa alfabéticamente
         return new TreeMap<>(this.temperaturas);
     }
 }
