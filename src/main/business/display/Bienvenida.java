@@ -1,8 +1,8 @@
-package negocio.pantalla; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
+package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
+import src.main.interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
 
-import static constantes.Constantes.*; // importa mis constantes para su libre uso en esta clase
+import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 
 import javax.swing.*; // importa librería gráfica para configurar la pantalla
 import java.awt.event.*; // importa librería para implementer interfaz ActionListener
@@ -43,7 +43,7 @@ public class Bienvenida extends JFrame implements ActionListener, Front {
     public Bienvenida() {
 
         // configura el marco y su ícono
-        estableceMarco(TITULO_BIENVENIDA, 147, 82, 210);
+        estableceMarco(HEADER_WELCOME, 147, 82, 210);
         estableceIcono(ICONO);
 
         // configura el resto de los componentes que componen el marco
@@ -52,11 +52,11 @@ public class Bienvenida extends JFrame implements ActionListener, Front {
         estableceLogo(LOGO, 25, 15, 300, 100);
 
         // etiquetas
-        estableceEtiqueta(CONVERSOR, 70, 135, 300, 30,
+        estableceEtiqueta(SUB_MENU_CURRENCY_CONVERTER, 70, 135, 300, 30,
                 255, 255, 255, FONT_ANDALE_MONO, Font.ITALIC, 18);
-        estableceEtiqueta(INGRESA_NOMBRE, 45, 212, 200, 30,
+        estableceEtiqueta(LABEL_INPUT_NAME, 45, 212, 200, 30,
                 255, 255, 255, FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(FOOTER, 55, 375, 300, 30,
+        estableceEtiqueta(LABEL_FOOTER, 55, 375, 300, 30,
                 255, 255, 255, FONT_ANDALE_MONO, Font.BOLD, 12);
 
         // campo de texto
@@ -64,7 +64,7 @@ public class Bienvenida extends JFrame implements ActionListener, Front {
                 255, 0, 255, 224, 224, 224);
 
         // botón
-        this.btn_ingresar = creaBoton(INGRESAR, 125, 280, 100, 30,
+        this.btn_ingresar = creaBoton(BUTTON_ENTER, 125, 280, 100, 30,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 0, 0, 255,
                 255, 255, 255, Boolean.FALSE);

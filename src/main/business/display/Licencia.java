@@ -1,8 +1,8 @@
-package negocio.pantalla; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
+package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
+import src.main.interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
 
-import static constantes.Constantes.*; // importa mis constantes para su libre uso en esta clase
+import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 
 import javax.swing.*; // importa librería gráfica para configurar la pantalla
 import javax.swing.event.*; // importa librería para implementer interfaz ChangeListener
@@ -45,7 +45,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	public Licencia(){
 
 		// configura el marco y su ícono
-		estableceMarco(LICENCIA, 0, 0, 0);
+		estableceMarco(LABEL_LICENCE, 0, 0, 0);
 		estableceIcono(ICONO);
 
 		// configura el resto de los componentes que componen el marco
@@ -53,12 +53,12 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		this.nombre = Bienvenida.nombre; // asigna nombre desde la bienvenida
 
 		// etiqueta
-		estableceEtiqueta(TERMINOS, 215, 5, 200, 30,
+		estableceEtiqueta(TEXT_FIELD_LICENCE, 215, 5, 200, 30,
 				0, 0, 0,
 				FONT_ANDALE_MONO, Font.BOLD, 14);
 
 		// area de texto
-		JTextArea textArea_01 = creaAreaDeTexto(TERMINOSYCONDICIONES, Boolean.FALSE,
+		JTextArea textArea_01 = creaAreaDeTexto(TEXT_FIELD_LICENCE_DETAIL, Boolean.FALSE,
 				FONT_ANDALE_MONO, Font.TRUETYPE_FONT, 9,
 				0, 0, 0,
 				0, 0, 0);
@@ -71,12 +71,12 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				10, 250, 300, 30);
 
 		// botones
-		this.btn_continuar = creaBoton(CONTINUAR, 10, 290, 100, 30,
+		this.btn_continuar = creaBoton(BUTTON_CONTINUE, 10, 290, 100, 30,
 				null, 0,0,
 				0,0,0,
 				0,0, 0,
 				Boolean.FALSE);
-		this.btn_noAcepto = creaBoton(NO_ACEPTO, 120, 290, 100, 30,
+		this.btn_noAcepto = creaBoton(BUTTON_DECLINE, 120, 290, 100, 30,
 				null, 0, 0,
 				0, 0, 0,
 				0, 0, 0,

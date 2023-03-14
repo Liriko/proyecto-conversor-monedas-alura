@@ -1,6 +1,6 @@
-package negocio.logica; // declara el paquete donde estará ubicada mi lógica de negocio
+package src.main.business.logic; // declara el paquete donde estará ubicada mi lógica de src.main.negocio
 
-import model.temperaturas.Temperatura;
+import src.main.model.temperature.Temperatura;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,12 +1,12 @@
-package model.temperaturas;
+package src.main.model.temperature;
 
-import static constantes.Constantes.KELVIN_S;
+import static src.main.constants.Constant.SYMBOL_KELVIN;
 
 public class Kelvin extends Temperatura{
     private final char medida;
     public Kelvin(String nombre, double valorCelcius) {
         super(nombre, valorCelcius);
-        this.medida = KELVIN_S;
+        this.medida = SYMBOL_KELVIN;
     }
 
     public char getMedida() {

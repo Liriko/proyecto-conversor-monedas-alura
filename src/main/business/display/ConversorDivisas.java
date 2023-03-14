@@ -1,10 +1,10 @@
-package negocio.pantalla; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
+package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
-import model.divisas.*;
-import negocio.logica.GestorDivisa; // importa gestor de divisas para el cambio de moneda
+import src.main.interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
+import src.main.model.currency.*;
+import src.main.business.logic.GestorDivisa; // importa gestor de divisas para el cambio de moneda
 
-import static constantes.Constantes.*; // importa mis constantes para su libre uso en esta clase
+import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 
 import javax.swing.*; // importa librería gráfica para configurar la pantalla
 import java.awt.event.*; // importa librería para implementer interfaz ActionListener
@@ -61,7 +61,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
 
     public ConversorDivisas() {
 
-        estableceMarco(CONVERSOR_MONEDA, 147, 82, 210);
+        estableceMarco(SUB_MENU_CURRENCY_CONVERTER, 147, 82, 210);
         estableceIcono(ICONO);
 
         nombre = Bienvenida.nombre; // obtiene nombre desde bienvenida
@@ -71,44 +71,44 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
         // Menu Bar
         JMenuBar barraMenu = creaBarraDeMenu(147, 82, 210);
         // Menu
-        JMenu menuOpciones = creaMenu(OPCIONES, 255, 0, 0,
+        JMenu menuOpciones = creaMenu(MENU_OPTIONS, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
-        JMenu menuConversores = creaMenu(CONVERSORES, 255, 0, 0,
+        JMenu menuConversores = creaMenu(MENU_CONVERTER, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
-        JMenu menuSobreMi = creaMenu(SOBRE_MI, 255, 0, 0,
+        JMenu menuSobreMi = creaMenu(MENU_ABOUT_ME, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
         // Menu items
-        JMenuItem menuItemColorFondo = creaMenu(COLOR_FONDO, 255, 0, 0,
+        JMenuItem menuItemColorFondo = creaMenu(SUB_MENU_COLOR_FONDO, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        JMenuItem menuItemConversorDivisa = creaMenuItem(CONVERSOR_MONEDA,
+        JMenuItem menuItemConversorDivisa = creaMenuItem(SUB_MENU_CURRENCY_CONVERTER,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemConversorTemperatura = creaMenuItem(CONVERSOR_TEMPERATURA,
+        menuItemConversorTemperatura = creaMenuItem(SUB_MENU_TEMPERATURE_CONVERTER,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemColorRojo = creaMenuItem(ROJO,
+        menuItemColorRojo = creaMenuItem(SUB_MENU_RED_BACKGROUND,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemColorNegro = creaMenuItem(NEGRO,
+        menuItemColorNegro = creaMenuItem(SUB_MENU_BLACK_BACKGROUND,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemColorMorado = creaMenuItem(MORADO,
+        menuItemColorMorado = creaMenuItem(SUB_MENU_PURPLE_BACKGROUND,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemNuevo = creaMenuItem(NUEVO,
+        menuItemNuevo = creaMenuItem(SUB_MENU_NEW,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemAutor = creaMenuItem(AUTOR,
+        menuItemAutor = creaMenuItem(SUB_MENU_AUTHOR,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemSalir = creaMenuItem(SALIR,
+        menuItemSalir = creaMenuItem(SUB_MENU_EXIT,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemReset = creaMenuItem(LIMPIAR_CAMPOS,
+        menuItemReset = creaMenuItem(SUB_MENU_LIMPIAR_CAMPOS,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
 
@@ -138,43 +138,43 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
         estableceLogo(LOGO, 5, 5, 250, 140);
 
         // Etiquetas
-        estableceEtiqueta(VALOR + ":",
+        estableceEtiqueta(LABEL_VALUE + ":",
                 480, 188, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(BIENVENIDO + nombre,
+        estableceEtiqueta(LABEL_TITLE + nombre,
                 280, 30, 300, 50,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 32);
-        estableceEtiqueta(DATOS,
+        estableceEtiqueta(LABEL_SUBTITLE,
                 45, 140, 900, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 24);
-        estableceEtiqueta(NOMBRES,
+        estableceEtiqueta(LABEL_NAME,
                 25, 188, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(APELLIDO_PATERNO + ":",
+        estableceEtiqueta(LABEL_LASTNAME + ":",
                 25, 248, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(APELLIDO_MATERNO + ":",
+        estableceEtiqueta(LABEL_SURNAME + ":",
                 25, 308, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(CAMBIO_DE + ":",
+        estableceEtiqueta(LABEL_TO_CHANGE_FROM + ":",
                 220, 188, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(A + ":",
+        estableceEtiqueta(LABEL_A + ":",
                 220, 248, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(RESULTADO_CALCULO + ":",
+        estableceEtiqueta(TEXT_FIELD_CALCULATION_RESULT + ":",
                 220, 307, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(FOOTER, 195, 445, 500, 30,
+        estableceEtiqueta(LABEL_FOOTER, 195, 445, 500, 30,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
 
@@ -197,7 +197,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                 255, 0, 0);
 
         // Botones
-        btn_calcular = creaBoton(CALCULAR,
+        btn_calcular = creaBoton(BUTTON_CALCULATE,
                 480, 258, 125, 45,
                 FONT_ANDALE_MONO, Font.BOLD, 20,
                 255, 0, 0,
@@ -214,7 +214,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                 FONT_ANDALE_MONO, Font.BOLD, 14);
 
         // Area de texto
-        txa_area_01 = creaAreaDeTexto(AQUI_RESULTADO, Boolean.FALSE,
+        txa_area_01 = creaAreaDeTexto(TEXT_FIELD_CURRENCY_RESULT, Boolean.FALSE,
                 FONT_ANDALE_MONO, Font.BOLD, 11,
                 224, 224, 224,
                 255, 0, 0);
@@ -223,12 +223,12 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
         estableceScroll(txa_area_01, 220, 333, 385, 90);
 
         // Se añaden las divisas a la lista de divisas
-        this.gestor.agregarDivisa(DOLAR, new Dolar(DOLAR, 1.00d));
-        this.gestor.agregarDivisa(EURO, new Euro(EURO, 0.94d));
-        this.gestor.agregarDivisa(LIBRA_ESTERLINA, new LibraEsterlina(LIBRA_ESTERLINA, 0.84d));
-        this.gestor.agregarDivisa(PESO_CHILENO, new PesoChileno(PESO_CHILENO, 802.50d));
-        this.gestor.agregarDivisa(WON_SURCOREANO, new WonSurcoreano(WON_SURCOREANO, 1306.03d));
-        this.gestor.agregarDivisa(YEN_JAPONES, new YenJapones(YEN_JAPONES, 136.53d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_USD, new Dolar(ITEM_CURRENCY_USD, 1.00d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_EUR, new Euro(ITEM_CURRENCY_EUR, 0.94d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_GBP, new LibraEsterlina(ITEM_CURRENCY_GBP, 0.84d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_CLP, new PesoChileno(ITEM_CURRENCY_CLP, 802.50d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_KRW, new WonSurcoreano(ITEM_CURRENCY_KRW, 1306.03d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_JPY, new YenJapones(ITEM_CURRENCY_JPY, 136.53d));
 
         // Poblar ComboBox
         anhiadirMonedas(cbx_divisa1, gestor);
@@ -240,7 +240,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
     // Método que añade las divisas a sus respectivos combobox.
     public void anhiadirMonedas(JComboBox combobox, GestorDivisa gestor) {
 
-        combobox.addItem(SELECCIONE);
+        combobox.addItem(ITEM_OPTION_SELECT);
 
         Set<String> keys = gestor.obtenerMapa().keySet();
 
@@ -255,7 +255,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
 
         double resultado;
 
-        if (ccy == DOLAR_S) resultado = temperatura2.getValorUSD() * valor;
+        if (ccy == SYMBOL_USD) resultado = temperatura2.getValorUSD() * valor;
         else resultado = Math.round(((valor / temperatura1.getValorUSD()) * temperatura2.getValorUSD()) * 100d) / 100d;
 
         return resultado;
@@ -415,12 +415,12 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
             double resultado = 0;
             boolean fail = Boolean.FALSE;
 
-            Dolar dolar = (Dolar) gestor.obtenerDivisa(DOLAR);
-            Euro euro = (Euro) gestor.obtenerDivisa(EURO);
-            LibraEsterlina libra = (LibraEsterlina) gestor.obtenerDivisa(LIBRA_ESTERLINA);
-            PesoChileno peso = (PesoChileno) gestor.obtenerDivisa(PESO_CHILENO);
-            WonSurcoreano won = (WonSurcoreano) gestor.obtenerDivisa(WON_SURCOREANO);
-            YenJapones yen = (YenJapones) gestor.obtenerDivisa(YEN_JAPONES);
+            Dolar dolar = (Dolar) gestor.obtenerDivisa(ITEM_CURRENCY_USD);
+            Euro euro = (Euro) gestor.obtenerDivisa(ITEM_CURRENCY_EUR);
+            LibraEsterlina libra = (LibraEsterlina) gestor.obtenerDivisa(ITEM_CURRENCY_GBP);
+            PesoChileno peso = (PesoChileno) gestor.obtenerDivisa(ITEM_CURRENCY_CLP);
+            WonSurcoreano won = (WonSurcoreano) gestor.obtenerDivisa(ITEM_CURRENCY_KRW);
+            YenJapones yen = (YenJapones) gestor.obtenerDivisa(ITEM_CURRENCY_JPY);
 
             String nombreUsuario = this.txf_nombre.getText();
             String apellidoPaternoUsuario = this.txf_apellidoPaterno.getText();
@@ -444,33 +444,33 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
 
             if (fail) {
 
-                JOptionPane.showMessageDialog(null, VALOR_INVALIDO,
-                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, MSG_INVALID_VALUE_EMPTY_OR_SPECIAL_CHAR,
+                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
             } else {
 
                 if (valor < 0) {
 
-                    JOptionPane.showMessageDialog(null, VALOR_INVALIDO_MENOR,
-                            ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, MSG_INVALID_VALUE_LOWER_THAN_ZERO,
+                            MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                 } else {
 
-                    if (Objects.equals(cbx_divisa1.getSelectedItem(), SELECCIONE) ||
-                            Objects.equals(cbx_divisa2.getSelectedItem(), SELECCIONE)) {
+                    if (Objects.equals(cbx_divisa1.getSelectedItem(), ITEM_OPTION_SELECT) ||
+                            Objects.equals(cbx_divisa2.getSelectedItem(), ITEM_OPTION_SELECT)) {
 
-                        JOptionPane.showMessageDialog(null, VALOR_INVALIDO_DIVISA,
-                                ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, MSG_INVALID_CURRENCY_PAIR,
+                                MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                     } else {
 
                         switch (Objects.requireNonNull(cbx_divisa1.getSelectedItem()).toString()) {
 
-                            case DOLAR -> {
+                            case ITEM_CURRENCY_USD -> {
 
                                 div1 = dolar.getNombre();
                                 ccy1 = dolar.getCcy();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
-                                    case EURO -> {
+                                    case ITEM_CURRENCY_EUR -> {
 
                                         div2 = euro.getNombre();
                                         ccy2 = euro.getCcy();
@@ -479,7 +479,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                                 valor, euro, ccy1);
 
                                     }
-                                    case LIBRA_ESTERLINA -> {
+                                    case ITEM_CURRENCY_GBP -> {
 
                                         div2 = libra.getNombre();
                                         ccy2 = libra.getCcy();
@@ -487,7 +487,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(dolar,
                                                 valor, libra, ccy1);
                                     }
-                                    case PESO_CHILENO -> {
+                                    case ITEM_CURRENCY_CLP -> {
 
                                         div2 = peso.getNombre();
                                         ccy2 = peso.getCcy();
@@ -495,7 +495,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(dolar,
                                                 valor, peso, ccy1);
                                     }
-                                    case WON_SURCOREANO -> {
+                                    case ITEM_CURRENCY_KRW -> {
 
                                         div2 = won.getNombre();
                                         ccy2 = won.getCcy();
@@ -503,7 +503,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(dolar,
                                                 valor, won, ccy1);
                                     }
-                                    case YEN_JAPONES -> {
+                                    case ITEM_CURRENCY_JPY -> {
 
                                         div2 = yen.getNombre();
                                         ccy2 = yen.getCcy();
@@ -513,14 +513,14 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                     } default -> fail = Boolean.TRUE;
                                 }
                             }
-                            case EURO -> {
+                            case ITEM_CURRENCY_EUR -> {
 
                                 div1 = euro.getNombre();
                                 ccy1 = euro.getCcy();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
-                                    case DOLAR -> {
+                                    case ITEM_CURRENCY_USD -> {
 
                                         div2 = dolar.getNombre();
                                         ccy2 = dolar.getCcy();
@@ -528,7 +528,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(euro,
                                                 valor, dolar, ccy1);
                                     }
-                                    case LIBRA_ESTERLINA -> {
+                                    case ITEM_CURRENCY_GBP -> {
 
                                         div2 = libra.getNombre();
                                         ccy2 = libra.getCcy();
@@ -536,7 +536,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(euro,
                                                 valor, libra, ccy1);
                                     }
-                                    case PESO_CHILENO -> {
+                                    case ITEM_CURRENCY_CLP -> {
 
                                         div2 = peso.getNombre();
                                         ccy2 = peso.getCcy();
@@ -544,7 +544,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(euro,
                                                 valor, peso, ccy1);
                                     }
-                                    case WON_SURCOREANO -> {
+                                    case ITEM_CURRENCY_KRW -> {
 
                                         div2 = won.getNombre();
                                         ccy2 = won.getCcy();
@@ -552,7 +552,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(euro,
                                                 valor, won, ccy1);
                                     }
-                                    case YEN_JAPONES -> {
+                                    case ITEM_CURRENCY_JPY -> {
 
                                         div2 = yen.getNombre();
                                         ccy2 = yen.getCcy();
@@ -562,14 +562,14 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                     } default -> fail = Boolean.TRUE;
                                 }
                             }
-                            case LIBRA_ESTERLINA -> {
+                            case ITEM_CURRENCY_GBP -> {
 
                                 div1 = libra.getNombre();
                                 ccy1 = libra.getCcy();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
-                                    case DOLAR -> {
+                                    case ITEM_CURRENCY_USD -> {
 
                                         div2 = dolar.getNombre();
                                         ccy2 = dolar.getCcy();
@@ -577,7 +577,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(libra,
                                                 valor, dolar, ccy1);
                                     }
-                                    case EURO -> {
+                                    case ITEM_CURRENCY_EUR -> {
 
                                         div2 = euro.getNombre();
                                         ccy2 = euro.getCcy();
@@ -585,7 +585,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(libra,
                                                 valor, euro, ccy1);
                                     }
-                                    case PESO_CHILENO -> {
+                                    case ITEM_CURRENCY_CLP -> {
 
                                         div2 = peso.getNombre();
                                         ccy2 = peso.getCcy();
@@ -593,7 +593,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(libra,
                                                 valor, peso, ccy1);
                                     }
-                                    case WON_SURCOREANO -> {
+                                    case ITEM_CURRENCY_KRW -> {
 
                                         div2 = won.getNombre();
                                         ccy2 = won.getCcy();
@@ -601,7 +601,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(libra,
                                                 valor, won, ccy1);
                                     }
-                                    case YEN_JAPONES -> {
+                                    case ITEM_CURRENCY_JPY -> {
 
                                         div2 = yen.getNombre();
                                         ccy2 = yen.getCcy();
@@ -611,14 +611,14 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                     } default -> fail = Boolean.TRUE;
                                 }
                             }
-                            case PESO_CHILENO -> {
+                            case ITEM_CURRENCY_CLP -> {
 
                                 div1 = peso.getNombre();
                                 ccy1 = libra.getCcy(); // Esto no es un error, es un control de daños.
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
-                                    case DOLAR -> {
+                                    case ITEM_CURRENCY_USD -> {
 
                                         div2 = dolar.getNombre();
                                         ccy2 = dolar.getCcy();
@@ -626,7 +626,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(peso,
                                                 valor, dolar, ccy1);
                                     }
-                                    case EURO -> {
+                                    case ITEM_CURRENCY_EUR -> {
 
                                         div2 = euro.getNombre();
                                         ccy2 = euro.getCcy();
@@ -634,7 +634,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(peso,
                                                 valor, euro, ccy1);
                                     }
-                                    case LIBRA_ESTERLINA -> {
+                                    case ITEM_CURRENCY_GBP -> {
 
                                         div2 = libra.getNombre();
                                         ccy2 = libra.getCcy();
@@ -642,7 +642,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(peso,
                                                 valor, libra, ccy1);
                                     }
-                                    case WON_SURCOREANO -> {
+                                    case ITEM_CURRENCY_KRW -> {
 
                                         div2 = won.getNombre();
                                         ccy2 = won.getCcy();
@@ -650,7 +650,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(peso,
                                                 valor, won, ccy1);
                                     }
-                                    case YEN_JAPONES -> {
+                                    case ITEM_CURRENCY_JPY -> {
 
                                         div2 = yen.getNombre();
                                         ccy2 = yen.getCcy();
@@ -660,14 +660,14 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                     } default -> fail = Boolean.TRUE;
                                 }
                             }
-                            case WON_SURCOREANO -> {
+                            case ITEM_CURRENCY_KRW -> {
 
                                 div1 = won.getNombre();
                                 ccy1 = won.getCcy();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
-                                    case DOLAR -> {
+                                    case ITEM_CURRENCY_USD -> {
 
                                         div2 = dolar.getNombre();
                                         ccy2 = dolar.getCcy();
@@ -675,7 +675,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(won,
                                                 valor, dolar, ccy1);
                                     }
-                                    case EURO -> {
+                                    case ITEM_CURRENCY_EUR -> {
 
                                         div2 = euro.getNombre();
                                         ccy2 = euro.getCcy();
@@ -683,7 +683,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(won,
                                                 valor, euro, ccy1);
                                     }
-                                    case LIBRA_ESTERLINA -> {
+                                    case ITEM_CURRENCY_GBP -> {
 
                                         div2 = libra.getNombre();
                                         ccy2 = libra.getCcy();
@@ -691,7 +691,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(won,
                                                 valor, libra, ccy1);
                                     }
-                                    case PESO_CHILENO -> {
+                                    case ITEM_CURRENCY_CLP -> {
 
                                         div2 = peso.getNombre();
                                         ccy2 = peso.getCcy();
@@ -699,7 +699,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(won,
                                                 valor, peso, ccy1);
                                     }
-                                    case YEN_JAPONES -> {
+                                    case ITEM_CURRENCY_JPY -> {
 
                                         div2 = yen.getNombre();
                                         ccy2 = yen.getCcy();
@@ -709,14 +709,14 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                     } default -> fail = Boolean.TRUE;
                                 }
                             }
-                            case YEN_JAPONES -> {
+                            case ITEM_CURRENCY_JPY -> {
 
                                 div1 = yen.getNombre();
                                 ccy1 = yen.getCcy();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
-                                    case DOLAR -> {
+                                    case ITEM_CURRENCY_USD -> {
 
                                         div2 = dolar.getNombre();
                                         ccy2 = dolar.getCcy();
@@ -724,7 +724,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(yen,
                                                 valor, dolar, ccy1);
                                     }
-                                    case EURO -> {
+                                    case ITEM_CURRENCY_EUR -> {
 
                                         div2 = euro.getNombre();
                                         ccy2 = euro.getCcy();
@@ -732,7 +732,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(yen,
                                                 valor, euro, ccy1);
                                     }
-                                    case LIBRA_ESTERLINA -> {
+                                    case ITEM_CURRENCY_GBP -> {
 
                                         div2 = libra.getNombre();
                                         ccy2 = libra.getCcy();
@@ -740,7 +740,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(yen,
                                                 valor, libra, ccy1);
                                     }
-                                    case PESO_CHILENO -> {
+                                    case ITEM_CURRENCY_CLP -> {
 
                                         div2 = peso.getNombre();
                                         ccy2 = peso.getCcy();
@@ -748,7 +748,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                                         resultado = this.cambioDivisa(yen,
                                                 valor, peso, ccy1);
                                     }
-                                    case WON_SURCOREANO -> {
+                                    case ITEM_CURRENCY_KRW -> {
 
                                         div2 = won.getNombre();
                                         ccy2 = won.getCcy();
@@ -761,8 +761,8 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
                         }
 
                         if (fail){
-                            JOptionPane.showMessageDialog(null, VALOR_INVALIDO_DIVISA_SAME,
-                                    ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, MSG_INVALID_EQUAL_CURRENCY_PAIR,
+                                    MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                         } else {
                             establecerTexto(nombreUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, div1, div2,
                                     ccy2, valor, resultado);
@@ -783,9 +783,9 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
 
         if (e.getSource() == menuItemAutor) {
 
-            JOptionPane.showMessageDialog(null, PROGRAMA + "\n"
-                    + CORREO + "\n"
-                    + ESTUDIANTE);
+            JOptionPane.showMessageDialog(null, MSG_INFO_APP + "\n"
+                    + MSG_EMAIL + "\n"
+                    + MSG_INFO_EDUCATION);
         }
 
         if (e.getSource() == menuItemColorMorado) {
@@ -831,7 +831,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
             cbx_divisa1.setSelectedIndex(0);
             assert txf_valor != null;
             txf_valor.setText("");
-            txa_area_01.setText(AQUI_RESULTADO);
+            txa_area_01.setText(TEXT_FIELD_CURRENCY_RESULT);
         }
     }
 

@@ -1,6 +1,6 @@
-package negocio.logica; // declara el paquete donde estará ubicada mi lógica de negocio
+package src.main.business.logic; // declara el paquete donde estará ubicada mi lógica de src.main.negocio
 
-import model.divisas.Divisa;
+import src.main.model.currency.Divisa;
 
 import java.util.*;
 

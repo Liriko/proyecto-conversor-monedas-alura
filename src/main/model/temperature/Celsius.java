@@ -1,12 +1,12 @@
-package model.temperaturas;
+package src.main.model.temperature;
 
-import static constantes.Constantes.CELSIUS_S;
+import static src.main.constants.Constant.SYMBOL_CELSIUS;
 
 public class Celsius extends Temperatura{
     private final char medida;
     public Celsius(String nombre, double valorCelsius) {
         super(nombre, valorCelsius);
-        this.medida = CELSIUS_S;
+        this.medida = SYMBOL_CELSIUS;
     }
 
     public char getMedidas() {

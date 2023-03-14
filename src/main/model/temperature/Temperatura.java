@@ -1,4 +1,4 @@
-package model.temperaturas;
+package src.main.model.temperature;
 
 /*
     Clase abstracta que le da forma a las distintas temperaturas del proyecto,

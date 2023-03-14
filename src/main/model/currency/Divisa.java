@@ -1,4 +1,4 @@
-package model.divisas;
+package src.main.model.currency;
 
 /*
     Clase abstracta que le da forma a las distintas divisas de la aplicación

@@ -1,12 +1,12 @@
-package model.divisas;
+package src.main.model.currency;
 
-import static constantes.Constantes.*; // importa mis constantes para su libre uso en esta clase
+import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 public class PesoChileno extends Divisa {
 
     private final char ccy;
     public PesoChileno(String nombre, double valorUSD) {
         super(nombre, valorUSD);
-        this.ccy = PESO_CHILENO_S;
+        this.ccy = SYMBOL_CLP;
     }
 
     public char getCcy() {

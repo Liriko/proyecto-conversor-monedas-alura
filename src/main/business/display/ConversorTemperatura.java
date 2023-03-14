@@ -1,11 +1,11 @@
-package negocio.pantalla; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
+package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import interfaces.Front;
-import model.temperaturas.Celsius;
-import model.temperaturas.Fahrenheit;
-import model.temperaturas.Kelvin;
-import model.temperaturas.Temperatura;
-import negocio.logica.GestorTemperatura;
+import src.main.interfaces.Front;
+import src.main.model.temperature.Celsius;
+import src.main.model.temperature.Fahrenheit;
+import src.main.model.temperature.Kelvin;
+import src.main.model.temperature.Temperatura;
+import src.main.business.logic.GestorTemperatura;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 import java.util.Set;
 
-import static constantes.Constantes.*;
+import static src.main.constants.Constant.*;
 
 /*
     Autor: Jorge Daniel Salgado Pons
@@ -64,7 +64,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
     public ConversorTemperatura() {
 
-        estableceMarco(CONVERSOR_TEMPERATURA, 147, 82, 210);
+        estableceMarco(SUB_MENU_TEMPERATURE_CONVERTER, 147, 82, 210);
         estableceIcono(ICONO);
 
         nombre = Bienvenida.nombre; // obtiene nombre desde bienvenida
@@ -74,44 +74,44 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         // Menu Bar
         JMenuBar barraMenu = creaBarraDeMenu(147, 82, 210);
         // Menu
-        JMenu menuOpciones = creaMenu(OPCIONES, 255, 0, 0,
+        JMenu menuOpciones = creaMenu(MENU_OPTIONS, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
-        JMenu menuConversores = creaMenu(CONVERSORES, 255, 0, 0,
+        JMenu menuConversores = creaMenu(MENU_CONVERTER, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
-        JMenu menuSobreMi = creaMenu(SOBRE_MI, 255, 0, 0,
+        JMenu menuSobreMi = creaMenu(MENU_ABOUT_ME, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
         // Menu items
-        JMenuItem menuItemColorFondo = creaMenu(COLOR_FONDO, 255, 0, 0,
+        JMenuItem menuItemColorFondo = creaMenu(SUB_MENU_COLOR_FONDO, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        this.menuItemConversorDivisa = creaMenuItem(CONVERSOR_MONEDA,
+        this.menuItemConversorDivisa = creaMenuItem(SUB_MENU_CURRENCY_CONVERTER,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        JMenuItem menuItemConversorTemperatura = creaMenuItem(CONVERSOR_TEMPERATURA,
+        JMenuItem menuItemConversorTemperatura = creaMenuItem(SUB_MENU_TEMPERATURE_CONVERTER,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemColorRojo = creaMenuItem(ROJO,
+        menuItemColorRojo = creaMenuItem(SUB_MENU_RED_BACKGROUND,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemColorNegro = creaMenuItem(NEGRO,
+        menuItemColorNegro = creaMenuItem(SUB_MENU_BLACK_BACKGROUND,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemColorMorado = creaMenuItem(MORADO,
+        menuItemColorMorado = creaMenuItem(SUB_MENU_PURPLE_BACKGROUND,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemNuevo = creaMenuItem(NUEVO,
+        menuItemNuevo = creaMenuItem(SUB_MENU_NEW,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemAutor = creaMenuItem(AUTOR,
+        menuItemAutor = creaMenuItem(SUB_MENU_AUTHOR,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemSalir = creaMenuItem(SALIR,
+        menuItemSalir = creaMenuItem(SUB_MENU_EXIT,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
-        menuItemReset = creaMenuItem(LIMPIAR_CAMPOS,
+        menuItemReset = creaMenuItem(SUB_MENU_LIMPIAR_CAMPOS,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
 
@@ -141,43 +141,43 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         estableceLogo(LOGO, 5, 5, 250, 140);
 
         // Etiquetas
-        estableceEtiqueta(VALOR + ":",
+        estableceEtiqueta(LABEL_VALUE + ":",
                 480, 188, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(BIENVENIDO + nombre,
+        estableceEtiqueta(LABEL_TITLE + nombre,
                 280, 30, 300, 50,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 32);
-        estableceEtiqueta(DATOS,
+        estableceEtiqueta(LABEL_SUBTITLE,
                 45, 140, 900, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 24);
-        estableceEtiqueta(NOMBRES,
+        estableceEtiqueta(LABEL_NAME,
                 25, 188, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(APELLIDO_PATERNO + ":",
+        estableceEtiqueta(LABEL_LASTNAME + ":",
                 25, 248, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(APELLIDO_MATERNO + ":",
+        estableceEtiqueta(LABEL_SURNAME + ":",
                 25, 308, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(CAMBIO_DE + ":",
+        estableceEtiqueta(LABEL_TO_CHANGE_FROM + ":",
                 220, 188, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(A + ":",
+        estableceEtiqueta(LABEL_A + ":",
                 220, 248, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(RESULTADO_CALCULO + ":",
+        estableceEtiqueta(TEXT_FIELD_CALCULATION_RESULT + ":",
                 220, 307, 180, 25,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(FOOTER, 195, 445, 500, 30,
+        estableceEtiqueta(LABEL_FOOTER, 195, 445, 500, 30,
                 255, 255, 255,
                 FONT_ANDALE_MONO, Font.BOLD, 12);
 
@@ -200,7 +200,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                 255, 0, 0);
 
         // Botones
-        btn_calcular = creaBoton(CALCULAR,
+        btn_calcular = creaBoton(BUTTON_CALCULATE,
                 480, 258, 125, 45,
                 FONT_ANDALE_MONO, Font.BOLD, 20,
                 255, 0, 0,
@@ -217,7 +217,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                 FONT_ANDALE_MONO, Font.BOLD, 14);
 
         // Area de texto
-        txa_area_01 = creaAreaDeTexto(AQUI_RESULTADO_TEMPERATURA, Boolean.FALSE,
+        txa_area_01 = creaAreaDeTexto(TEXT_FIELD_TEMPERATURE_RESULT, Boolean.FALSE,
                 FONT_ANDALE_MONO, Font.BOLD, 11,
                 224, 224, 224,
                 255, 0, 0);
@@ -226,9 +226,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         estableceScroll(txa_area_01, 220, 333, 385, 90);
 
         // Se añaden las temperaturas a la lista de temperaturas
-        this.gestor.agregarTemperatura(CELSIUS, new Celsius(CELSIUS, 0d));
-        this.gestor.agregarTemperatura(KELVIN, new Kelvin(KELVIN, 273.15d));
-        this.gestor.agregarTemperatura(FAHRENHEIT, new Fahrenheit(FAHRENHEIT, 32d));
+        this.gestor.agregarTemperatura(ITEM_TEMPERATURE_CELSIUS, new Celsius(ITEM_TEMPERATURE_CELSIUS, 0d));
+        this.gestor.agregarTemperatura(ITEM_TEMPERATURE_KELVIN, new Kelvin(ITEM_TEMPERATURE_KELVIN, 273.15d));
+        this.gestor.agregarTemperatura(ITEM_TEMPERATURE_FAHRENHEIT, new Fahrenheit(ITEM_TEMPERATURE_FAHRENHEIT, 32d));
 
         // Poblar ComboBox
         anhiadirTemperaturas(cbx_temperatura1, gestor);
@@ -240,13 +240,13 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
     // Método que añade las temperaturas a sus respectivos combobox.
     public void anhiadirTemperaturas(JComboBox combobox, GestorTemperatura gestor) {
 
-        combobox.addItem(SELECCIONE);
+        combobox.addItem(ITEM_OPTION_SELECT);
 
         Set<String> keys = gestor.obtenerMapa().keySet();
 
         for (String key : keys) {
 
-            model.temperaturas.Temperatura value = gestor.obtenerMapa().get(key);
+            src.main.model.temperature.Temperatura value = gestor.obtenerMapa().get(key);
             combobox.addItem(value.getNombre());
         }
     }
@@ -258,33 +258,33 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
         switch (medida1) {
 
-            case CELSIUS_S -> {
+            case SYMBOL_CELSIUS -> {
 
                 switch (medida2) {
 
-                    case FAHRENHEIT_S ->
+                    case SYMBOL_FAHRENHEIT ->
                             resultado = Math.round((((valor * 9) / 5) + temperatura2.getvalorCelcius()) * 100d) / 100d;
 
-                    case KELVIN_S -> resultado = Math.round((temperatura2.getvalorCelcius() + valor) * 100d) / 100d;
+                    case SYMBOL_KELVIN -> resultado = Math.round((temperatura2.getvalorCelcius() + valor) * 100d) / 100d;
                 }
             }
-            case FAHRENHEIT_S -> {
+            case SYMBOL_FAHRENHEIT -> {
 
                 switch (medida2) {
 
-                    case CELSIUS_S ->
+                    case SYMBOL_CELSIUS ->
                             resultado = Math.round((((valor - temperatura1.getvalorCelcius()) * 5) / 9) * 100d) / 100d;
 
-                    case KELVIN_S -> resultado = Math.round((((valor + 459.67) * 5) / 9) * 100d) / 100d;
+                    case SYMBOL_KELVIN -> resultado = Math.round((((valor + 459.67) * 5) / 9) * 100d) / 100d;
                 }
             }
-            case KELVIN_S -> {
+            case SYMBOL_KELVIN -> {
 
                 switch (medida2) {
 
-                    case CELSIUS_S -> resultado = Math.round((valor - temperatura1.getvalorCelcius()) * 100d) / 100d;
+                    case SYMBOL_CELSIUS -> resultado = Math.round((valor - temperatura1.getvalorCelcius()) * 100d) / 100d;
 
-                    case FAHRENHEIT_S -> resultado = Math.round((valor * 1.8 - 459.67) * 100d) / 100d;
+                    case SYMBOL_FAHRENHEIT -> resultado = Math.round((valor * 1.8 - 459.67) * 100d) / 100d;
                 }
             }
             default ->
@@ -449,9 +449,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
             boolean fail = Boolean.FALSE;
             boolean esMenorCeroAbsoluto = Boolean.FALSE;
 
-            Fahrenheit fahrenheit = (Fahrenheit) gestor.obtenerTemperatura(FAHRENHEIT);
-            Kelvin kelvin = (Kelvin) gestor.obtenerTemperatura(KELVIN);
-            Celsius celsius = (Celsius) gestor.obtenerTemperatura(CELSIUS);
+            Fahrenheit fahrenheit = (Fahrenheit) gestor.obtenerTemperatura(ITEM_TEMPERATURE_FAHRENHEIT);
+            Kelvin kelvin = (Kelvin) gestor.obtenerTemperatura(ITEM_TEMPERATURE_KELVIN);
+            Celsius celsius = (Celsius) gestor.obtenerTemperatura(ITEM_TEMPERATURE_CELSIUS);
 
             String nombreUsuario = this.txf_nombre.getText();
             String apellidoPaternoUsuario = this.txf_apellidoPaterno.getText();
@@ -475,34 +475,34 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
             if (fail) {
 
-                JOptionPane.showMessageDialog(null, VALOR_INVALIDO,
-                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, MSG_INVALID_VALUE_EMPTY_OR_SPECIAL_CHAR,
+                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
             } else {
 
-                if (Objects.equals(cbx_temperatura1.getSelectedItem(), SELECCIONE) ||
-                        Objects.equals(cbx_temperatura2.getSelectedItem(), SELECCIONE)) {
+                if (Objects.equals(cbx_temperatura1.getSelectedItem(), ITEM_OPTION_SELECT) ||
+                        Objects.equals(cbx_temperatura2.getSelectedItem(), ITEM_OPTION_SELECT)) {
 
-                    JOptionPane.showMessageDialog(null, VALOR_INVALIDO_TEMPERATURA_SAME,
-                            ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, MSG_INVALID_EQUAL_TEMPERATURE_PAIR,
+                            MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                 } else {
 
                     switch (Objects.requireNonNull(cbx_temperatura1.getSelectedItem()).toString()) {
 
-                        case CELSIUS -> {
+                        case ITEM_TEMPERATURE_CELSIUS -> {
 
                             temp1 = celsius.getNombre();
                             medida1 = celsius.getMedidas();
-                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, CELSIUS);
+                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, ITEM_TEMPERATURE_CELSIUS);
 
                             if (esMenorCeroAbsoluto) {
 
-                                JOptionPane.showMessageDialog(null, VALIDACION_TEMPERATURA,
-                                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, MSG_ABS_ZERO_INPUT,
+                                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                             } else {
 
                                 switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
 
-                                    case FAHRENHEIT -> {
+                                    case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
                                         temp2 = fahrenheit.getNombre();
                                         medida2 = fahrenheit.getMedida();
@@ -511,7 +511,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                                                 valor, fahrenheit, medida1, medida2);
 
                                     }
-                                    case KELVIN -> {
+                                    case ITEM_TEMPERATURE_KELVIN -> {
 
                                         temp2 = kelvin.getNombre();
                                         medida2 = kelvin.getMedida();
@@ -524,21 +524,21 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                             }
 
                         }
-                        case FAHRENHEIT -> {
+                        case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
                             temp1 = fahrenheit.getNombre();
                             medida1 = fahrenheit.getMedida();
-                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, FAHRENHEIT);
+                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, ITEM_TEMPERATURE_FAHRENHEIT);
 
                             if (esMenorCeroAbsoluto) {
 
-                                JOptionPane.showMessageDialog(null, VALIDACION_TEMPERATURA,
-                                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, MSG_ABS_ZERO_INPUT,
+                                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                             } else {
 
                                 switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
 
-                                    case CELSIUS -> {
+                                    case ITEM_TEMPERATURE_CELSIUS -> {
 
                                         temp2 = celsius.getNombre();
                                         medida2 = celsius.getMedidas();
@@ -546,7 +546,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                                         resultado = this.cambioTemperatura(fahrenheit,
                                                 valor, celsius, medida1, medida2);
                                     }
-                                    case KELVIN -> {
+                                    case ITEM_TEMPERATURE_KELVIN -> {
 
                                         temp2 = kelvin.getNombre();
                                         medida2 = kelvin.getMedida();
@@ -558,21 +558,21 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                                 }
                             }
                         }
-                        case KELVIN -> {
+                        case ITEM_TEMPERATURE_KELVIN -> {
 
                             temp1 = kelvin.getNombre();
                             medida1 = kelvin.getMedida();
-                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, KELVIN);
+                            esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, ITEM_TEMPERATURE_KELVIN);
 
                             if (esMenorCeroAbsoluto) {
 
-                                JOptionPane.showMessageDialog(null, VALIDACION_TEMPERATURA,
-                                        ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, MSG_ABS_ZERO_INPUT,
+                                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                             } else {
 
                                 switch (Objects.requireNonNull(cbx_temperatura2.getSelectedItem()).toString()) {
 
-                                    case FAHRENHEIT -> {
+                                    case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
                                         temp2 = fahrenheit.getNombre();
                                         medida2 = fahrenheit.getMedida();
@@ -580,7 +580,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                                         resultado = this.cambioTemperatura(kelvin,
                                                 valor, fahrenheit, medida1, medida2);
                                     }
-                                    case CELSIUS -> {
+                                    case ITEM_TEMPERATURE_CELSIUS -> {
 
                                         temp2 = celsius.getNombre();
                                         medida2 = celsius.getMedidas();
@@ -600,8 +600,8 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
                     } else {
 
                         if (fail) {
-                            JOptionPane.showMessageDialog(null, VALOR_INVALIDO_TEMPERATURA_SAME,
-                                    ERROR_MSG, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, MSG_INVALID_EQUAL_TEMPERATURE_PAIR,
+                                    MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                         } else {
                             establecerTexto(nombreUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, temp1, temp2,
                                     medida2, valor, resultado);
@@ -623,9 +623,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
         if (e.getSource() == menuItemAutor) {
 
-            JOptionPane.showMessageDialog(null, PROGRAMA + "\n"
-                    + CORREO + "\n"
-                    + ESTUDIANTE);
+            JOptionPane.showMessageDialog(null, MSG_INFO_APP + "\n"
+                    + MSG_EMAIL + "\n"
+                    + MSG_INFO_EDUCATION);
         }
 
         if (e.getSource() == menuItemColorMorado) {
@@ -668,7 +668,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
             cbx_temperatura1.setSelectedIndex(0);
             assert txf_valor != null;
             txf_valor.setText("");
-            txa_area_01.setText(AQUI_RESULTADO_TEMPERATURA);
+            txa_area_01.setText(TEXT_FIELD_TEMPERATURE_RESULT);
         }
     }
 
@@ -677,9 +677,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         boolean esMenor;
 
         esMenor = switch (medida) {
-            case CELSIUS -> (-273.15d > valor) ? Boolean.TRUE : Boolean.FALSE;
-            case FAHRENHEIT -> (-459.67d > valor) ? Boolean.TRUE : Boolean.FALSE;
-            case KELVIN -> (0 > valor) ? Boolean.TRUE : Boolean.FALSE;
+            case ITEM_TEMPERATURE_CELSIUS -> (-273.15d > valor) ? Boolean.TRUE : Boolean.FALSE;
+            case ITEM_TEMPERATURE_FAHRENHEIT -> (-459.67d > valor) ? Boolean.TRUE : Boolean.FALSE;
+            case ITEM_TEMPERATURE_KELVIN -> (0 > valor) ? Boolean.TRUE : Boolean.FALSE;
             default -> Boolean.FALSE;
         };
 
