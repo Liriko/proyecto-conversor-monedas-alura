@@ -1,6 +1,8 @@
 package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import src.main.interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
+import src.main.interfaces.UserInterface; // importa mi interfaz Front para implementarla en esta clase
+import src.main.utils.DimensionInFrame;
+import src.main.utils.PositionInFrame;
 
 import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 
@@ -25,7 +27,7 @@ import java.util.Objects; // importa librería util.Objects para usar requireNon
 	implementa una interfaz propia llamada Front que diseñé para mejorar
 	las implementaciones de interfaz gráfica.
 */
-public class Licencia extends JFrame implements ActionListener, ChangeListener, Front {
+public class Licencia extends JFrame implements ActionListener, ChangeListener, UserInterface {
 
 	private final JCheckBox chk_acepto; // declara caja de chequeo
 	private final JButton btn_continuar; // declara botón
@@ -45,8 +47,8 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	public Licencia(){
 
 		// configura el marco y su ícono
-		estableceMarco(LABEL_LICENCE, 0, 0, 0);
-		estableceIcono(ICONO);
+		createFramework(LABEL_LICENCE, new Color(0, 0, 0));
+		stablishIcon(ICONO);
 
 		// configura el resto de los componentes que componen el marco
 
@@ -83,7 +85,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				Boolean.TRUE);
 
 		// logo
-		estableceLogo(LOGO_ALURA, 300, 225, 300, 150);
+		stablishLogo(LOGO_ALURA, new PositionInFrame(300, 225), new DimensionInFrame(300, 150));
 	}
 
 	// cambios de estado
@@ -130,24 +132,37 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	}
 
 	@Override
-	public void estableceMarco(String titulo, int red, int green, int blue) {
+	public void createFramework(String titulo, Color colorBackground) {
 		setLayout(null); // marco de trabajo
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // operación de cierre por defecto
 		setTitle(titulo); // título
 	}
 
 	@Override
-	public void estableceIcono(String icono) {
+	public void stablishIcon(String icono) {
 		setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(icono))).getImage()); // ícono
 	}
 
+	/**
+	 * Establece el logo con una posición y dimensión específicas
+	 * @param logo
+	 * @param positionInFrame
+	 * @param dimensionInFrame
+	 */
 	@Override
-	public void estableceLogo(String logo, int x, int y, int width, int height) {
-		ImageIcon imagen = new ImageIcon(logo); // logo
-		JLabel lbl_logo = new JLabel(imagen); // establece el logo a la etiqueta
-		lbl_logo.setBounds(300,225,300,120); // dimensiones
+	public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
-		add(lbl_logo); // añade el logo al marco
+		// Establece el logo como imagen
+		ImageIcon imagen = new ImageIcon(logo);
+
+		// Establece la etiqueta que contendrá el logo
+		JLabel lbl_logo = new JLabel(imagen);
+
+		// Establece la posición y dimensión de la etiqueta
+		lbl_logo.setBounds(300,225,300,120);
+
+		// Añade la etiqueta al marco
+		add(lbl_logo);
 	}
 
 	@Override

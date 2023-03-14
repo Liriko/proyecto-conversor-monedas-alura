@@ -1,11 +1,13 @@
 package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import src.main.interfaces.Front;
+import src.main.interfaces.UserInterface;
 import src.main.model.temperature.Celsius;
 import src.main.model.temperature.Fahrenheit;
 import src.main.model.temperature.Kelvin;
 import src.main.model.temperature.Temperatura;
 import src.main.business.logic.GestorTemperatura;
+import src.main.utils.DimensionInFrame;
+import src.main.utils.PositionInFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +34,7 @@ import static src.main.constants.Constant.*;
 	implementa una interfaz propia llamada Front que diseñé para mejorar
 	las implementaciones de interfaz gráfica.
  */
-public class ConversorTemperatura extends JFrame implements ActionListener, Front {
+public class ConversorTemperatura extends JFrame implements ActionListener, UserInterface {
     private final JMenuItem menuItemConversorDivisa;
     private final JMenuItem menuItemAutor;
     private final JMenuItem menuItemColorRojo;
@@ -64,8 +66,8 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
 
     public ConversorTemperatura() {
 
-        estableceMarco(SUB_MENU_TEMPERATURE_CONVERTER, 147, 82, 210);
-        estableceIcono(ICONO);
+        createFramework(SUB_MENU_TEMPERATURE_CONVERTER, new Color(147, 82, 210));
+        stablishIcon(ICONO);
 
         nombre = Bienvenida.nombre; // obtiene nombre desde bienvenida
 
@@ -138,7 +140,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
         // Configuración de etiquetas, botones y otros componentes del Front ********************************
 
         // Logo
-        estableceLogo(LOGO, 5, 5, 250, 140);
+        stablishLogo(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
 
         // Etiquetas
         estableceEtiqueta(LABEL_VALUE + ":",
@@ -304,26 +306,33 @@ public class ConversorTemperatura extends JFrame implements ActionListener, Fron
     }
 
     @Override
-    public void estableceMarco(String titulo, int red, int green, int blue) {
+    public void createFramework(String titulo, Color colorBackground) {
 
         setLayout(null); // marco de trabajo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // operación de cierre por defecto
         setTitle(titulo); // título
-        getContentPane().setBackground(new Color(red, green, blue)); // fondo por defecto
+        getContentPane().setBackground(colorBackground); // fondo por defecto
     }
 
     @Override
-    public void estableceIcono(String icono) {
+    public void stablishIcon(String icono) {
 
         setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(icono))).getImage()); // ícono
     }
 
+    /**
+     * Establece el logo en una posición y dimensión específicas
+     * @param logo
+     * @param positionInFrame
+     * @param dimensionInFrame
+     */
     @Override
-    public void estableceLogo(String logo, int x, int y, int width, int height) {
+    public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
+        // Crea el logo como imagen
         ImageIcon imagen = new ImageIcon(logo);
         JLabel lbl_logo = new JLabel(imagen);
-        lbl_logo.setBounds(x, y, width, height);
+        lbl_logo.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
         add(lbl_logo);
     }
 

@@ -1,21 +1,35 @@
 package src.main.interfaces;
 
+import src.main.utils.DimensionInFrame;
+import src.main.utils.PositionInFrame;
+
 import javax.swing.*;
+import java.awt.*;
 
-public interface Front {
+public interface UserInterface {
 
-    /*
-        Interface encargada de estructurar el Front en las clases que la implementen.
+    // Interface encargada de estructurar el Front en las clases que la implementen.
+
+    /**
+     * Crea el marco principal de la aplicación
+     * @param title
+     * @param colorBackground
      */
+    void createFramework(String title, Color colorBackground);
 
-    // Marco
-    void estableceMarco(String titulo, int red, int green, int blue);
+    /**
+     * Establece el ícono de la aplicación
+     * @param route
+     */
+    void stablishIcon(String route);
 
-    // Icono
-    void estableceIcono(String icono);
-
-    // Logo
-    void estableceLogo(String logo, int x, int y, int width, int height);
+    /**
+     * Establece el logo en una posición y dimensión específicas
+     * @param logo
+     * @param positionInFrame
+     * @param dimensionInFrame
+     */
+    void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame);
 
     // Etiqueta
     void estableceEtiqueta(String nombre, int x, int y, int width, int height,

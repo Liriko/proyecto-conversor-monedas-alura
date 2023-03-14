@@ -1,6 +1,8 @@
 package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import src.main.interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
+import src.main.interfaces.UserInterface; // importa mi interfaz Front para implementarla en esta clase
+import src.main.utils.DimensionInFrame;
+import src.main.utils.PositionInFrame;
 
 import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 
@@ -24,7 +26,7 @@ import java.util.Objects; // importa librería util.Objects para usar requireNon
 	las implementaciones de interfaz gráfica.
 */
 
-public class Bienvenida extends JFrame implements ActionListener, Front {
+public class Bienvenida extends JFrame implements ActionListener, UserInterface {
 
     private final JTextField txf_nombre; // declara area de texto
     private final JButton btn_ingresar; // declara botón
@@ -43,13 +45,13 @@ public class Bienvenida extends JFrame implements ActionListener, Front {
     public Bienvenida() {
 
         // configura el marco y su ícono
-        estableceMarco(HEADER_WELCOME, 147, 82, 210);
-        estableceIcono(ICONO);
+        createFramework(HEADER_WELCOME, new Color(147, 82, 210));
+        stablishIcon(ICONO);
 
         // configura el resto de los componentes que componen el marco
 
         // logo
-        estableceLogo(LOGO, 25, 15, 300, 100);
+        stablishLogo(LOGO, new PositionInFrame(25, 15), new DimensionInFrame(300, 100));
 
         // etiquetas
         estableceEtiqueta(SUB_MENU_CURRENCY_CONVERTER, 70, 135, 300, 30,
@@ -195,32 +197,42 @@ public class Bienvenida extends JFrame implements ActionListener, Front {
             - Colores para el fondo
      */
     @Override
-    public void estableceMarco(String titulo, int red, int green, int blue) {
+    public void createFramework(String titulo, Color colorBackground) {
 
         setLayout(null); // definir marco de trabajo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // definir operación de cierre de app por defecto
         setTitle(titulo); // título de este marco
-        getContentPane().setBackground(new Color(red, green, blue)); // color de fondo por defecto
+        getContentPane().setBackground(colorBackground); // color de fondo por defecto
     }
 
     /*
         estableceIcono nos ayuda a establecer un ícono para esta pantalla.
      */
     @Override
-    public void estableceIcono(String icono) {
+    public void stablishIcon(String icono) {
 
         setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(icono))).getImage()); // icono
     }
 
-    /*
-        estableceLogo hace lo propio con el logo
+    /**
+     * Establece el logo en una posición y dimensión específicas
+     * @param logo
+     * @param positionInFrame
+     * @param dimensionInFrame
      */
     @Override
-    public void estableceLogo(String logo, int x, int y, int width, int height) {
-        ImageIcon imagen = new ImageIcon(logo); // logo
-        JLabel etiqueta = new JLabel(imagen); // se le asigna el logo a la etiqueta correspondiente
-        etiqueta.setBounds(x, y, width, height); // dimensiones
+    public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
+        // logo
+        ImageIcon imagen = new ImageIcon(logo);
+
+        // etiqueta que contiene el logo
+        JLabel etiqueta = new JLabel(imagen);
+
+        // posición y dimensión de la etiqueta
+        etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+        // se añade la etiqueta al marco
         add(etiqueta);
     }
 

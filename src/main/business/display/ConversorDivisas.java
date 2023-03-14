@@ -1,8 +1,10 @@
 package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import src.main.interfaces.Front; // importa mi interfaz Front para implementarla en esta clase
+import src.main.interfaces.UserInterface; // importa mi interfaz Front para implementarla en esta clase
 import src.main.model.currency.*;
 import src.main.business.logic.GestorDivisa; // importa gestor de divisas para el cambio de moneda
+import src.main.utils.DimensionInFrame;
+import src.main.utils.PositionInFrame;
 
 import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
 
@@ -28,7 +30,7 @@ import java.util.Set;
 	implementa una interfaz propia llamada Front que diseñé para mejorar
 	las implementaciones de interfaz gráfica.
  */
-public class ConversorDivisas extends JFrame implements ActionListener, Front {
+public class ConversorDivisas extends JFrame implements ActionListener, UserInterface {
 
     private final JMenuItem menuItemConversorTemperatura;
     private final JMenuItem menuItemAutor;
@@ -61,8 +63,8 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
 
     public ConversorDivisas() {
 
-        estableceMarco(SUB_MENU_CURRENCY_CONVERTER, 147, 82, 210);
-        estableceIcono(ICONO);
+        createFramework(SUB_MENU_CURRENCY_CONVERTER, new Color(147, 82, 210));
+        stablishIcon(ICONO);
 
         nombre = Bienvenida.nombre; // obtiene nombre desde bienvenida
 
@@ -135,7 +137,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
         // Configuración de etiquetas, botones y otros componentes del Front ********************************
 
         // Logo
-        estableceLogo(LOGO, 5, 5, 250, 140);
+        stablishLogo(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
 
         // Etiquetas
         estableceEtiqueta(LABEL_VALUE + ":",
@@ -271,26 +273,40 @@ public class ConversorDivisas extends JFrame implements ActionListener, Front {
     }
 
     @Override
-    public void estableceMarco(String titulo, int red, int green, int blue) {
+    public void createFramework(String titulo, Color colorBackground) {
 
         setLayout(null); // marco de trabajo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // operación de cierre por defecto
         setTitle(titulo); // título
-        getContentPane().setBackground(new Color(red, green, blue)); // fondo por defecto
+        getContentPane().setBackground(colorBackground); // fondo por defecto
     }
 
     @Override
-    public void estableceIcono(String icono) {
+    public void stablishIcon(String icono) {
 
         setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(icono))).getImage()); // ícono
     }
 
+    /**
+     * Establece el logo dentro del marco específicado
+     * @param logo
+     * @param positionInFrame
+     * @param dimensionInFrame
+     */
     @Override
-    public void estableceLogo(String logo, int x, int y, int width, int height) {
+    public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
+        // Establece el logo como imagen
         ImageIcon imagen = new ImageIcon(logo);
+
+        // Establece etiqueta que contiene el logo
         JLabel lbl_logo = new JLabel(imagen);
-        lbl_logo.setBounds(x, y, width, height);
+
+        // Establece la posición y la dimensión de la etiqueta
+        lbl_logo.setBounds(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+        // Añade la etiqueta dentro del marco
         add(lbl_logo);
     }
 
