@@ -1,6 +1,7 @@
 package src.main.interfaces;
 
 import src.main.utils.DimensionInFrame;
+import src.main.utils.FontType;
 import src.main.utils.PositionInFrame;
 
 import javax.swing.*;
@@ -31,9 +32,16 @@ public interface UserInterface {
      */
     void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame);
 
-    // Etiqueta
-    void estableceEtiqueta(String nombre, int x, int y, int width, int height,
-                                    int red, int green, int blue, String font, int style, int size);
+    /**
+     * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
+     * @param nombre
+     * @param positionInFrame
+     * @param dimensionInFrame
+     * @param colorBackground
+     * @param fontType
+     */
+    void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame,
+                       Color colorBackground, FontType fontType);
 
     // Scroll
     void estableceScroll(JTextArea area, int x, int y, int width, int height);

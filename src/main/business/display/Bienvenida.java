@@ -2,6 +2,7 @@ package src.main.business.display; // declara el paquete donde estarán ubicadas
 
 import src.main.interfaces.UserInterface; // importa mi interfaz Front para implementarla en esta clase
 import src.main.utils.DimensionInFrame;
+import src.main.utils.FontType;
 import src.main.utils.PositionInFrame;
 
 import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
@@ -44,22 +45,33 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
     */
     public Bienvenida() {
 
-        // configura el marco y su ícono
+        // configura el marco
         createFramework(HEADER_WELCOME, new Color(147, 82, 210));
+
+        // configura el ícono
         stablishIcon(ICONO);
 
-        // configura el resto de los componentes que componen el marco
-
-        // logo
+        // configura el logo
         stablishLogo(LOGO, new PositionInFrame(25, 15), new DimensionInFrame(300, 100));
 
         // etiquetas
-        estableceEtiqueta(SUB_MENU_CURRENCY_CONVERTER, 70, 135, 300, 30,
-                255, 255, 255, FONT_ANDALE_MONO, Font.ITALIC, 18);
-        estableceEtiqueta(LABEL_INPUT_NAME, 45, 212, 200, 30,
-                255, 255, 255, FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_FOOTER, 55, 375, 300, 30,
-                255, 255, 255, FONT_ANDALE_MONO, Font.BOLD, 12);
+        stablishLabel(SUB_MENU_CURRENCY_CONVERTER,
+                new PositionInFrame(70, 135),
+                new DimensionInFrame(300, 30),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 18));
+
+        stablishLabel(LABEL_INPUT_NAME,
+                new PositionInFrame(45, 212),
+                new DimensionInFrame(200, 30),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_FOOTER,
+                new PositionInFrame(55, 375),
+                new DimensionInFrame(300, 30),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
 
         // campo de texto
         this.txf_nombre = creaCampoDeTexto(45, 240, 255, 25, FONT_ANDALE_MONO, Font.BOLD, 14,
@@ -152,22 +164,34 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         return null;
     }
 
-    /*
-        estableceEtiqueta configura las distintas etiquetas de la pantalla;
-            - Nombre de la etiqueta
-            - Posición en el marco
-            - Tipo de fuente
-            - Color de fuente
+    /**
+     * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
+     * @param nombre nombre de la etiqueta
+     * @param positionInFrame la posición de la etiqueta en el marco, en los ejes X e Y
+     * @param dimensionInFrame la dimensión de la etiqueta en el marco, basado en ancho y largo
+     * @param colorBackground color de fondo de la etiqueta
+     * @param fontType tipo de letra o fuente, de la etiqueta
      */
     @Override
-    public void estableceEtiqueta(String nombre, int x, int y, int width, int height,
-                                    int red, int green, int blue, String font, int style, int size) {
-        JLabel etiqueta;
-        etiqueta = new JLabel(nombre); // establece etiqueta
-        etiqueta.setBounds(x, y, width, height); // dimensiones
-        etiqueta.setFont(new Font(font, style, size)); // letra
-        etiqueta.setForeground(new Color(red, green, blue)); // fondo
+    public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame,
+                              Color colorBackground, FontType fontType) {
 
+        int font = (SUB_MENU_CURRENCY_CONVERTER.equals(nombre)) ? Font.ITALIC : Font.BOLD;
+
+        // Establece la etiqueta con un nombre específico
+        JLabel etiqueta = new JLabel(nombre);
+
+        // Establece la posición y la dimensión de la etiqueta
+        etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
+                dimensionInFrame.getHeight());
+
+        // Establece el tipo de letra de la etiqueta
+        etiqueta.setFont(new Font(fontType.getFont(), font, fontType.getSize()));
+
+        // Establece el color de fondo de esta etiqueta
+        etiqueta.setForeground(colorBackground);
+
+        // Añade la etiqueta al marco
         add(etiqueta);
     }
 
@@ -216,9 +240,9 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
 
     /**
      * Establece el logo en una posición y dimensión específicas
-     * @param logo
-     * @param positionInFrame
-     * @param dimensionInFrame
+     * @param logo la ruta del logo
+     * @param positionInFrame la posición del logo en el marco, en los ejes X e Y
+     * @param dimensionInFrame la dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
     public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {

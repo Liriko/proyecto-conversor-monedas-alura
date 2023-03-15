@@ -7,6 +7,7 @@ import src.main.model.temperature.Kelvin;
 import src.main.model.temperature.Temperatura;
 import src.main.business.logic.GestorTemperatura;
 import src.main.utils.DimensionInFrame;
+import src.main.utils.FontType;
 import src.main.utils.PositionInFrame;
 
 import javax.swing.*;
@@ -143,45 +144,65 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         stablishLogo(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
 
         // Etiquetas
-        estableceEtiqueta(LABEL_VALUE + ":",
-                480, 188, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_TITLE + nombre,
-                280, 30, 300, 50,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 32);
-        estableceEtiqueta(LABEL_SUBTITLE,
-                45, 140, 900, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 24);
-        estableceEtiqueta(LABEL_NAME,
-                25, 188, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_LASTNAME + ":",
-                25, 248, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_SURNAME + ":",
-                25, 308, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_TO_CHANGE_FROM + ":",
-                220, 188, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_A + ":",
-                220, 248, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(TEXT_FIELD_CALCULATION_RESULT + ":",
-                220, 307, 180, 25,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
-        estableceEtiqueta(LABEL_FOOTER, 195, 445, 500, 30,
-                255, 255, 255,
-                FONT_ANDALE_MONO, Font.BOLD, 12);
+        stablishLabel(LABEL_VALUE + ":",
+                new PositionInFrame(480, 188),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_TITLE + nombre,
+                new PositionInFrame(280, 30),
+                new DimensionInFrame(300, 50),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 32));
+
+        stablishLabel(LABEL_SUBTITLE,
+                new PositionInFrame(45, 140),
+                new DimensionInFrame(900, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 24));
+
+        stablishLabel(LABEL_NAME,
+                new PositionInFrame(25, 188),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_LASTNAME + ":",
+                new PositionInFrame(25, 248),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_SURNAME + ":",
+                new PositionInFrame(25, 308),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_TO_CHANGE_FROM + ":",
+                new PositionInFrame(220, 188),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_A + ":",
+                new PositionInFrame(220, 248),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(TEXT_FIELD_CALCULATION_RESULT + ":",
+                new PositionInFrame(220, 307),
+                new DimensionInFrame(180, 25),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
+
+        stablishLabel(LABEL_FOOTER,
+                new PositionInFrame(195, 445),
+                new DimensionInFrame(500, 30),
+                new Color(255, 255, 255),
+                new FontType(FONT_ANDALE_MONO, 12));
 
         // Campos de texto
         txf_nombre = creaCampoDeTexto(25, 213, 150, 25,
@@ -322,9 +343,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
 
     /**
      * Establece el logo en una posición y dimensión específicas
-     * @param logo
-     * @param positionInFrame
-     * @param dimensionInFrame
+     * @param logo la ruta del logo
+     * @param positionInFrame la posición del logo en el marco, en los ejes X e Y
+     * @param dimensionInFrame la dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
     public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
@@ -336,14 +357,32 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         add(lbl_logo);
     }
 
+    /**
+     * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
+     * @param nombre nombre de la etiqueta
+     * @param positionInFrame la posición de la etiqueta en el marco, en los ejes X e Y
+     * @param dimensionInFrame la dimensión de la etiqueta en el marco, basado en ancho y largo
+     * @param colorBackground color de fondo de la etiqueta
+     * @param fontType tipo de letra o fuente, de la etiqueta
+     */
     @Override
-    public void estableceEtiqueta(String nombre, int x, int y, int width, int height, int red, int green, int blue, String font, int style, int size) {
+    public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame, Color colorBackground, FontType fontType) {
 
-        JLabel jLabel = new JLabel(nombre); // título
-        jLabel.setBounds(x, y, width, height); // dimensinoes
-        jLabel.setFont(new Font(font, style, size)); // fuente
-        jLabel.setForeground(new Color(red, green, blue)); // letra fuente
-        add(jLabel); // añade título
+        // Establece la etiqueta con un nombre específico
+        JLabel etiqueta = new JLabel(nombre);
+
+        // Establece la posición y la dimensión de la etiqueta
+        etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
+                dimensionInFrame.getHeight());
+
+        // Establece el tipo de letra de la etiqueta
+        etiqueta.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+
+        // Establece el color de fondo de esta etiqueta
+        etiqueta.setForeground(colorBackground);
+
+        // Añade la etiqueta al marco
+        add(etiqueta);
     }
 
     @Override

@@ -2,6 +2,7 @@ package src.main.business.display; // declara el paquete donde estarán ubicadas
 
 import src.main.interfaces.UserInterface; // importa mi interfaz Front para implementarla en esta clase
 import src.main.utils.DimensionInFrame;
+import src.main.utils.FontType;
 import src.main.utils.PositionInFrame;
 
 import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
@@ -55,9 +56,11 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		this.nombre = Bienvenida.nombre; // asigna nombre desde la bienvenida
 
 		// etiqueta
-		estableceEtiqueta(TEXT_FIELD_LICENCE, 215, 5, 200, 30,
-				0, 0, 0,
-				FONT_ANDALE_MONO, Font.BOLD, 14);
+		stablishLabel(TEXT_FIELD_LICENCE,
+				new PositionInFrame(215, 5),
+				new DimensionInFrame(200, 30),
+				new Color(0, 0, 0),
+				new FontType(FONT_ANDALE_MONO, 14));
 
 		// area de texto
 		JTextArea textArea_01 = creaAreaDeTexto(TEXT_FIELD_LICENCE_DETAIL, Boolean.FALSE,
@@ -144,10 +147,10 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	}
 
 	/**
-	 * Establece el logo con una posición y dimensión específicas
-	 * @param logo
-	 * @param positionInFrame
-	 * @param dimensionInFrame
+	 * Establece el logo dentro del marco específicado
+	 * @param logo la ruta del logo
+	 * @param positionInFrame la posición del logo en el marco, en los ejes X e Y
+	 * @param dimensionInFrame la dimensión del logo en el marco, basado en ancho y largo
 	 */
 	@Override
 	public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
@@ -165,16 +168,34 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		add(lbl_logo);
 	}
 
+	/**
+	 * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
+	 * @param nombre nombre de la etiqueta
+	 * @param positionInFrame la posición de la etiqueta en el marco, en los ejes X e Y
+	 * @param dimensionInFrame la dimensión de la etiqueta en el marco, basado en ancho y largo
+	 * @param colorBackground color de fondo de la etiqueta
+	 * @param fontType tipo de letra o fuente, de la etiqueta
+	 */
 	@Override
-	public void estableceEtiqueta(String nombre, int x, int y, int width, int height,
-									int red, int green, int blue,
-									String font, int style, int size) {
-		JLabel etiqueta = new JLabel(nombre); // etiqueta
-		etiqueta.setBounds(x,y,width,height); // dimensiones
-		etiqueta.setFont(new Font(font,style,size)); // fuente
-		etiqueta.setForeground(new Color(red,green,blue)); // color letra
+	public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame,
+							  Color colorBackground,
+							  FontType fontType) {
 
-		add(etiqueta); // añade la etiqueta al marco
+		// Establece la etiqueta con un nombre específico
+		JLabel etiqueta = new JLabel(nombre);
+
+		// Establece la posición y la dimensión de la etiqueta
+		etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
+				dimensionInFrame.getHeight());
+
+		// Establece el tipo de letra de la etiqueta
+		etiqueta.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+
+		// Establece el color de fondo de esta etiqueta
+		etiqueta.setForeground(colorBackground);
+
+		// Añade la etiqueta al marco
+		add(etiqueta);
 	}
 
 	@Override
