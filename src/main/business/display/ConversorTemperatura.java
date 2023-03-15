@@ -205,22 +205,29 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                 new FontType(FONT_ANDALE_MONO, 12));
 
         // Campos de texto
-        txf_nombre = creaCampoDeTexto(25, 213, 150, 25,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                224, 224, 224,
-                255, 0, 0);
-        txf_valor = creaCampoDeTexto(480, 213, 125, 25,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                224, 224, 224,
-                255, 0, 0);
-        txf_apellidoPaterno = creaCampoDeTexto(25, 273, 150, 25,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                224, 224, 224,
-                255, 0, 0);
-        txf_apellidoMaterno = creaCampoDeTexto(25, 334, 150, 25,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                224, 224, 224,
-                255, 0, 0);
+        txf_nombre = createTextField(new PositionInFrame(25, 213),
+                new DimensionInFrame(150, 25),
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(224, 224, 224),
+                new Color(255, 0, 0));
+
+        txf_valor = createTextField(new PositionInFrame(480, 213),
+                new DimensionInFrame(125, 25),
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(224, 224, 224),
+                new Color(255, 0, 0));
+
+        txf_apellidoPaterno = createTextField(new PositionInFrame(25, 273),
+                new DimensionInFrame(150, 25),
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(224, 224, 224),
+                new Color(255, 0, 0));
+
+        txf_apellidoMaterno = createTextField(new PositionInFrame(25, 334),
+                new DimensionInFrame(150, 25),
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(224, 224, 224),
+                new Color(255, 0, 0));
 
         // Botones
         btn_calcular = creaBoton(BUTTON_CALCULATE,
@@ -246,7 +253,9 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                 255, 0, 0);
 
         // Scroll
-        estableceScroll(txa_area_01, 220, 333, 385, 90);
+        createScroll(txa_area_01,
+                new PositionInFrame(220, 333),
+                new DimensionInFrame(385, 90));
 
         // Se añaden las temperaturas a la lista de temperaturas
         this.gestor.agregarTemperatura(ITEM_TEMPERATURE_CELSIUS, new Celsius(ITEM_TEMPERATURE_CELSIUS, 0d));
@@ -343,46 +352,46 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
 
     /**
      * Establece el logo en una posición y dimensión específicas
-     * @param logo la ruta del logo
-     * @param positionInFrame la posición del logo en el marco, en los ejes X e Y
-     * @param dimensionInFrame la dimensión del logo en el marco, basado en ancho y largo
+     * @param logo              La ruta del logo
+     * @param positionInFrame   La posición del logo en el marco, en los ejes X e Y
+     * @param dimensionInFrame  La dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
     public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
         // Crea el logo como imagen
-        ImageIcon imagen = new ImageIcon(logo);
-        JLabel lbl_logo = new JLabel(imagen);
-        lbl_logo.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
-        add(lbl_logo);
+        ImageIcon imageIcon = new ImageIcon(logo);
+        JLabel jLabel = new JLabel(imageIcon);
+        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        add(jLabel);
     }
 
     /**
      * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
-     * @param nombre nombre de la etiqueta
-     * @param positionInFrame la posición de la etiqueta en el marco, en los ejes X e Y
-     * @param dimensionInFrame la dimensión de la etiqueta en el marco, basado en ancho y largo
-     * @param colorBackground color de fondo de la etiqueta
-     * @param fontType tipo de letra o fuente, de la etiqueta
+     * @param nombre            Nombre de la etiqueta
+     * @param positionInFrame   La posición de la etiqueta en el marco, en los ejes X e Y
+     * @param dimensionInFrame  La dimensión de la etiqueta en el marco, basado en ancho y largo
+     * @param colorBackground   Color de fondo de la etiqueta
+     * @param fontType          Tipo de letra o fuente, de la etiqueta
      */
     @Override
     public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame, Color colorBackground, FontType fontType) {
 
         // Establece la etiqueta con un nombre específico
-        JLabel etiqueta = new JLabel(nombre);
+        JLabel jLabel = new JLabel(nombre);
 
         // Establece la posición y la dimensión de la etiqueta
-        etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
+        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
                 dimensionInFrame.getHeight());
 
         // Establece el tipo de letra de la etiqueta
-        etiqueta.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+        jLabel.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
 
         // Establece el color de fondo de esta etiqueta
-        etiqueta.setForeground(colorBackground);
+        jLabel.setForeground(colorBackground);
 
         // Añade la etiqueta al marco
-        add(etiqueta);
+        add(jLabel);
     }
 
     @Override
@@ -433,16 +442,43 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         return jComboBox;
     }
 
+    /**
+     * Crea un elemento de campo de texto según una posición, dimensión, tipo de letra, color de fondo y
+     * color de letra específicos
+     * @param positionInFrame   Posición del campo de texto en el marco
+     * @param dimensionInFrame  Dimensión del campo de texto en el marco
+     * @param fontType          Tipo de letra del campo de texto
+     * @param colorBackground   Color de fondo del campo de texto
+     * @param colorFont         Color de letra del campo de texto
+     * @return                  El campo de texto
+     */
     @Override
-    public JTextField creaCampoDeTexto(int x, int y, int width, int height, String font, int style, int size, int red, int green, int blue, int red2, int green2, int blue2) {
+    public JTextField createTextField(PositionInFrame positionInFrame,
+                                      DimensionInFrame dimensionInFrame,
+                                      FontType fontType,
+                                      Color colorBackground,
+                                      Color colorFont) {
 
-        JTextField jTextField = new JTextField(); // campo de texto
-        jTextField.setBounds(x, y, width, height); // dimensiones
-        jTextField.setBackground(new Color(red, green, blue)); // color fondo
-        jTextField.setFont(new Font(font, style, size)); // fuente
-        jTextField.setForeground(new Color(red2, green2, blue2)); // color fuente
-        add(jTextField); // añade campo de texto
+        // Crea el elemento campo de texto
+        JTextField jTextField = new JTextField();
 
+        // Establece la posición y dimensión específicas del campo de texto dentro del marco
+        jTextField.setBounds(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+        // Establece el tipo de letra o fuente del campo de texto
+        jTextField.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+
+        // Establece el color de fondo del campo de texto
+        jTextField.setBackground(colorBackground);
+
+        // Establece el color de la letra del campo de texto
+        jTextField.setForeground(colorFont);
+
+        // Añade el campo de texto al marco principal
+        add(jTextField);
+
+        // Retorna el campo de texto
         return jTextField;
     }
 
@@ -475,11 +511,24 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         return jTextArea;
     }
 
+    /**
+     * Crea un elemento Scroll dentro un área de texto específico de acuerdo a una posición y dimensión
+     * específicas.
+     * @param area             El área de texto dentro del marco
+     * @param positionInFrame  Posición específica dentro del área de texto
+     * @param dimensionInFrame Dimensión específica dentro del área de texto
+     */
     @Override
-    public void estableceScroll(JTextArea area, int x, int y, int width, int height) {
+    public void createScroll(JTextArea area, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
+        // Crea el elemento Scroll dentro del ámbito del área de texto
         JScrollPane jScrollPane = new JScrollPane(area);
-        jScrollPane.setBounds(x, y, width, height);
+
+        // Establece la posición y dimensión específicas del elemento Scroll dentro del área
+        jScrollPane.setBounds(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+        // Añade el elemento al marco principal
         add(jScrollPane);
     }
 

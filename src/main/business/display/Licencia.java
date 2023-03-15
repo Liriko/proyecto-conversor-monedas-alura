@@ -69,7 +69,9 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				0, 0, 0);
 
 		// scroll
-		estableceScroll(textArea_01, 10, 40, 575, 200);
+		createScroll(textArea_01,
+				new PositionInFrame(10, 40),
+				new DimensionInFrame(575, 200));
 
 		// checkbox
 		this.chk_acepto = creaCheckbox("Yo, " + nombre + ", acepto",
@@ -218,11 +220,22 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		return null;
 	}
 
+	/**
+	 * Crea un elemento de campo de texto según una posición, dimensión, tipo de letra, color de fondo y
+	 * color de letra específicos. En esta clase no tendrá uso.
+	 * @param positionInFrame   Posición del campo de texto en el marco
+	 * @param dimensionInFrame  Dimensión del campo de texto en el marco
+	 * @param fontType          Tipo de letra del campo de texto
+	 * @param colorBackground   Color de fondo del campo de texto
+	 * @param colorFont         Color de letra del campo de texto
+	 * @return                  El campo de texto
+	 */
 	@Override
-	public JTextField creaCampoDeTexto(int x, int y, int width, int height,
-											String font, int style, int size,
-											int red, int green, int blue,
-											int red2, int green2, int blue2) {
+	public JTextField createTextField(PositionInFrame positionInFrame,
+									  DimensionInFrame dimensionInFrame,
+									  FontType fontType,
+									  Color colorBackground,
+									  Color colorFont) {
 		return null;
 	}
 
@@ -256,13 +269,25 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		return area; // retorna el área de texto
 	}
 
+	/**
+	 * Crea un elemento Scroll dentro un área de texto específico de acuerdo a una posición y dimensión
+	 * específicas.
+	 * @param area             El área de texto dentro del marco
+	 * @param positionInFrame  Posición específica dentro del área de texto
+	 * @param dimensionInFrame Dimensión específica dentro del área de texto
+	 */
 	@Override
-	public void estableceScroll(JTextArea area, int x, int y, int width, int height) {
+	public void createScroll(JTextArea area, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
-		JScrollPane scroll = new JScrollPane(area); // scroll
-		scroll.setBounds(x,y,width,height); // dimensiones
+		// Crea el elemento Scroll dentro del ámbito del área de texto
+		JScrollPane jScrollPane = new JScrollPane(area);
 
-		add(scroll); // añade el scroll al marco
+		// Establece la posición y dimensión específicas del elemento Scroll dentro del área
+		jScrollPane.setBounds(positionInFrame.getX(), positionInFrame.getY(),
+				dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+		// Añade el elemento al marco principal
+		add(jScrollPane);
 	}
 
 	@Override

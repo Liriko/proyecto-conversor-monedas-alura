@@ -74,8 +74,11 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
                 new FontType(FONT_ANDALE_MONO, 12));
 
         // campo de texto
-        this.txf_nombre = creaCampoDeTexto(45, 240, 255, 25, FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 255, 224, 224, 224);
+        this.txf_nombre = createTextField(new PositionInFrame(45, 240),
+                new DimensionInFrame(255, 25),
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(224, 224, 224),
+                new Color(255, 0, 255));
 
         // botón
         this.btn_ingresar = creaBoton(BUTTON_ENTER, 125, 280, 100, 30,
@@ -84,29 +87,44 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
                 255, 255, 255, Boolean.FALSE);
     }
 
-    /*
-        Acá están los métodos propios de la interfaz Front que deben implementarse.
-
-        estableceCampoDeTexto configura el campo de texto que recibe el nombre del usuario;
-            - Posición en el marco
-            - Tipo de fuente
-            - Color de la fuente
-            - Color de fondo
+    /**
+     * Crea un elemento de campo de texto según una posición, dimensión, tipo de letra, color de fondo y
+     * color de letra específicos
+     * @param positionInFrame   Posición del campo de texto en el marco
+     * @param dimensionInFrame  Dimensión del campo de texto en el marco
+     * @param fontType          Tipo de letra del campo de texto
+     * @param colorBackground   Color de fondo del campo de texto
+     * @param colorFont         Color de letra del campo de texto
+     * @return                  El campo de texto
      */
     @Override
-    public JTextField creaCampoDeTexto(int x, int y, int width, int height,
-                                            String font, int style, int size,
-                                            int red, int green, int blue,
-                                            int red2, int green2, int blue2) {
-        JTextField campo;
-        campo = new JTextField(); // inicializa area de texto
-        campo.setBounds(x, y, width, height); // establece dimensiones
-        campo.setFont(new Font(font, style, size)); // establece tipo de fuente
-        campo.setForeground(new Color(red, green, blue)); // establece el color de la letra
-        campo.setBackground(new Color(red2, green2, blue2)); // establece el color de fondo
+    public JTextField createTextField(PositionInFrame positionInFrame,
+                                      DimensionInFrame dimensionInFrame,
+                                      FontType fontType,
+                                      Color colorBackground,
+                                      Color colorFont) {
 
-        add(campo); // añade el campo a nuestro marco
-        return campo; // retorna el campo
+        // Crea el elemento campo de texto
+        JTextField textField = new JTextField();
+
+        // Establece la posición y dimensión específicas del campo de texto dentro del marco
+        textField.setBounds(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+        // Establece el tipo de letra o fuente del campo de texto
+        textField.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+
+        // Establece el color de fondo del campo de texto
+        textField.setBackground(colorBackground);
+
+        // Establece el color de la letra del campo de texto
+        textField.setForeground(colorFont);
+
+        // Añade el campo de texto al marco principal
+        add(textField);
+
+        // Retorna el campo de texto
+        return textField;
     }
 
     /*
@@ -147,12 +165,15 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         return null;
     }
 
-    /*
-        estableceScroll no tiene uso en esta clase, pero debe implementarse porque es parte
-        de la interfaz Front. Como no tiene utilidad, el cuerpo de este método solo retorna null.
+    /**
+     * Crea un elemento Scroll dentro de un área de texto específico de acuerdo a una posición y dimensión
+     * específicas. En esta clase no tiene uso.
+     * @param area             El área de texto dentro del marco
+     * @param positionInFrame  Posición específica dentro del área de texto
+     * @param dimensionInFrame Dimensión específica dentro del área de texto
      */
     @Override
-    public void estableceScroll(JTextArea area, int x, int y, int width, int height) {
+    public void createScroll(JTextArea area, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
     }
 
     /*
@@ -166,11 +187,11 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
 
     /**
      * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
-     * @param nombre nombre de la etiqueta
-     * @param positionInFrame la posición de la etiqueta en el marco, en los ejes X e Y
-     * @param dimensionInFrame la dimensión de la etiqueta en el marco, basado en ancho y largo
-     * @param colorBackground color de fondo de la etiqueta
-     * @param fontType tipo de letra o fuente, de la etiqueta
+     * @param nombre            Nombre de la etiqueta
+     * @param positionInFrame   La posición de la etiqueta en el marco, en los ejes X e Y
+     * @param dimensionInFrame  La dimensión de la etiqueta en el marco, basado en ancho y largo
+     * @param colorBackground   Color de fondo de la etiqueta
+     * @param fontType          Tipo de letra o fuente, de la etiqueta
      */
     @Override
     public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame,
@@ -179,20 +200,20 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         int font = (SUB_MENU_CURRENCY_CONVERTER.equals(nombre)) ? Font.ITALIC : Font.BOLD;
 
         // Establece la etiqueta con un nombre específico
-        JLabel etiqueta = new JLabel(nombre);
+        JLabel jLabel = new JLabel(nombre);
 
         // Establece la posición y la dimensión de la etiqueta
-        etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
+        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
                 dimensionInFrame.getHeight());
 
         // Establece el tipo de letra de la etiqueta
-        etiqueta.setFont(new Font(fontType.getFont(), font, fontType.getSize()));
+        jLabel.setFont(new Font(fontType.getFont(), font, fontType.getSize()));
 
         // Establece el color de fondo de esta etiqueta
-        etiqueta.setForeground(colorBackground);
+        jLabel.setForeground(colorBackground);
 
         // Añade la etiqueta al marco
-        add(etiqueta);
+        add(jLabel);
     }
 
     @Override
@@ -240,24 +261,24 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
 
     /**
      * Establece el logo en una posición y dimensión específicas
-     * @param logo la ruta del logo
-     * @param positionInFrame la posición del logo en el marco, en los ejes X e Y
-     * @param dimensionInFrame la dimensión del logo en el marco, basado en ancho y largo
+     * @param logo              La ruta del logo
+     * @param positionInFrame   La posición del logo en el marco, en los ejes X e Y
+     * @param dimensionInFrame  La dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
     public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
         // logo
-        ImageIcon imagen = new ImageIcon(logo);
+        ImageIcon imageIcon = new ImageIcon(logo);
 
         // etiqueta que contiene el logo
-        JLabel etiqueta = new JLabel(imagen);
+        JLabel jLabel = new JLabel(imageIcon);
 
         // posición y dimensión de la etiqueta
-        etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
 
         // se añade la etiqueta al marco
-        add(etiqueta);
+        add(jLabel);
     }
 
     // Evento del botón 'Ingresar'
