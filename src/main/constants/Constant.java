@@ -1,25 +1,18 @@
 package src.main.constants;
 
-// Clase final para evitar su extensión.
+/**
+ * Clase final para evitar su extensión.
+ */
 public final class Constant {
 
-    /**
-     * Constructor privado para evitar su instancia
-     */
     private Constant() {
-
+        // Constructor privado para evitar su instancia
     }
 
-    // Atributos estáticos para evitar instancia
-
-    /**
-     * Encabezados
-     */
+    // Encabezados
     public static final String HEADER_WELCOME = "Bienvenido/a";
 
-    /**
-     * Etiquetas
-     */
+    // Etiquetas
     public static final String LABEL_A = "A";
     public static final String LABEL_LASTNAME = "Apellido Paterno";
     public static final String LABEL_FOOTER = "© 2023 Challenge Alura Latam Oracle-ONE";
@@ -32,17 +25,13 @@ public final class Constant {
     public static final String LABEL_TO_CHANGE_FROM = "Cambio de";
     public static final String LABEL_VALUE = "Valor";
 
-    /**
-     * Botones
-     */
+    // Botones
     public static final String BUTTON_CALCULATE = "=";
     public static final String BUTTON_CONTINUE = "Continuar";
     public static final String BUTTON_DECLINE = "No acepto";
     public static final String BUTTON_ENTER = "Ingresar";
 
-    /**
-     * Campos de texto
-     */
+    // Campos de texto
     public static final String TEXT_FIELD_CALCULATION_RESULT = "Resultado de la conversión";
     public static final String TEXT_FIELD_CURRENCY_RESULT = "\n Aquí aparece el resultado de la conversión de divisas.";
     public static final String TEXT_FIELD_LICENCE = "TÉRMINOS Y CONDICIONES";
@@ -63,41 +52,32 @@ public final class Constant {
             """;
     public static final String TEXT_FIELD_TEMPERATURE_RESULT = "\n Aquí aparece el resultado de la conversión de temperaturas";
 
-    /**
-     * Menú "Sobre mí"
-     */
+    // Menú "Sobre mí"
     public static final String MENU_ABOUT_ME = "Sobre mí";
     public static final String SUB_MENU_AUTHOR = "Autor";
     public static final String MSG_EMAIL = "Correo: j.salgado2k@gmail.com";
     public static final String MSG_INFO_EDUCATION = "Estudiante de Alura Latam Oracle-One Next Education";
     public static final String MSG_INFO_APP = "Programa elaborado por Jorge Daniel Salgado Pons";
 
-    /**
-     * Menú "Conversores"
-     */
+    // Menú "Conversores"
     public static final String MENU_CONVERTER = "Conversores";
     public static final String SUB_MENU_CURRENCY_CONVERTER = "Conversor de divisas";
     public static final String SUB_MENU_TEMPERATURE_CONVERTER = "Conversor de temperatura";
 
-    /**
-     * Menú "Opciones"
-     */
+    // Menú "Opciones"
     public static final String SUB_MENU_COLOR_FONDO = "Color de fondo";
     public static final String SUB_MENU_LIMPIAR_CAMPOS = "Limpiar campos";
     public static final String SUB_MENU_NEW = "Nuevo";
     public static final String MENU_OPTIONS = "Opciones";
     public static final String SUB_MENU_EXIT = "Salir";
 
-    /**
-     * Menú "Color de fondo"
-     */
+    // Menú "Color de fondo"
     public static final String SUB_MENU_BLACK_BACKGROUND = "Negro";
     public static final String SUB_MENU_PURPLE_BACKGROUND= "Morado";
     public static final String SUB_MENU_RED_BACKGROUND = "Rojo";
 
-    /**
-     * Valores del combobox / ítems del combobox
-     */
+
+    // Valores del combobox / ítems del combobox
     public static final String ITEM_CURRENCY_USD = "USD $ - Dólar Estadounidense";
     public static final String ITEM_CURRENCY_CLP = "CLP $ - Peso Chileno";
     public static final String ITEM_CURRENCY_EUR = "Eur € - Euro";
@@ -109,9 +89,7 @@ public final class Constant {
     public static final String ITEM_TEMPERATURE_KELVIN = "Kelvin";
     public static final String ITEM_OPTION_SELECT = "- Seleccione -";
 
-    /**
-     * Símbolos
-     */
+    // Símbolos
     public static final char SYMBOL_CLP = '$';
     public static final char SYMBOL_CELSIUS = 'C';
     public static final char SYMBOL_USD = '$';
@@ -122,9 +100,7 @@ public final class Constant {
     public static final char SYMBOL_JPY = '¥';
     public static final char SYMBOL_KRW = '₩';
 
-    /**
-     * Mensajes de validación
-     */
+    // Mensajes de validación
     public static final String MSG_ABS_ZERO_INPUT = "Su dato de entrada no puede ser inferior al cero absoluto";
     public static final String MSG_ERROR = "Error";
     public static final String MSG_INVALID_CURRENCY_PAIR = "Debe seleccionar ambas divisas para proceder con el cambio";
@@ -133,14 +109,10 @@ public final class Constant {
     public static final String MSG_INVALID_VALUE_EMPTY_OR_SPECIAL_CHAR = "Valor inválido, no se permiten carácteres, ni debe ser vacío";
     public static final String MSG_INVALID_VALUE_LOWER_THAN_ZERO = "Valor inválido, debe ser mayor a 0";
 
-    /**
-     * Fuentes
-     */
+    // Fuentes
     public static final String FONT_ANDALE_MONO = "Andale Mono";
 
-    /**
-     * Imágenes y recursos
-     */
+    // Imágenes y recursos
     public static final String ICONO = "/src/main/resources/icon.png";
     public static final String LOGO = "src/main/resources/logo-conversor.png";
     public static final String LOGO_ALURA = "src/main/resources/alura.png";
