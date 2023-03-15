@@ -359,10 +359,17 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
     @Override
     public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
-        // Crea el logo como imagen
+        // Establece el logo como imagen
         ImageIcon imageIcon = new ImageIcon(logo);
+
+        // Establece etiqueta que contiene el logo
         JLabel jLabel = new JLabel(imageIcon);
-        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+
+        // Establece la posición y la dimensión de la etiqueta
+        jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+
+        // Añade la etiqueta dentro del marco
         add(jLabel);
     }
 
@@ -381,8 +388,8 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         JLabel jLabel = new JLabel(nombre);
 
         // Establece la posición y la dimensión de la etiqueta
-        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
-                dimensionInFrame.getHeight());
+        jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Establece el tipo de letra de la etiqueta
         jLabel.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
@@ -463,8 +470,8 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         JTextField jTextField = new JTextField();
 
         // Establece la posición y dimensión específicas del campo de texto dentro del marco
-        jTextField.setBounds(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        jTextField.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
         jTextField.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
@@ -525,8 +532,8 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         JScrollPane jScrollPane = new JScrollPane(area);
 
         // Establece la posición y dimensión específicas del elemento Scroll dentro del área
-        jScrollPane.setBounds(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        jScrollPane.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Añade el elemento al marco principal
         add(jScrollPane);

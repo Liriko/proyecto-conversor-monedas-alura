@@ -333,8 +333,8 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         JLabel jLabel = new JLabel(imageIcon);
 
         // Establece la posición y la dimensión de la etiqueta
-        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Añade la etiqueta dentro del marco
         add(jLabel);
@@ -437,8 +437,8 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         JTextField textField = new JTextField();
 
         // Establece la posición y dimensión específicas del campo de texto dentro del marco
-        textField.setBounds(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        textField.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
         textField.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
@@ -499,8 +499,8 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         JScrollPane jScrollPane = new JScrollPane(area);
 
         // Establece la posición y dimensión específicas del elemento Scroll dentro del área
-        jScrollPane.setBounds(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight());
+        jScrollPane.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Añade el elemento al marco principal
         add(jScrollPane);

@@ -90,7 +90,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				Boolean.TRUE);
 
 		// logo
-		stablishLogo(LOGO_ALURA, new PositionInFrame(300, 225), new DimensionInFrame(300, 150));
+		stablishLogo(LOGO_ALURA, new PositionInFrame(300, 225), new DimensionInFrame(300, 120));
 	}
 
 	// cambios de estado
@@ -158,16 +158,17 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
 
 		// Establece el logo como imagen
-		ImageIcon imagen = new ImageIcon(logo);
+		ImageIcon imageIcon = new ImageIcon(logo);
 
 		// Establece la etiqueta que contendrá el logo
-		JLabel lbl_logo = new JLabel(imagen);
+		JLabel lLabel = new JLabel(imageIcon);
 
 		// Establece la posición y dimensión de la etiqueta
-		lbl_logo.setBounds(300,225,300,120);
+		lLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+						dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
 		// Añade la etiqueta al marco
-		add(lbl_logo);
+		add(lLabel);
 	}
 
 	/**
@@ -184,20 +185,20 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 							  FontType fontType) {
 
 		// Establece la etiqueta con un nombre específico
-		JLabel etiqueta = new JLabel(nombre);
+		JLabel jLabel = new JLabel(nombre);
 
 		// Establece la posición y la dimensión de la etiqueta
-		etiqueta.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
-				dimensionInFrame.getHeight());
+		jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
+				dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
 		// Establece el tipo de letra de la etiqueta
-		etiqueta.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+		jLabel.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
 
 		// Establece el color de fondo de esta etiqueta
-		etiqueta.setForeground(colorBackground);
+		jLabel.setForeground(colorBackground);
 
 		// Añade la etiqueta al marco
-		add(etiqueta);
+		add(jLabel);
 	}
 
 	@Override
