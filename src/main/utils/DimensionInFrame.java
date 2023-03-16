@@ -26,7 +26,7 @@ public class DimensionInFrame {
 
     /**
      * Obtiene el ancho de la dimensión
-     * @return El ancho
+     * @return el ancho
      */
     public int getWidth() {
         return width;
@@ -34,7 +34,7 @@ public class DimensionInFrame {
 
     /**
      * Obtiene la altura de la dimensión
-     * @return La altura
+     * @return la altura
      */
     public int getHeight() {
         return height;

@@ -2,7 +2,7 @@ package src.main.model.temperature;
 
 import static src.main.constants.Constant.SYMBOL_CELSIUS;
 
-public class Celsius extends Temperatura{
+public class Celsius extends Temperature {
     private final char medida;
     public Celsius(String nombre, double valorCelsius) {
         super(nombre, valorCelsius);

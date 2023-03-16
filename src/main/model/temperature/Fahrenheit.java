@@ -2,7 +2,7 @@ package src.main.model.temperature;
 
 import static src.main.constants.Constant.SYMBOL_FAHRENHEIT;
 
-public class Fahrenheit extends Temperatura{
+public class Fahrenheit extends Temperature {
 
     private final char medida;
     public Fahrenheit(String nombre, double valorCelcius) {

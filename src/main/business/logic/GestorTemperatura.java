@@ -1,6 +1,6 @@
 package src.main.business.logic; // declara el paquete donde estará ubicada mi lógica de src.main.negocio
 
-import src.main.model.temperature.Temperatura;
+import src.main.model.temperature.Temperature;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,21 +14,21 @@ import java.util.TreeMap;
 public class GestorTemperatura {
 
     // Declara lista de temperaturas
-    private final Map<String, Temperatura> temperaturas;
+    private final Map<String, Temperature> temperaturas;
 
     public GestorTemperatura() {
         this.temperaturas = new HashMap<>();
     }
 
-    public void agregarTemperatura(String nombreTemperatura, Temperatura temperatura) {
-        this.temperaturas.put(nombreTemperatura, temperatura);
+    public void agregarTemperatura(String nombreTemperatura, Temperature temperature) {
+        this.temperaturas.put(nombreTemperatura, temperature);
     }
 
     public Object obtenerTemperatura(String nombreTemperatura) {
         return this.temperaturas.get(nombreTemperatura);
     }
 
-    public Map<String, Temperatura> obtenerMapa(){
+    public Map<String, Temperature> obtenerMapa(){
 
         // Este TreeMap ordena mi mapa alfabéticamente
         return new TreeMap<>(this.temperaturas);

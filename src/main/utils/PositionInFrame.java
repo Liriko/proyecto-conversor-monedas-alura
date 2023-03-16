@@ -25,16 +25,16 @@ public class PositionInFrame {
     }
 
     /**
-     * Obtiene La coordenada del eje X
-     * @return La coordenada del eje X
+     * Obtiene la coordenada del eje X
+     * @return la coordenada del eje X
      */
     public int getX() {
         return x;
     }
 
     /**
-     * Obtiene La coordenada del eje Y
-     * @return La coordenada del eje Y
+     * Obtiene la coordenada del eje Y
+     * @return la coordenada del eje Y
      */
     public int getY() {
         return y;
