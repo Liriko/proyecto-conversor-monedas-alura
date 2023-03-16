@@ -192,7 +192,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
 		// Establece el tipo de letra de la etiqueta
-		jLabel.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+		jLabel.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
 		// Establece el color de fondo de esta etiqueta
 		jLabel.setForeground(colorBackground);

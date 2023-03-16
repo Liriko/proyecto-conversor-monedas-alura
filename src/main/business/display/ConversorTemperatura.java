@@ -392,7 +392,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                 dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Establece el tipo de letra de la etiqueta
-        jLabel.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+        jLabel.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo de esta etiqueta
         jLabel.setForeground(colorBackground);
@@ -474,7 +474,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                 dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
-        jTextField.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+        jTextField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo del campo de texto
         jTextField.setBackground(colorBackground);

@@ -5,16 +5,16 @@ package src.main.utils;
  */
 public class DimensionInFrame {
 
-    // Atributos declarados final para conseguir inmutabilidad
+    // Atributos 'final' para garantizar la inmutabilidad
     private final int width;
     private final int height;
 
     /**
      * Crea una nueva dimensión con el ancho y la altura especificados.
      *
-     * @param width el ancho de la dimensión, debe ser mayor que 0
-     * @param height la altura de la dimensión, debe ser mayor que 0
-     * @throws IllegalArgumentException si el ancho o la altura son menores o iguales a 0
+     * @param width Ancho de la dimensión, debe ser mayor que 0
+     * @param height Altura de la dimensión, debe ser mayor que 0
+     * @throws IllegalArgumentException Si el ancho o la altura son menores o iguales a 0
      */
     public DimensionInFrame(int width, int height) {
         if (width <= 0 || height <= 0) {
@@ -26,7 +26,7 @@ public class DimensionInFrame {
 
     /**
      * Obtiene el ancho de la dimensión
-     * @return el ancho
+     * @return El ancho
      */
     public int getWidth() {
         return width;
@@ -34,7 +34,7 @@ public class DimensionInFrame {
 
     /**
      * Obtiene la altura de la dimensión
-     * @return la altura
+     * @return La altura
      */
     public int getHeight() {
         return height;

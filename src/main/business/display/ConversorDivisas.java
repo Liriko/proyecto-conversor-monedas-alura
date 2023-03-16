@@ -359,7 +359,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 dimensionInFrame.getHeight());
 
         // Establece el tipo de letra de la etiqueta
-        jLabel.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+        jLabel.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo de esta etiqueta
         jLabel.setForeground(colorBackground);
@@ -441,7 +441,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
-        textField.setFont(new Font(fontType.getFont(), Font.BOLD, fontType.getSize()));
+        textField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo del campo de texto
         textField.setBackground(colorBackground);

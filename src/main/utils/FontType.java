@@ -1,38 +1,39 @@
 package src.main.utils;
 
 /**
- * Clase responsable de configurar el tipo de letra o fuente.
+ * Clase para representar y configurar un tipo de letra o fuente.
  */
 public class FontType {
 
-    // Atributos final para conseguir la inmutabilidad
-    private final String font;
-    private final int size;
+    // Atributos 'final' para garantizar la inmutabilidad
+    private final String fontName;
+    private final int fontSize;
 
     /**
      * Constructor que inicializa los atributos
-     * @param font El nombre de la fuente
-     * @param size El tamaño de la fuente
+     *
+     * @param fontName Nombre de la fuente
+     * @param fontSize Tamaño de la fuente
      */
-    public FontType(String font, int size) {
-        this.font = font;
-        this.size = size;
+    public FontType(String fontName, int fontSize) {
+        this.fontName = fontName;
+        this.fontSize = fontSize;
     }
 
     /**
-     * Obtiene la fuente
-     * @return la fuente
+     * Obtiene el nombre de la fuente
+     * @return el nombre de la fuente
      */
-    public String getFont() {
-        return font;
+    public String getFontName() {
+        return fontName;
     }
 
 
     /**
      * Obtiene el tamaño de la fuente
-     * @return el tamaño
+     * @return el tamaño de la fuente
      */
-    public int getSize() {
-        return size;
+    public int getFontSize() {
+        return fontSize;
     }
 }
