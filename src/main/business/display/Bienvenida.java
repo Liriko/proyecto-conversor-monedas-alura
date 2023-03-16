@@ -268,14 +268,14 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
      * Crea un menú para el marco actual
      * No tiene uso en esta clase.
      *
-     * @param nombre            Nombre del menú
+     * @param name            Nombre del menú
      * @param textColor         Color del texto del menú
      * @param backgroundColor   Color de fondo del menú
      * @param fontType          Tipo de letra del menú
      * @return el menú
      */
     @Override
-    public JMenu createMenu(String nombre,
+    public JMenu createMenu(String name,
                             Color textColor,
                             Color backgroundColor,
                             FontType fontType) {

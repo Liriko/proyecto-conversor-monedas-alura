@@ -52,7 +52,7 @@ public interface UserInterface {
     JMenuBar createMenuBar(Color backgroundColor);
 
     // Menu
-    JMenu createMenu(String nombre,
+    JMenu createMenu(String name,
                      Color textColor,
                      Color backgroundColor,
                      FontType fontType);

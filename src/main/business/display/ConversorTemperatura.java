@@ -440,20 +440,20 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
     /**
      * Crea un menú para el marco actual
      *
-     * @param nombre            Nombre del menú
+     * @param name            Nombre del menú
      * @param textColor         Color del texto del menú
      * @param backgroundColor   Color de fondo del menú
      * @param fontType          Tipo de letra del menú
      * @return el menú
      */
     @Override
-    public JMenu createMenu(String nombre,
+    public JMenu createMenu(String name,
                             Color textColor,
                             Color backgroundColor,
                             FontType fontType) {
 
         // Crea el menú
-        JMenu jMenu = new JMenu(nombre);
+        JMenu jMenu = new JMenu(name);
 
         // Establece el color de la letra del menú
         jMenu.setForeground(textColor); // color fuente
