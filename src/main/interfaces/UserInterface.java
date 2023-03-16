@@ -42,10 +42,11 @@ public interface UserInterface {
                              DimensionInFrame dimension);
 
     // Combobox
-    JComboBox creaComboBox(int x, int y, int width, int height,
-                           int red, int green, int blue,
-                           int red2, int green2, int blue2,
-                           String font, int style, int size);
+    JComboBox createComboBox(PositionInFrame position,
+                             DimensionInFrame dimension,
+                             Color textColor,
+                             Color backgroundColor,
+                             FontType fontType);
 
     // Barra de menu
     JMenuBar creaBarraDeMenu(int red, int green, int blue);

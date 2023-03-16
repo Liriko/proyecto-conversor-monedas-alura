@@ -236,14 +236,17 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 Boolean.FALSE);
 
         // ComboBox
-        cbx_divisa1 = creaComboBox(220, 213, 220, 25,
-                224, 224, 224,
-                255, 0, 0,
-                FONT_ANDALE_MONO, Font.BOLD, 14);
-        cbx_divisa2 = creaComboBox(220, 273, 220, 25,
-                224, 224, 224,
-                255, 0, 0,
-                FONT_ANDALE_MONO, Font.BOLD, 14);
+        cbx_divisa1 = createComboBox(new PositionInFrame(220, 213),
+                new DimensionInFrame(220, 25),
+                new Color(255, 0, 0),
+                new Color(224, 224, 224),
+                new FontType(FONT_ANDALE_MONO, 14));
+
+        cbx_divisa2 = createComboBox(new PositionInFrame(220, 273),
+                new DimensionInFrame(220, 25),
+                new Color(255, 0, 0),
+                new Color(224, 224, 224),
+                new FontType(FONT_ANDALE_MONO, 14));
 
         // Area de texto
         txa_area_01 = createTextArea(TEXT_FIELD_CURRENCY_RESULT, Boolean.FALSE,
@@ -405,16 +408,43 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         return menuItem;
     }
 
+    /**
+     * Crea un ComboBox en una posición y dimensión, con un texto, color de letra y color de fondo específicos.
+     *
+     * @param position Posición del ComboBox en coordenadas X e Y específicas
+     * @param dimension Dimensión del ComboBox de acuerdo a una base y altura específicas
+     * @param textColor Color del texto del ComboBox
+     * @param backgroundColor Color de fondo del ComboBox
+     * @param fontType Tipo de letra del texto del ComboBox
+     * @return el ComboBox
+     */
     @Override
-    public JComboBox creaComboBox(int x, int y, int width, int height, int red, int green, int blue, int red2, int green2, int blue2, String font, int style, int size) {
+    public JComboBox createComboBox(PositionInFrame position,
+                                    DimensionInFrame dimension,
+                                    Color textColor,
+                                    Color backgroundColor,
+                                    FontType fontType) {
 
-        JComboBox jComboBox = new JComboBox(); // campo desplegable
-        jComboBox.setBounds(x, y, width, height); // dimensiones
-        jComboBox.setBackground(new Color(red, green, blue)); // color fondo
-        jComboBox.setFont(new Font(font, style, size)); // fuente
-        jComboBox.setForeground(new Color(red2, green2, blue2)); // color fuente
-        add(jComboBox); // añade campo desplegable
+        // Crea el componente ComboBox
+        JComboBox jComboBox = new JComboBox();
 
+        // Establece la posición y dimensión del ComboBox dentro del marco
+        jComboBox.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
+
+        // Establece el color de letra del texto del ComboBox
+        jComboBox.setForeground(textColor);
+
+        // Establece el color de fondo del ComboBox
+        jComboBox.setBackground(backgroundColor);
+
+        // Establece el tipo de letra del ComboBox
+        jComboBox.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+        // Añade el ComboBox al marco
+        add(jComboBox);
+
+        // Retorna el ComboBox
         return jComboBox;
     }
 

@@ -222,8 +222,23 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		return null;
 	}
 
+	/**
+	 * Crea un ComboBox en una posición y dimensión, con un texto, color de letra y color de fondo específicos.
+	 * En esta clase no tiene uso.
+	 *
+	 * @param position Posición del ComboBox en coordenadas X e Y específicas
+	 * @param dimension Dimensión del ComboBox de acuerdo a una base y altura específicas
+	 * @param textColor Color del texto del ComboBox
+	 * @param backgroundColor Color de fondo del ComboBox
+	 * @param fontType Tipo de letra del texto del ComboBox
+	 * @return el ComboBox
+	 */
 	@Override
-	public JComboBox creaComboBox(int x, int y, int width, int height, int red, int green, int blue, int red2, int green2, int blue2, String font, int style, int size) {
+	public JComboBox createComboBox(PositionInFrame position,
+									DimensionInFrame dimension,
+									Color textColor,
+									Color backgroundColor,
+									FontType fontType) {
 		return null;
 	}
 
