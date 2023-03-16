@@ -46,28 +46,28 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
     public Bienvenida() {
 
         // configura el marco
-        createFramework(HEADER_WELCOME, new Color(147, 82, 210));
+        createFrame(HEADER_WELCOME, new Color(147, 82, 210));
 
         // configura el ícono
-        stablishIcon(ICONO);
+        setIcon(ICONO);
 
         // configura el logo
-        stablishLogo(LOGO, new PositionInFrame(25, 15), new DimensionInFrame(300, 100));
+        setLogo(LOGO, new PositionInFrame(25, 15), new DimensionInFrame(300, 100));
 
         // etiquetas
-        stablishLabel(SUB_MENU_CURRENCY_CONVERTER,
+        setLabel(SUB_MENU_CURRENCY_CONVERTER,
                 new PositionInFrame(70, 135),
                 new DimensionInFrame(300, 30),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 18));
 
-        stablishLabel(LABEL_INPUT_NAME,
+        setLabel(LABEL_INPUT_NAME,
                 new PositionInFrame(45, 212),
                 new DimensionInFrame(200, 30),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(LABEL_FOOTER,
+        setLabel(LABEL_FOOTER,
                 new PositionInFrame(55, 375),
                 new DimensionInFrame(300, 30),
                 new Color(255, 255, 255),
@@ -81,44 +81,48 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
                 new Color(255, 0, 255));
 
         // botón
-        this.btn_ingresar = creaBoton(BUTTON_ENTER, 125, 280, 100, 30,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                0, 0, 255,
-                255, 255, 255, Boolean.FALSE);
+        this.btn_ingresar = createButton(BUTTON_ENTER,
+                new PositionInFrame(125, 280),
+                new DimensionInFrame(100, 30),
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(0, 0, 255),
+                new Color(255, 255, 255),
+                Boolean.FALSE);
     }
 
     /**
      * Crea un elemento de campo de texto según una posición, dimensión, tipo de letra, color de fondo y
      * color de letra específicos
-     * @param positionInFrame   Posición del campo de texto en el marco
-     * @param dimensionInFrame  Dimensión del campo de texto en el marco
+     *
+     * @param position   Posición del campo de texto en el marco
+     * @param dimension  Dimensión del campo de texto en el marco
      * @param fontType          Tipo de letra del campo de texto
-     * @param colorBackground   Color de fondo del campo de texto
-     * @param colorFont         Color de letra del campo de texto
+     * @param backgroundColor   Color de fondo del campo de texto
+     * @param fontColor         Color de letra del campo de texto
      * @return                  El campo de texto
      */
     @Override
-    public JTextField createTextField(PositionInFrame positionInFrame,
-                                      DimensionInFrame dimensionInFrame,
+    public JTextField createTextField(PositionInFrame position,
+                                      DimensionInFrame dimension,
                                       FontType fontType,
-                                      Color colorBackground,
-                                      Color colorFont) {
+                                      Color backgroundColor,
+                                      Color fontColor) {
 
         // Crea el elemento campo de texto
         JTextField textField = new JTextField();
 
         // Establece la posición y dimensión específicas del campo de texto dentro del marco
-        textField.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+        textField.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
         textField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo del campo de texto
-        textField.setBackground(colorBackground);
+        textField.setBackground(backgroundColor);
 
         // Establece el color de la letra del campo de texto
-        textField.setForeground(colorFont);
+        textField.setForeground(fontColor);
 
         // Añade el campo de texto al marco principal
         add(textField);
@@ -127,30 +131,47 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         return textField;
     }
 
-    /*
-        estableceBoton configura el botón 'Ingresar';
-            - Nombre del botón ('Ingresar')
-            - Posición en el marco
-            - Tipo de fuente
-            - Color de fuente
-            - Color de fondo
+    /**
+     * Crea un elemento botón según una posición, dimensión, tipo de letra, color de fondo,
+     * color de letra y estado específicos.
+     *
+     * @param name              Nombre del botón
+     * @param position          Posición del botón en el marco sobre coordenadas del eje X e Y
+     * @param dimension         Dimensión del botón en el marco según base y altura
+     * @param fontType          Tipo de fuente del botón
+     * @param backgroundColor   Color de fondo del botón
+     * @param textColor         Color de la fuente del botón
+     * @param isEnabled         Estado del botón, 1 = activo, 0 = inactivo
+     * @return el botón
      */
     @Override
-    public JButton creaBoton(String nombre, int x, int y, int width, int height,
-                                  String font, int style, int size,
-                                  int red, int green, int blue,
-                                  int red2, int green2, int blue2, boolean valor) {
-        JButton boton;
-        boton = new JButton(nombre); // inicializa botón
-        boton.setBounds(x, y, width, height); // establece dimensiones
-        boton.setFont(new Font(FONT_ANDALE_MONO, style, size)); // establece tipo de fuente
-        boton.setForeground(new Color(red, green, blue)); // establece el color de la letra
-        boton.setBackground(new Color(red2, green2, blue2)); // establece el color de fondo
+    public JButton createButton(String name, PositionInFrame position, DimensionInFrame dimension,
+                                FontType fontType, Color backgroundColor, Color textColor, boolean isEnabled) {
 
-        boton.addActionListener(this); // añade un evento al botón
+        // Crea el botón con un nombre específico
+        JButton jButton = new JButton(nombre);
 
-        add(boton); // añade el boton a nuestro marco
-        return boton; // retorna el botón
+        // Establece la posición y dimensión específica del botón en el marco
+        jButton.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
+
+        // Establece el tipo de fuente que tendrá el botón
+        jButton.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+        // Establece el color de la fuente del botón
+        jButton.setForeground(textColor);
+
+        // Establece el color de fondo del botón
+        jButton.setBackground(backgroundColor);
+
+        // Añade un evento al botón cuando se le haga referencia
+        jButton.addActionListener(this);
+
+        // Añade el botón al marco
+        add(jButton);
+
+        // retorna el botón
+        return jButton;
     }
 
     /*
@@ -168,12 +189,12 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
     /**
      * Crea un elemento Scroll dentro de un área de texto específico de acuerdo a una posición y dimensión
      * específicas. En esta clase no tiene uso.
-     * @param area             El área de texto dentro del marco
-     * @param positionInFrame  Posición específica dentro del área de texto
-     * @param dimensionInFrame Dimensión específica dentro del área de texto
+     * @param textArea             El área de texto dentro del marco
+     * @param position  Posición específica dentro del área de texto
+     * @param dimension Dimensión específica dentro del área de texto
      */
     @Override
-    public void createScroll(JTextArea area, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
+    public void createScrollPane(JTextArea textArea, PositionInFrame position, DimensionInFrame dimension) {
     }
 
     /*
@@ -187,30 +208,30 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
 
     /**
      * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
-     * @param nombre            Nombre de la etiqueta
-     * @param positionInFrame   La posición de la etiqueta en el marco, en los ejes X e Y
-     * @param dimensionInFrame  La dimensión de la etiqueta en el marco, basado en ancho y largo
-     * @param colorBackground   Color de fondo de la etiqueta
+     * @param name            Nombre de la etiqueta
+     * @param position   La posición de la etiqueta en el marco, en los ejes X e Y
+     * @param dimension  La dimensión de la etiqueta en el marco, basado en ancho y largo
+     * @param backgroundColor   Color de fondo de la etiqueta
      * @param fontType          Tipo de letra o fuente, de la etiqueta
      */
     @Override
-    public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame,
-                              Color colorBackground, FontType fontType) {
+    public void setLabel(String name, PositionInFrame position, DimensionInFrame dimension,
+                         Color backgroundColor, FontType fontType) {
 
-        int font = (SUB_MENU_CURRENCY_CONVERTER.equals(nombre)) ? Font.ITALIC : Font.BOLD;
+        int font = (SUB_MENU_CURRENCY_CONVERTER.equals(name)) ? Font.ITALIC : Font.BOLD;
 
         // Establece la etiqueta con un nombre específico
-        JLabel jLabel = new JLabel(nombre);
+        JLabel jLabel = new JLabel(name);
 
         // Establece la posición y la dimensión de la etiqueta
-        jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+        jLabel.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // Establece el tipo de letra de la etiqueta
         jLabel.setFont(new Font(fontType.getFontName(), font, fontType.getFontSize()));
 
         // Establece el color de fondo de esta etiqueta
-        jLabel.setForeground(colorBackground);
+        jLabel.setForeground(backgroundColor);
 
         // Añade la etiqueta al marco
         add(jLabel);
@@ -242,7 +263,7 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
             - Colores para el fondo
      */
     @Override
-    public void createFramework(String titulo, Color colorBackground) {
+    public void createFrame(String titulo, Color colorBackground) {
 
         setLayout(null); // definir marco de trabajo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // definir operación de cierre de app por defecto
@@ -254,29 +275,29 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         estableceIcono nos ayuda a establecer un ícono para esta pantalla.
      */
     @Override
-    public void stablishIcon(String icono) {
+    public void setIcon(String imagePath) {
 
-        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(icono))).getImage()); // icono
+        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath))).getImage()); // icono
     }
 
     /**
      * Establece el logo en una posición y dimensión específicas
-     * @param logo              La ruta del logo
-     * @param positionInFrame   La posición del logo en el marco, en los ejes X e Y
-     * @param dimensionInFrame  La dimensión del logo en el marco, basado en ancho y largo
+     * @param logoPath              La ruta del logo
+     * @param position   La posición del logo en el marco, en los ejes X e Y
+     * @param dimension  La dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
-    public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
+    public void setLogo(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
 
         // logo
-        ImageIcon imageIcon = new ImageIcon(logo);
+        ImageIcon imageIcon = new ImageIcon(logoPath);
 
         // etiqueta que contiene el logo
         JLabel jLabel = new JLabel(imageIcon);
 
         // posición y dimensión de la etiqueta
-        jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+        jLabel.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // se añade la etiqueta al marco
         add(jLabel);

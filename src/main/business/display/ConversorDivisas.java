@@ -64,8 +64,8 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
 
     public ConversorDivisas() {
 
-        createFramework(SUB_MENU_CURRENCY_CONVERTER, new Color(147, 82, 210));
-        stablishIcon(ICONO);
+        createFrame(SUB_MENU_CURRENCY_CONVERTER, new Color(147, 82, 210));
+        setIcon(ICONO);
 
         nombre = Bienvenida.nombre; // obtiene nombre desde bienvenida
 
@@ -138,64 +138,64 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         // Configuración de etiquetas, botones y otros componentes del Front ********************************
 
         // Logo
-        stablishLogo(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
+        setLogo(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
 
         // Etiquetas
-        stablishLabel(LABEL_VALUE + ":",
+        setLabel(LABEL_VALUE + ":",
                 new PositionInFrame(480, 188),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(LABEL_TITLE + nombre,
+        setLabel(LABEL_TITLE + nombre,
                 new PositionInFrame(280, 30),
                 new DimensionInFrame(300, 50),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 32));
 
-        stablishLabel(LABEL_SUBTITLE,
+        setLabel(LABEL_SUBTITLE,
                 new PositionInFrame(45, 140),
                 new DimensionInFrame(900, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 24));
 
-        stablishLabel(LABEL_NAME,
+        setLabel(LABEL_NAME,
                 new PositionInFrame(25, 188),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(LABEL_LASTNAME + ":",
+        setLabel(LABEL_LASTNAME + ":",
                 new PositionInFrame(25, 248),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO,12));
 
-        stablishLabel(LABEL_SURNAME + ":",
+        setLabel(LABEL_SURNAME + ":",
                 new PositionInFrame(25, 308),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(LABEL_TO_CHANGE_FROM + ":",
+        setLabel(LABEL_TO_CHANGE_FROM + ":",
                 new PositionInFrame(220, 188),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(LABEL_A + ":",
+        setLabel(LABEL_A + ":",
                 new PositionInFrame(220, 248),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(TEXT_FIELD_CALCULATION_RESULT + ":",
+        setLabel(TEXT_FIELD_CALCULATION_RESULT + ":",
                 new PositionInFrame(220, 307),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        stablishLabel(LABEL_FOOTER,
+        setLabel(LABEL_FOOTER,
                 new PositionInFrame(195, 445),
                 new DimensionInFrame(500, 30),
                 new Color(255, 255, 255),
@@ -227,11 +227,13 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 new Color(255, 0, 0));
 
         // Botones
-        btn_calcular = creaBoton(BUTTON_CALCULATE,
-                480, 258, 125, 45,
-                FONT_ANDALE_MONO, Font.BOLD, 20,
-                255, 0, 0,
-                0, 0, 0, false);
+        btn_calcular = createButton(BUTTON_CALCULATE,
+                new PositionInFrame(480, 258),
+                new DimensionInFrame(125, 45),
+                new FontType(FONT_ANDALE_MONO, 20),
+                new Color(255, 0, 0),
+                new Color(0, 0, 0),
+                Boolean.FALSE);
 
         // ComboBox
         cbx_divisa1 = creaComboBox(220, 213, 220, 25,
@@ -250,7 +252,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 255, 0, 0);
 
         // Scroll
-        createScroll(txa_area_01,
+        createScrollPane(txa_area_01,
                 new PositionInFrame(220, 333),
                 new DimensionInFrame(385, 90));
 
@@ -303,7 +305,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
     }
 
     @Override
-    public void createFramework(String titulo, Color colorBackground) {
+    public void createFrame(String titulo, Color colorBackground) {
 
         setLayout(null); // marco de trabajo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // operación de cierre por defecto
@@ -312,29 +314,29 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
     }
 
     @Override
-    public void stablishIcon(String icono) {
+    public void setIcon(String imagePath) {
 
-        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(icono))).getImage()); // ícono
+        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath))).getImage()); // ícono
     }
 
     /**
      * Establece el logo dentro del marco específicado
-     * @param logo              La ruta del logo
-     * @param positionInFrame   La posición del logo en el marco, en los ejes X e Y
-     * @param dimensionInFrame  La dimensión del logo en el marco, basado en ancho y largo
+     * @param logoPath              La ruta del logo
+     * @param position   La posición del logo en el marco, en los ejes X e Y
+     * @param dimension  La dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
-    public void stablishLogo(String logo, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
+    public void setLogo(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
 
         // Establece el logo como imagen
-        ImageIcon imageIcon = new ImageIcon(logo);
+        ImageIcon imageIcon = new ImageIcon(logoPath);
 
         // Establece etiqueta que contiene el logo
         JLabel jLabel = new JLabel(imageIcon);
 
         // Establece la posición y la dimensión de la etiqueta
-        jLabel.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+        jLabel.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // Añade la etiqueta dentro del marco
         add(jLabel);
@@ -342,27 +344,27 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
 
     /**
      * Establece una etiqueta con su respectiva posición, dimensión, color de fondo, tipo de letra y nombre
-     * @param nombre            Nombre de la etiqueta
-     * @param positionInFrame   La posición de la etiqueta en el marco, en los ejes X e Y
-     * @param dimensionInFrame  La dimensión de la etiqueta en el marco, basado en ancho y largo
-     * @param colorBackground   Color de fondo de la etiqueta
+     * @param name            Nombre de la etiqueta
+     * @param position   La posición de la etiqueta en el marco, en los ejes X e Y
+     * @param dimension  La dimensión de la etiqueta en el marco, basado en ancho y largo
+     * @param backgroundColor   Color de fondo de la etiqueta
      * @param fontType          Tipo de letra o fuente, de la etiqueta
      */
     @Override
-    public void stablishLabel(String nombre, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame, Color colorBackground, FontType fontType) {
+    public void setLabel(String name, PositionInFrame position, DimensionInFrame dimension, Color backgroundColor, FontType fontType) {
 
         // Establece la etiqueta con un nombre específico
-        JLabel jLabel = new JLabel(nombre);
+        JLabel jLabel = new JLabel(name);
 
         // Establece la posición y la dimensión de la etiqueta
-        jLabel.setBounds(positionInFrame.getX(), positionInFrame.getY(), dimensionInFrame.getWidth(),
-                dimensionInFrame.getHeight());
+        jLabel.setBounds(position.getX(), position.getY(), dimension.getWidth(),
+                dimension.getHeight());
 
         // Establece el tipo de letra de la etiqueta
         jLabel.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo de esta etiqueta
-        jLabel.setForeground(colorBackground);
+        jLabel.setForeground(backgroundColor);
 
         // Añade la etiqueta al marco
         add(jLabel);
@@ -419,35 +421,35 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
     /**
      * Crea un elemento de campo de texto según una posición, dimensión, tipo de letra, color de fondo y
      * color de letra específicos
-     * @param positionInFrame   Posición del campo de texto en el marco
-     * @param dimensionInFrame  Dimensión del campo de texto en el marco
+     * @param position   Posición del campo de texto en el marco
+     * @param dimension  Dimensión del campo de texto en el marco
      * @param fontType          Tipo de letra del campo de texto
-     * @param colorBackground   Color de fondo del campo de texto
-     * @param colorFont         Color de letra del campo de texto
+     * @param backgroundColor   Color de fondo del campo de texto
+     * @param fontColor         Color de letra del campo de texto
      * @return                  El campo de texto
      */
     @Override
-    public JTextField createTextField(PositionInFrame positionInFrame,
-                                      DimensionInFrame dimensionInFrame,
+    public JTextField createTextField(PositionInFrame position,
+                                      DimensionInFrame dimension,
                                       FontType fontType,
-                                      Color colorBackground,
-                                      Color colorFont) {
+                                      Color backgroundColor,
+                                      Color fontColor) {
 
         // Crea el elemento campo de texto
         JTextField textField = new JTextField();
 
         // Establece la posición y dimensión específicas del campo de texto dentro del marco
-        textField.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+        textField.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
         textField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo del campo de texto
-        textField.setBackground(colorBackground);
+        textField.setBackground(backgroundColor);
 
         // Establece el color de la letra del campo de texto
-        textField.setForeground(colorFont);
+        textField.setForeground(fontColor);
 
         // Añade el campo de texto al marco principal
         add(textField);
@@ -456,16 +458,46 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         return textField;
     }
 
+    /**
+     * Crea un elemento botón según una posición, dimensión, tipo de letra, color de fondo,
+     * color de letra y estado específicos.
+     *
+     * @param name              Nombre del botón
+     * @param position          Posición del botón en el marco sobre coordenadas del eje X e Y
+     * @param dimension         Dimensión del botón en el marco según base y altura
+     * @param fontType          Tipo de fuente del botón
+     * @param backgroundColor   Color de fondo del botón
+     * @param textColor         Color de la fuente del botón
+     * @param isEnabled         Estado del botón, 1 = activo, 0 = inactivo
+     * @return el botón
+     */
     @Override
-    public JButton creaBoton(String nombre, int x, int y, int width, int height, String font, int style, int size, int red, int green, int blue, int red2, int green2, int blue2, boolean valor) {
+    public JButton createButton(String name, PositionInFrame position, DimensionInFrame dimension,
+                                FontType fontType, Color backgroundColor, Color textColor, boolean isEnabled) {
 
+        // Crea el botón con un nombre específico
         JButton jButton = new JButton(nombre);
-        jButton.setBounds(x, y, width, height); // dimensiones
-        jButton.setFont(new Font(font, style, size));
-        jButton.setForeground(new Color(red, green, size));
+
+        // Establece la posición y dimensión específica del botón en el marco
+        jButton.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
+
+        // Establece el tipo de fuente que tendrá el botón
+        jButton.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+        // Establece el color de la fuente del botón
+        jButton.setForeground(textColor);
+
+        // Establece el color de fondo del botón
+        jButton.setBackground(backgroundColor);
+
+        // Añade un evento al botón cuando se le haga referencia
         jButton.addActionListener(this);
+
+        // Añade el botón al marco
         add(jButton);
 
+        // retorna el botón
         return jButton;
     }
 
@@ -488,19 +520,19 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
     /**
      * Crea un elemento Scroll dentro un área de texto específico de acuerdo a una posición y dimensión
      * específicas.
-     * @param area             El área de texto dentro del marco
-     * @param positionInFrame  Posición específica dentro del área de texto
-     * @param dimensionInFrame Dimensión específica dentro del área de texto
+     * @param textArea             El área de texto dentro del marco
+     * @param position  Posición específica dentro del área de texto
+     * @param dimension Dimensión específica dentro del área de texto
      */
     @Override
-    public void createScroll(JTextArea area, PositionInFrame positionInFrame, DimensionInFrame dimensionInFrame) {
+    public void createScrollPane(JTextArea textArea, PositionInFrame position, DimensionInFrame dimension) {
 
         // Crea el elemento Scroll dentro del ámbito del área de texto
-        JScrollPane jScrollPane = new JScrollPane(area);
+        JScrollPane jScrollPane = new JScrollPane(textArea);
 
         // Establece la posición y dimensión específicas del elemento Scroll dentro del área
-        jScrollPane.setBounds(new Rectangle(positionInFrame.getX(), positionInFrame.getY(),
-                dimensionInFrame.getWidth(), dimensionInFrame.getHeight()));
+        jScrollPane.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // Añade el elemento al marco principal
         add(jScrollPane);
