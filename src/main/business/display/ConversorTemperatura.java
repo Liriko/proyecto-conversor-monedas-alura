@@ -506,10 +506,10 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
      */
     @Override
     public JButton createButton(String name, PositionInFrame position, DimensionInFrame dimension,
-                                FontType fontType, Color backgroundColor, Color textColor, boolean isEnabled) {
+                                FontType fontType, Color textColor, Color backgroundColor, boolean isEnabled) {
 
         // Crea el botón con un nombre específico
-        JButton jButton = new JButton(nombre);
+        JButton jButton = new JButton(name);
 
         // Establece la posición y dimensión específica del botón en el marco
         jButton.setBounds(new Rectangle(position.getX(), position.getY(),
@@ -520,9 +520,6 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
 
         // Establece el color de la fuente del botón
         jButton.setForeground(textColor);
-
-        // Establece el color de fondo del botón
-        jButton.setBackground(backgroundColor);
 
         // Añade un evento al botón cuando se le haga referencia
         jButton.addActionListener(this);

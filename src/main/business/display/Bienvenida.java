@@ -118,11 +118,11 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         // Establece el tipo de letra o fuente del campo de texto
         textField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
-        // Establece el color de fondo del campo de texto
-        textField.setBackground(backgroundColor);
-
         // Establece el color de la letra del campo de texto
         textField.setForeground(fontColor);
+
+        // Establece el color de fondo del campo de texto
+        textField.setBackground(backgroundColor);
 
         // Añade el campo de texto al marco principal
         add(textField);
@@ -146,10 +146,10 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
      */
     @Override
     public JButton createButton(String name, PositionInFrame position, DimensionInFrame dimension,
-                                FontType fontType, Color backgroundColor, Color textColor, boolean isEnabled) {
+                                FontType fontType, Color textColor, Color backgroundColor, boolean isEnabled) {
 
         // Crea el botón con un nombre específico
-        JButton jButton = new JButton(nombre);
+        JButton jButton = new JButton(name);
 
         // Establece la posición y dimensión específica del botón en el marco
         jButton.setBounds(new Rectangle(position.getX(), position.getY(),
