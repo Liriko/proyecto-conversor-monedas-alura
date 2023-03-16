@@ -1,6 +1,6 @@
 package src.main.business.logic; // declara el paquete donde estará ubicada mi lógica de src.main.negocio
 
-import src.main.model.currency.Divisa;
+import src.main.model.currency.Currency;
 
 import java.util.*;
 
@@ -12,21 +12,21 @@ import java.util.*;
 public class GestorDivisa {
 
     // Declara lista de divisas
-    private final Map<String, Divisa> divisas;
+    private final Map<String, Currency> divisas;
 
     public GestorDivisa() {
         this.divisas = new HashMap<>();
     }
 
-    public void agregarDivisa(String nombreDivisa, Divisa divisa) {
-        this.divisas.put(nombreDivisa, divisa);
+    public void agregarDivisa(String nombreDivisa, Currency currency) {
+        this.divisas.put(nombreDivisa, currency);
     }
 
-    public Divisa obtenerDivisa(String nombreDivisa) {
+    public Currency obtenerDivisa(String nombreDivisa) {
         return this.divisas.get(nombreDivisa);
     }
 
-    public Map<String, Divisa> obtenerMapa(){
+    public Map<String, Currency> obtenerMapa(){
 
         // el TreeMap ordenada mi mapa alfabéticamente
         return new TreeMap<>(this.divisas);

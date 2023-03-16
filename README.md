@@ -92,7 +92,7 @@ https://github.com/Liriko/proyecto-conversor-monedas-alura/blob/master/proyecto_
   Existen dos campos completables, los cuales se alimentarán dinámicamente dependiendo de si la pantalla es un conversor de divisas o de temperature.
   Para el primer caso, ambos campos se llenarán con las siguientes divisas ordenadas alfabéticamente:
   
-  ![Submenu de opciones - Conversor de divisa](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev14.png)
+  ![Submenu de opciones - Conversor de currency](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev14.png)
   
   - CLP $ - Peso Chileno
   - Eur € - Euro
@@ -112,7 +112,7 @@ https://github.com/Liriko/proyecto-conversor-monedas-alura/blob/master/proyecto_
   # Campo Valor, = y campo de texto
   
   Finalmente, a la derecha, figura un campo llamado Valor, que posee algunas validaciones y cuyo propósito representa el valor que el usuario desea transformar.
-  El botón marcado con un signo igual (=) ejecuta la lógica del cálculo que permite transformar el valor de una divisa a otra, o de una temperature a otra.
+  El botón marcado con un signo igual (=) ejecuta la lógica del cálculo que permite transformar el valor de una currency a otra, o de una temperature a otra.
   El resultado de esta operación se muestra finalmente en el campo de texto que está situado en la zona inferior de la pantalla.
   
   # Validaciones del campo Valor

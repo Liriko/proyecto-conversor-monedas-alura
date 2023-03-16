@@ -255,12 +255,12 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 new DimensionInFrame(385, 90));
 
         // Se añaden las divisas a la lista de divisas
-        this.gestor.agregarDivisa(ITEM_CURRENCY_USD, new Dolar(ITEM_CURRENCY_USD, 1.00d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_USD, new Dollar(ITEM_CURRENCY_USD, 1.00d));
         this.gestor.agregarDivisa(ITEM_CURRENCY_EUR, new Euro(ITEM_CURRENCY_EUR, 0.94d));
-        this.gestor.agregarDivisa(ITEM_CURRENCY_GBP, new LibraEsterlina(ITEM_CURRENCY_GBP, 0.84d));
-        this.gestor.agregarDivisa(ITEM_CURRENCY_CLP, new PesoChileno(ITEM_CURRENCY_CLP, 802.50d));
-        this.gestor.agregarDivisa(ITEM_CURRENCY_KRW, new WonSurcoreano(ITEM_CURRENCY_KRW, 1306.03d));
-        this.gestor.agregarDivisa(ITEM_CURRENCY_JPY, new YenJapones(ITEM_CURRENCY_JPY, 136.53d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_GBP, new PoundSterling(ITEM_CURRENCY_GBP, 0.84d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_CLP, new ChileanPeso(ITEM_CURRENCY_CLP, 802.50d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_KRW, new SouthKoreanWon(ITEM_CURRENCY_KRW, 1306.03d));
+        this.gestor.agregarDivisa(ITEM_CURRENCY_JPY, new JapaneseYen(ITEM_CURRENCY_JPY, 136.53d));
 
         // Poblar ComboBox
         anhiadirMonedas(cbx_divisa1, gestor);
@@ -278,17 +278,17 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
 
         for (String key : keys) {
 
-            Divisa value = gestor.obtenerMapa().get(key);
-            combobox.addItem(value.getNombre());
+            Currency value = gestor.obtenerMapa().get(key);
+            combobox.addItem(value.getName());
         }
     }
 
-    public double cambioDivisa(Divisa temperatura1, double valor, Divisa temperatura2, char ccy) {
+    public double cambioDivisa(Currency temperatura1, double valor, Currency temperatura2, char ccy) {
 
         double resultado;
 
-        if (ccy == SYMBOL_USD) resultado = temperatura2.getValorUSD() * valor;
-        else resultado = Math.round(((valor / temperatura1.getValorUSD()) * temperatura2.getValorUSD()) * 100d) / 100d;
+        if (ccy == SYMBOL_USD) resultado = temperatura2.getValueInUSD() * valor;
+        else resultado = Math.round(((valor / temperatura1.getValueInUSD()) * temperatura2.getValueInUSD()) * 100d) / 100d;
 
         return resultado;
     }
@@ -519,12 +519,12 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
             double resultado = 0;
             boolean fail = Boolean.FALSE;
 
-            Dolar dolar = (Dolar) gestor.obtenerDivisa(ITEM_CURRENCY_USD);
+            Dollar dollar = (Dollar) gestor.obtenerDivisa(ITEM_CURRENCY_USD);
             Euro euro = (Euro) gestor.obtenerDivisa(ITEM_CURRENCY_EUR);
-            LibraEsterlina libra = (LibraEsterlina) gestor.obtenerDivisa(ITEM_CURRENCY_GBP);
-            PesoChileno peso = (PesoChileno) gestor.obtenerDivisa(ITEM_CURRENCY_CLP);
-            WonSurcoreano won = (WonSurcoreano) gestor.obtenerDivisa(ITEM_CURRENCY_KRW);
-            YenJapones yen = (YenJapones) gestor.obtenerDivisa(ITEM_CURRENCY_JPY);
+            PoundSterling libra = (PoundSterling) gestor.obtenerDivisa(ITEM_CURRENCY_GBP);
+            ChileanPeso peso = (ChileanPeso) gestor.obtenerDivisa(ITEM_CURRENCY_CLP);
+            SouthKoreanWon won = (SouthKoreanWon) gestor.obtenerDivisa(ITEM_CURRENCY_KRW);
+            JapaneseYen yen = (JapaneseYen) gestor.obtenerDivisa(ITEM_CURRENCY_JPY);
 
             String nombreUsuario = this.txf_nombre.getText();
             String apellidoPaternoUsuario = this.txf_apellidoPaterno.getText();
@@ -569,97 +569,97 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
 
                             case ITEM_CURRENCY_USD -> {
 
-                                div1 = dolar.getNombre();
-                                ccy1 = dolar.getCcy();
+                                div1 = dollar.getName();
+                                ccy1 = dollar.getCurrencySymbol();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
                                     case ITEM_CURRENCY_EUR -> {
 
-                                        div2 = euro.getNombre();
-                                        ccy2 = euro.getCcy();
+                                        div2 = euro.getName();
+                                        ccy2 = euro.getCurrencySymbol();
 
-                                        resultado = this.cambioDivisa(dolar,
+                                        resultado = this.cambioDivisa(dollar,
                                                 valor, euro, ccy1);
 
                                     }
                                     case ITEM_CURRENCY_GBP -> {
 
-                                        div2 = libra.getNombre();
-                                        ccy2 = libra.getCcy();
+                                        div2 = libra.getName();
+                                        ccy2 = libra.getCurrencySymbol();
 
-                                        resultado = this.cambioDivisa(dolar,
+                                        resultado = this.cambioDivisa(dollar,
                                                 valor, libra, ccy1);
                                     }
                                     case ITEM_CURRENCY_CLP -> {
 
-                                        div2 = peso.getNombre();
-                                        ccy2 = peso.getCcy();
+                                        div2 = peso.getName();
+                                        ccy2 = peso.getCurrencySymbol();
 
-                                        resultado = this.cambioDivisa(dolar,
+                                        resultado = this.cambioDivisa(dollar,
                                                 valor, peso, ccy1);
                                     }
                                     case ITEM_CURRENCY_KRW -> {
 
-                                        div2 = won.getNombre();
-                                        ccy2 = won.getCcy();
+                                        div2 = won.getName();
+                                        ccy2 = won.getCurrencySymbol();
 
-                                        resultado = this.cambioDivisa(dolar,
+                                        resultado = this.cambioDivisa(dollar,
                                                 valor, won, ccy1);
                                     }
                                     case ITEM_CURRENCY_JPY -> {
 
-                                        div2 = yen.getNombre();
-                                        ccy2 = yen.getCcy();
+                                        div2 = yen.getName();
+                                        ccy2 = yen.getCurrencySymbol();
 
-                                        resultado = this.cambioDivisa(dolar,
+                                        resultado = this.cambioDivisa(dollar,
                                                 valor, yen, ccy1);
                                     } default -> fail = Boolean.TRUE;
                                 }
                             }
                             case ITEM_CURRENCY_EUR -> {
 
-                                div1 = euro.getNombre();
-                                ccy1 = euro.getCcy();
+                                div1 = euro.getName();
+                                ccy1 = euro.getCurrencySymbol();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
                                     case ITEM_CURRENCY_USD -> {
 
-                                        div2 = dolar.getNombre();
-                                        ccy2 = dolar.getCcy();
+                                        div2 = dollar.getName();
+                                        ccy2 = dollar.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(euro,
-                                                valor, dolar, ccy1);
+                                                valor, dollar, ccy1);
                                     }
                                     case ITEM_CURRENCY_GBP -> {
 
-                                        div2 = libra.getNombre();
-                                        ccy2 = libra.getCcy();
+                                        div2 = libra.getName();
+                                        ccy2 = libra.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(euro,
                                                 valor, libra, ccy1);
                                     }
                                     case ITEM_CURRENCY_CLP -> {
 
-                                        div2 = peso.getNombre();
-                                        ccy2 = peso.getCcy();
+                                        div2 = peso.getName();
+                                        ccy2 = peso.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(euro,
                                                 valor, peso, ccy1);
                                     }
                                     case ITEM_CURRENCY_KRW -> {
 
-                                        div2 = won.getNombre();
-                                        ccy2 = won.getCcy();
+                                        div2 = won.getName();
+                                        ccy2 = won.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(euro,
                                                 valor, won, ccy1);
                                     }
                                     case ITEM_CURRENCY_JPY -> {
 
-                                        div2 = yen.getNombre();
-                                        ccy2 = yen.getCcy();
+                                        div2 = yen.getName();
+                                        ccy2 = yen.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(euro,
                                                 valor, yen, ccy1);
@@ -668,47 +668,47 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                             }
                             case ITEM_CURRENCY_GBP -> {
 
-                                div1 = libra.getNombre();
-                                ccy1 = libra.getCcy();
+                                div1 = libra.getName();
+                                ccy1 = libra.getCurrencySymbol();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
                                     case ITEM_CURRENCY_USD -> {
 
-                                        div2 = dolar.getNombre();
-                                        ccy2 = dolar.getCcy();
+                                        div2 = dollar.getName();
+                                        ccy2 = dollar.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(libra,
-                                                valor, dolar, ccy1);
+                                                valor, dollar, ccy1);
                                     }
                                     case ITEM_CURRENCY_EUR -> {
 
-                                        div2 = euro.getNombre();
-                                        ccy2 = euro.getCcy();
+                                        div2 = euro.getName();
+                                        ccy2 = euro.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(libra,
                                                 valor, euro, ccy1);
                                     }
                                     case ITEM_CURRENCY_CLP -> {
 
-                                        div2 = peso.getNombre();
-                                        ccy2 = peso.getCcy();
+                                        div2 = peso.getName();
+                                        ccy2 = peso.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(libra,
                                                 valor, peso, ccy1);
                                     }
                                     case ITEM_CURRENCY_KRW -> {
 
-                                        div2 = won.getNombre();
-                                        ccy2 = won.getCcy();
+                                        div2 = won.getName();
+                                        ccy2 = won.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(libra,
                                                 valor, won, ccy1);
                                     }
                                     case ITEM_CURRENCY_JPY -> {
 
-                                        div2 = yen.getNombre();
-                                        ccy2 = yen.getCcy();
+                                        div2 = yen.getName();
+                                        ccy2 = yen.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(libra,
                                                 valor, yen, ccy1);
@@ -717,47 +717,47 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                             }
                             case ITEM_CURRENCY_CLP -> {
 
-                                div1 = peso.getNombre();
-                                ccy1 = libra.getCcy(); // Esto no es un error, es un control de daños.
+                                div1 = peso.getName();
+                                ccy1 = libra.getCurrencySymbol(); // Esto no es un error, es un control de daños.
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
                                     case ITEM_CURRENCY_USD -> {
 
-                                        div2 = dolar.getNombre();
-                                        ccy2 = dolar.getCcy();
+                                        div2 = dollar.getName();
+                                        ccy2 = dollar.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(peso,
-                                                valor, dolar, ccy1);
+                                                valor, dollar, ccy1);
                                     }
                                     case ITEM_CURRENCY_EUR -> {
 
-                                        div2 = euro.getNombre();
-                                        ccy2 = euro.getCcy();
+                                        div2 = euro.getName();
+                                        ccy2 = euro.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(peso,
                                                 valor, euro, ccy1);
                                     }
                                     case ITEM_CURRENCY_GBP -> {
 
-                                        div2 = libra.getNombre();
-                                        ccy2 = libra.getCcy();
+                                        div2 = libra.getName();
+                                        ccy2 = libra.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(peso,
                                                 valor, libra, ccy1);
                                     }
                                     case ITEM_CURRENCY_KRW -> {
 
-                                        div2 = won.getNombre();
-                                        ccy2 = won.getCcy();
+                                        div2 = won.getName();
+                                        ccy2 = won.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(peso,
                                                 valor, won, ccy1);
                                     }
                                     case ITEM_CURRENCY_JPY -> {
 
-                                        div2 = yen.getNombre();
-                                        ccy2 = yen.getCcy();
+                                        div2 = yen.getName();
+                                        ccy2 = yen.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(peso,
                                                 valor, yen, ccy1);
@@ -766,47 +766,47 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                             }
                             case ITEM_CURRENCY_KRW -> {
 
-                                div1 = won.getNombre();
-                                ccy1 = won.getCcy();
+                                div1 = won.getName();
+                                ccy1 = won.getCurrencySymbol();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
                                     case ITEM_CURRENCY_USD -> {
 
-                                        div2 = dolar.getNombre();
-                                        ccy2 = dolar.getCcy();
+                                        div2 = dollar.getName();
+                                        ccy2 = dollar.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(won,
-                                                valor, dolar, ccy1);
+                                                valor, dollar, ccy1);
                                     }
                                     case ITEM_CURRENCY_EUR -> {
 
-                                        div2 = euro.getNombre();
-                                        ccy2 = euro.getCcy();
+                                        div2 = euro.getName();
+                                        ccy2 = euro.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(won,
                                                 valor, euro, ccy1);
                                     }
                                     case ITEM_CURRENCY_GBP -> {
 
-                                        div2 = libra.getNombre();
-                                        ccy2 = libra.getCcy();
+                                        div2 = libra.getName();
+                                        ccy2 = libra.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(won,
                                                 valor, libra, ccy1);
                                     }
                                     case ITEM_CURRENCY_CLP -> {
 
-                                        div2 = peso.getNombre();
-                                        ccy2 = peso.getCcy();
+                                        div2 = peso.getName();
+                                        ccy2 = peso.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(won,
                                                 valor, peso, ccy1);
                                     }
                                     case ITEM_CURRENCY_JPY -> {
 
-                                        div2 = yen.getNombre();
-                                        ccy2 = yen.getCcy();
+                                        div2 = yen.getName();
+                                        ccy2 = yen.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(won,
                                                 valor, yen, ccy1);
@@ -815,47 +815,47 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                             }
                             case ITEM_CURRENCY_JPY -> {
 
-                                div1 = yen.getNombre();
-                                ccy1 = yen.getCcy();
+                                div1 = yen.getName();
+                                ccy1 = yen.getCurrencySymbol();
 
                                 switch (Objects.requireNonNull(cbx_divisa2.getSelectedItem()).toString()) {
 
                                     case ITEM_CURRENCY_USD -> {
 
-                                        div2 = dolar.getNombre();
-                                        ccy2 = dolar.getCcy();
+                                        div2 = dollar.getName();
+                                        ccy2 = dollar.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(yen,
-                                                valor, dolar, ccy1);
+                                                valor, dollar, ccy1);
                                     }
                                     case ITEM_CURRENCY_EUR -> {
 
-                                        div2 = euro.getNombre();
-                                        ccy2 = euro.getCcy();
+                                        div2 = euro.getName();
+                                        ccy2 = euro.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(yen,
                                                 valor, euro, ccy1);
                                     }
                                     case ITEM_CURRENCY_GBP -> {
 
-                                        div2 = libra.getNombre();
-                                        ccy2 = libra.getCcy();
+                                        div2 = libra.getName();
+                                        ccy2 = libra.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(yen,
                                                 valor, libra, ccy1);
                                     }
                                     case ITEM_CURRENCY_CLP -> {
 
-                                        div2 = peso.getNombre();
-                                        ccy2 = peso.getCcy();
+                                        div2 = peso.getName();
+                                        ccy2 = peso.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(yen,
                                                 valor, peso, ccy1);
                                     }
                                     case ITEM_CURRENCY_KRW -> {
 
-                                        div2 = won.getNombre();
-                                        ccy2 = won.getCcy();
+                                        div2 = won.getName();
+                                        ccy2 = won.getCurrencySymbol();
 
                                         resultado = this.cambioDivisa(yen,
                                                 valor, won, ccy1);
