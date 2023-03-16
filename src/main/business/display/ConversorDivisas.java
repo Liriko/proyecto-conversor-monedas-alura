@@ -75,20 +75,27 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         JMenuBar barraMenu = createMenuBar(new Color(147, 82, 210));
 
         // Menu
-        JMenu menuOpciones = creaMenu(MENU_OPTIONS, 255, 0, 0,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 255, 255);
-        JMenu menuConversores = creaMenu(MENU_CONVERTER, 255, 0, 0,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 255, 255);
-        JMenu menuSobreMi = creaMenu(MENU_ABOUT_ME, 255, 0, 0,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 255, 255);
+        JMenu menuOpciones = createMenu(MENU_OPTIONS,
+                new Color(255, 255, 255),
+                new Color(255, 0, 0),
+                new FontType(FONT_ANDALE_MONO, 14));
+
+        JMenu menuConversores = createMenu(MENU_CONVERTER,
+                new Color(255, 255, 255),
+                new Color(255, 0, 0),
+                new FontType(FONT_ANDALE_MONO, 14));
+
+        JMenu menuSobreMi = createMenu(MENU_ABOUT_ME,
+                new Color(255, 255, 255),
+                new Color(255, 0, 0),
+                new FontType(FONT_ANDALE_MONO, 14));
 
         // Menu items
-        JMenuItem menuItemColorFondo = creaMenu(SUB_MENU_COLOR_FONDO, 255, 0, 0,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
+        JMenuItem menuItemColorFondo = createMenu(SUB_MENU_COLOR_FONDO,
+                new Color(255, 0, 0),
+                new Color(255, 0, 0),
+                new FontType(FONT_ANDALE_MONO, 14));
+
         JMenuItem menuItemConversorDivisa = creaMenuItem(SUB_MENU_CURRENCY_CONVERTER,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 0, 0);
@@ -397,17 +404,35 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         return jMenuBar;
     }
 
+    /**
+     * Crea un menú para el marco actual
+     *
+     * @param nombre            Nombre del menú
+     * @param textColor         Color del texto del menú
+     * @param backgroundColor   Color de fondo del menú
+     * @param fontType          Tipo de letra del menú
+     * @return el menú
+     */
     @Override
-    public JMenu creaMenu(String nombre, int red, int green, int blue,
-                          String font, int style, int size,
-                          int red2, int green2, int blue2) {
+    public JMenu createMenu(String nombre,
+                            Color textColor,
+                            Color backgroundColor,
+                            FontType fontType) {
 
-        JMenu menu = new JMenu(nombre); // crea menu de opciones
-        menu.setBackground(new Color(red, green, blue)); // color de fondo por defecto
-        menu.setFont(new Font(font, style, size)); // fuente
-        menu.setForeground(new Color(red2, green2, blue2)); // color fuente
+        // Crea el menú
+        JMenu jMenu = new JMenu(nombre);
 
-        return menu;
+        // Establece el color de la letra del menú
+        jMenu.setForeground(textColor); // color fuente
+
+        // Establece el color de fondo del menú
+        jMenu.setBackground(backgroundColor);
+
+        // Establece el tipo de letra del menú
+        jMenu.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+        // Retorna el menú
+        return jMenu;
     }
 
     @Override

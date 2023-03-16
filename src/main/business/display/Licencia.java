@@ -219,8 +219,21 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		return null;
 	}
 
+	/**
+	 * Crea un menú para el marco actual
+	 * No tiene uso en esta clase.
+	 *
+	 * @param nombre            Nombre del menú
+	 * @param textColor         Color del texto del menú
+	 * @param backgroundColor   Color de fondo del menú
+	 * @param fontType          Tipo de letra del menú
+	 * @return el menú
+	 */
 	@Override
-	public JMenu creaMenu(String nombre, int red, int green, int blue, String font, int style, int size, int red2, int green2, int blue2) {
+	public JMenu createMenu(String nombre,
+							Color textColor,
+							Color backgroundColor,
+							FontType fontType) {
 		return null;
 	}
 

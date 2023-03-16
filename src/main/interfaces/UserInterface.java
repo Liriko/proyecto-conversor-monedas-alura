@@ -52,8 +52,10 @@ public interface UserInterface {
     JMenuBar createMenuBar(Color backgroundColor);
 
     // Menu
-    JMenu creaMenu(String nombre, int red, int green, int blue, String font, int style, int size,
-                   int red2, int green2, int blue2);
+    JMenu createMenu(String nombre,
+                     Color textColor,
+                     Color backgroundColor,
+                     FontType fontType);
 
     // Menu item
     JMenuItem creaMenuItem(String nombre, String font, int style, int size,
