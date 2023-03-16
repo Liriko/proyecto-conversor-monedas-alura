@@ -252,8 +252,15 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         add(jLabel);
     }
 
+    /**
+     * Crea una barra de menú dentro del marco
+     * No tiene uso en esta clase.
+     *
+     * @param backgroundColor Color de fondo de la barra de menú
+     * @return la barra de menú
+     */
     @Override
-    public JMenuBar creaBarraDeMenu(int red, int green, int blue) {
+    public JMenuBar createMenuBar(Color backgroundColor) {
         return null;
     }
 

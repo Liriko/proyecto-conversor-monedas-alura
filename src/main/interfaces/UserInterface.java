@@ -49,7 +49,7 @@ public interface UserInterface {
                              FontType fontType);
 
     // Barra de menu
-    JMenuBar creaBarraDeMenu(int red, int green, int blue);
+    JMenuBar createMenuBar(Color backgroundColor);
 
     // Menu
     JMenu creaMenu(String nombre, int red, int green, int blue, String font, int style, int size,

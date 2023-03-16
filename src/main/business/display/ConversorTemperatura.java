@@ -75,7 +75,8 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         // Inicio configuración de menú ********************************************************************
 
         // Menu Bar
-        JMenuBar barraMenu = creaBarraDeMenu(147, 82, 210);
+        JMenuBar barraMenu = createMenuBar(new Color(147, 82, 210));
+
         // Menu
         JMenu menuOpciones = creaMenu(MENU_OPTIONS, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
@@ -86,6 +87,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         JMenu menuSobreMi = creaMenu(MENU_ABOUT_ME, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
                 255, 255, 255);
+
         // Menu items
         JMenuItem menuItemColorFondo = creaMenu(SUB_MENU_COLOR_FONDO, 255, 0, 0,
                 FONT_ANDALE_MONO, Font.BOLD, 14,
@@ -406,14 +408,26 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         add(jLabel);
     }
 
+    /**
+     * Crea una barra de menú dentro del marco
+     *
+     * @param backgroundColor Color de fondo de la barra de menú
+     * @return la barra de menú
+     */
     @Override
-    public JMenuBar creaBarraDeMenu(int red, int green, int blue) {
+    public JMenuBar createMenuBar(Color backgroundColor) {
 
-        JMenuBar menuBar = new JMenuBar(); // establece barra de menu
-        menuBar.setBackground(new Color(red, green, blue)); // color de fondo de la barra
-        setJMenuBar(menuBar); // habilita la barra
+        // Crea la barra de menú
+        JMenuBar jMenuBar = new JMenuBar();
 
-        return menuBar;
+        // Establece el color de fondo de la barra de menú
+        jMenuBar.setBackground(backgroundColor);
+
+        // Añade la barra de menú al marco
+        setJMenuBar(jMenuBar);
+
+        // Retorna la barra de menú
+        return jMenuBar;
     }
 
     @Override
