@@ -595,7 +595,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                         case ITEM_TEMPERATURE_CELSIUS -> {
 
                             temp1 = celsius.getName();
-                            medida1 = celsius.getMedidas();
+                            medida1 = celsius.getUnit();
                             esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, ITEM_TEMPERATURE_CELSIUS);
 
                             if (esMenorCeroAbsoluto) {
@@ -609,7 +609,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                                     case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
                                         temp2 = fahrenheit.getName();
-                                        medida2 = fahrenheit.getMedida();
+                                        medida2 = fahrenheit.getUnit();
 
                                         resultado = this.cambioTemperatura(celsius,
                                                 valor, fahrenheit, medida1, medida2);
@@ -618,7 +618,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                                     case ITEM_TEMPERATURE_KELVIN -> {
 
                                         temp2 = kelvin.getName();
-                                        medida2 = kelvin.getMedida();
+                                        medida2 = kelvin.getUnit();
 
                                         resultado = this.cambioTemperatura(celsius,
                                                 valor, kelvin, medida1, medida2);
@@ -631,7 +631,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                         case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
                             temp1 = fahrenheit.getName();
-                            medida1 = fahrenheit.getMedida();
+                            medida1 = fahrenheit.getUnit();
                             esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, ITEM_TEMPERATURE_FAHRENHEIT);
 
                             if (esMenorCeroAbsoluto) {
@@ -645,7 +645,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                                     case ITEM_TEMPERATURE_CELSIUS -> {
 
                                         temp2 = celsius.getName();
-                                        medida2 = celsius.getMedidas();
+                                        medida2 = celsius.getUnit();
 
                                         resultado = this.cambioTemperatura(fahrenheit,
                                                 valor, celsius, medida1, medida2);
@@ -653,7 +653,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                                     case ITEM_TEMPERATURE_KELVIN -> {
 
                                         temp2 = kelvin.getName();
-                                        medida2 = kelvin.getMedida();
+                                        medida2 = kelvin.getUnit();
 
                                         resultado = this.cambioTemperatura(fahrenheit,
                                                 valor, kelvin, medida1, medida2);
@@ -665,7 +665,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                         case ITEM_TEMPERATURE_KELVIN -> {
 
                             temp1 = kelvin.getName();
-                            medida1 = kelvin.getMedida();
+                            medida1 = kelvin.getUnit();
                             esMenorCeroAbsoluto = esMenorACeroAbsoluto(valor, ITEM_TEMPERATURE_KELVIN);
 
                             if (esMenorCeroAbsoluto) {
@@ -679,7 +679,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                                     case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
                                         temp2 = fahrenheit.getName();
-                                        medida2 = fahrenheit.getMedida();
+                                        medida2 = fahrenheit.getUnit();
 
                                         resultado = this.cambioTemperatura(kelvin,
                                                 valor, fahrenheit, medida1, medida2);
@@ -687,7 +687,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                                     case ITEM_TEMPERATURE_CELSIUS -> {
 
                                         temp2 = celsius.getName();
-                                        medida2 = celsius.getMedidas();
+                                        medida2 = celsius.getUnit();
 
                                         resultado = this.cambioTemperatura(kelvin,
                                                 valor, celsius, medida1, medida2);
