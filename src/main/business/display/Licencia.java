@@ -63,10 +63,10 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				new FontType(FONT_ANDALE_MONO, 14));
 
 		// area de texto
-		JTextArea textArea_01 = creaAreaDeTexto(TEXT_FIELD_LICENCE_DETAIL, Boolean.FALSE,
-				FONT_ANDALE_MONO, Font.TRUETYPE_FONT, 9,
-				0, 0, 0,
-				0, 0, 0);
+		JTextArea textArea_01 = createTextArea(TEXT_FIELD_LICENCE_DETAIL, Boolean.FALSE,
+				new FontType(FONT_ANDALE_MONO, 9),
+				new Color(0, 0, 0),
+				new Color(0, 0, 0));
 
 		// scroll
 		createScrollPane(textArea_01,
@@ -282,19 +282,37 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		return jButton;
 	}
 
+	/**
+	 * Crea un elemento área de texto según un texto, tipo de letra, color de fondo,
+	 * color de letra y estado específicos. En esta clase no tiene uso.
+	 *
+	 * @param text Texto que mostrará el área de texto
+	 * @param isEnabled Estado del área de texto
+	 * @param fontType Tipo de letra del texto del área de texto
+	 * @param textColor Color de la letra del texto del área de texto
+	 * @param backgroundColor Color de fondo del área de texto
+	 * @return el área de texto
+	 */
 	@Override
-	public JTextArea creaAreaDeTexto(String texto, boolean valor,
-									 String font, int style, int size,
-									 int red, int green, int blue,
-									 int red2, int green2, int blue2) {
+	public JTextArea createTextArea(String text, boolean isEnabled,
+									FontType fontType,
+									Color textColor,
+									Color backgroundColor) {
 
-		JTextArea area	= new JTextArea(); // área de texto
-		area.setText(texto);
-		area.setEditable(valor); // no es editable
-		area.setFont(new Font(font,style,size)); // color de la fuente
+		// Crea el componente de área de texto
+		JTextArea jTextArea = new JTextArea();
 
-		add(area); // añade el área de texto al marco
-		return area; // retorna el área de texto
+		// Establece el estado del componente según parámetro
+		jTextArea.setEditable(isEnabled);
+
+		// Establece la fuente del texto
+		jTextArea.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+		// Establece el texto según parámetro
+		jTextArea.setText(text);
+
+		// Retorna el área de texto
+		return jTextArea;
 	}
 
 	/**

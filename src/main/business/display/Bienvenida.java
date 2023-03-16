@@ -174,15 +174,22 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         return jButton;
     }
 
-    /*
-        estableceAreaDeTexto no tiene uso en esta clase, pero debe implementarse porque es parte
-        de la interfaz Front. Como no tiene utilidad, el cuerpo de este método solo retorna null.
+    /**
+     * Crea un elemento área de texto según un texto, tipo de letra, color de fondo,
+     * color de letra y estado específicos. En esta clase no tiene uso.
+     *
+     * @param text Texto que mostrará el área de texto
+     * @param isEnabled Estado del área de texto
+     * @param fontType Tipo de letra del texto del área de texto
+     * @param textColor Color de la letra del texto del área de texto
+     * @param backgroundColor Color de fondo del área de texto
+     * @return el área de texto
      */
     @Override
-    public JTextArea creaAreaDeTexto(String texto, boolean valor,
-                                     String font, int style, int size,
-                                     int red, int green, int blue,
-                                     int red2, int green2, int blue2) {
+    public JTextArea createTextArea(String text, boolean isEnabled,
+                                    FontType fontType,
+                                    Color textColor,
+                                    Color backgroundColor) {
         return null;
     }
 

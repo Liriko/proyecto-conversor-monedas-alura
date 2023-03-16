@@ -32,10 +32,10 @@ public interface UserInterface {
                          FontType fontType, Color backgroundColor, Color textColor, boolean isEnabled);
 
     // Area de texto
-    JTextArea creaAreaDeTexto(String texto, boolean valor,
-                              String font, int style, int size,
-                              int red, int green, int blue,
-                              int red2, int green2, int blue2);
+    JTextArea createTextArea(String text, boolean isEnabled,
+                             FontType fontType,
+                             Color textColor,
+                             Color backgroundColor);
 
     // Checkbox
     JCheckBox creaCheckbox(String msg, int x, int y, int width, int height);

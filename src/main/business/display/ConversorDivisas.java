@@ -246,10 +246,10 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 FONT_ANDALE_MONO, Font.BOLD, 14);
 
         // Area de texto
-        txa_area_01 = creaAreaDeTexto(TEXT_FIELD_CURRENCY_RESULT, Boolean.FALSE,
-                FONT_ANDALE_MONO, Font.BOLD, 11,
-                224, 224, 224,
-                255, 0, 0);
+        txa_area_01 = createTextArea(TEXT_FIELD_CURRENCY_RESULT, Boolean.FALSE,
+                new FontType(FONT_ANDALE_MONO, 11),
+                new Color(255, 0, 0),
+                new Color(224, 224, 224));
 
         // Scroll
         createScrollPane(txa_area_01,
@@ -498,19 +498,42 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         return jButton;
     }
 
+    /**
+     * Crea un elemento área de texto según un texto, tipo de letra, color de fondo,
+     * color de letra y estado específicos. En esta clase no tiene uso.
+     *
+     * @param text Texto que mostrará el área de texto
+     * @param isEnabled Estado del área de texto
+     * @param fontType Tipo de letra del texto del área de texto
+     * @param textColor Color de la letra del texto del área de texto
+     * @param backgroundColor Color de fondo del área de texto
+     * @return el área de texto
+     */
     @Override
-    public JTextArea creaAreaDeTexto(String texto, boolean valor,
-                                     String font, int style, int size,
-                                     int red, int green, int blue,
-                                     int red2, int green2, int blue2) {
+    public JTextArea createTextArea(String text, boolean isEnabled,
+                                    FontType fontType,
+                                    Color textColor,
+                                    Color backgroundColor) {
 
+        // Crea el componente de área de texto
         JTextArea jTextArea = new JTextArea();
-        jTextArea.setEditable(valor);
-        jTextArea.setBackground(new Color(red, green, blue));
-        jTextArea.setFont(new Font(font, style, size));
-        jTextArea.setForeground(new Color(red2, green2, blue2));
-        jTextArea.setText(texto);
 
+        // Establece el estado del componente según parámetro
+        jTextArea.setEditable(isEnabled);
+
+        // Establece color de letra del texto
+        jTextArea.setForeground(textColor);
+
+        // Establece color de fondo del área de texto
+        jTextArea.setBackground(backgroundColor);
+
+        // Establece la fuente del texto
+        jTextArea.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+        // Establece el texto según parámetro
+        jTextArea.setText(text);
+
+        // Retorna el área de texto
         return jTextArea;
     }
 
