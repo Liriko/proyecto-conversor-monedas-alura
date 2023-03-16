@@ -282,8 +282,19 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         return null;
     }
 
+    /**
+     * Crea items para el menú
+     * En esta clase no tiene uso.
+     *
+     * @param name        Nombre del ítem
+     * @param fontType      Tipo de letra del ítem
+     * @param textColor     Color de texto del ítem
+     * @return el ítem
+     */
     @Override
-    public JMenuItem creaMenuItem(String nombre, String font, int style, int size, int red, int green, int blue) {
+    public JMenuItem createItemMenu(String name,
+                                  FontType fontType,
+                                  Color textColor) {
         return null;
     }
 

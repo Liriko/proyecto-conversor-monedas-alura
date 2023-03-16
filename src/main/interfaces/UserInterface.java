@@ -58,7 +58,8 @@ public interface UserInterface {
                      FontType fontType);
 
     // Menu item
-    JMenuItem creaMenuItem(String nombre, String font, int style, int size,
-                           int red, int green, int blue);
+    JMenuItem createItemMenu(String name,
+                             FontType fontType,
+                             Color textColor);
 
 }

@@ -96,33 +96,41 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
                 new Color(255, 0, 0),
                 new FontType(FONT_ANDALE_MONO, 14));
 
-        JMenuItem menuItemConversorDivisa = creaMenuItem(SUB_MENU_CURRENCY_CONVERTER,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemConversorTemperatura = creaMenuItem(SUB_MENU_TEMPERATURE_CONVERTER,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemColorRojo = creaMenuItem(SUB_MENU_RED_BACKGROUND,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemColorNegro = creaMenuItem(SUB_MENU_BLACK_BACKGROUND,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemColorMorado = creaMenuItem(SUB_MENU_PURPLE_BACKGROUND,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemNuevo = creaMenuItem(SUB_MENU_NEW,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemAutor = creaMenuItem(SUB_MENU_AUTHOR,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemSalir = creaMenuItem(SUB_MENU_EXIT,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
-        menuItemReset = creaMenuItem(SUB_MENU_LIMPIAR_CAMPOS,
-                FONT_ANDALE_MONO, Font.BOLD, 14,
-                255, 0, 0);
+        JMenuItem menuItemConversorDivisa = createItemMenu(SUB_MENU_CURRENCY_CONVERTER,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemConversorTemperatura = createItemMenu(SUB_MENU_TEMPERATURE_CONVERTER,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemColorRojo = createItemMenu(SUB_MENU_RED_BACKGROUND,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemColorNegro = createItemMenu(SUB_MENU_BLACK_BACKGROUND,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemColorMorado = createItemMenu(SUB_MENU_PURPLE_BACKGROUND,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemNuevo = createItemMenu(SUB_MENU_NEW,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemAutor = createItemMenu(SUB_MENU_AUTHOR,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemSalir = createItemMenu(SUB_MENU_EXIT,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
+
+        menuItemReset = createItemMenu(SUB_MENU_LIMPIAR_CAMPOS,
+                new FontType(FONT_ANDALE_MONO, 14),
+                new Color(255, 0, 0));
 
         barraMenu.add(menuOpciones); // añade el menu de opciones a la barra de menú
         barraMenu.add(menuConversores); // añade el menu de conversores a la barra de menú
@@ -435,16 +443,33 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         return jMenu;
     }
 
+    /**
+     * Crea items para el menú
+     *
+     * @param name        Nombre del ítem
+     * @param fontType      Tipo de letra del ítem
+     * @param textColor     Color de texto del ítem
+     * @return el ítem
+     */
     @Override
-    public JMenuItem creaMenuItem(String nombre, String font, int style, int size,
-                                  int red, int green, int blue) {
+    public JMenuItem createItemMenu(String name,
+                                    FontType fontType,
+                                    Color textColor) {
 
-        JMenuItem menuItem = new JMenuItem(nombre); // submenu
-        menuItem.setFont(new Font(font, style, size)); // fuente
-        menuItem.setForeground(new Color(red, green, blue)); // color fuente
-        menuItem.addActionListener(this);
+        // Crea el ítem del menú
+        JMenuItem jMenuItem = new JMenuItem(name);
 
-        return menuItem;
+        // Establece el tipo de letra para el ítem
+        jMenuItem.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+
+        // Establece el color de la letra del ítem
+        jMenuItem.setForeground(textColor);
+
+        // Añade un evento a este ítem
+        jMenuItem.addActionListener(this);
+
+        // Retorna el ítem
+        return jMenuItem;
     }
 
     /**
