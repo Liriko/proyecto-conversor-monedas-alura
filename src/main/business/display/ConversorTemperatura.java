@@ -591,8 +591,18 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         add(jScrollPane);
     }
 
+    /**
+     * Crea un elemento checkBox con una posición y dimensión específica.
+     * En esta clase no tiene uso.
+     *
+     * @param msg Mensaje que mostrará el checkbox.
+     * @param position Posición del checkbox en coordenadas X y Y
+     * @param dimension Dimensión del checkbox según base y altura
+     * @return el checkbox
+     */
     @Override
-    public JCheckBox creaCheckbox(String msg, int x, int y, int width, int height) {
+    public JCheckBox createCheckBox(String msg, PositionInFrame position,
+                                    DimensionInFrame dimension) {
         return null;
     }
 

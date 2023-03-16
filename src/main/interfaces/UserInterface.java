@@ -38,7 +38,8 @@ public interface UserInterface {
                              Color backgroundColor);
 
     // Checkbox
-    JCheckBox creaCheckbox(String msg, int x, int y, int width, int height);
+    JCheckBox createCheckBox(String msg, PositionInFrame position,
+                             DimensionInFrame dimension);
 
     // Combobox
     JComboBox creaComboBox(int x, int y, int width, int height,

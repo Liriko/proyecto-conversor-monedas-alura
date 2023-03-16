@@ -74,8 +74,9 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				new DimensionInFrame(575, 200));
 
 		// checkbox
-		this.chk_acepto = creaCheckbox("Yo, " + nombre + ", acepto",
-				10, 250, 300, 30);
+		this.chk_acepto = createCheckBox("Yo, " + nombre + ", acepto",
+				new PositionInFrame(10, 250),
+				new DimensionInFrame(300, 30));
 
 		// botones
 		this.btn_continuar = createButton(BUTTON_CONTINUE,
@@ -336,14 +337,31 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		add(jScrollPane);
 	}
 
+	/**
+	 * Crea un elemento checkBox con una posición y dimensión específica.
+	 *
+	 * @param msg Mensaje que mostrará el checkbox.
+	 * @param position Posición del checkbox en coordenadas X y Y
+	 * @param dimension Dimensión del checkbox según base y altura
+	 * @return el checkbox
+	 */
 	@Override
-	public JCheckBox creaCheckbox(String msg, int x, int y, int width, int height) {
+	public JCheckBox createCheckBox(String msg, PositionInFrame position,
+									DimensionInFrame dimension) {
 
-		JCheckBox chk = new JCheckBox(msg); // caja de chequeo
-		chk.setBounds(x,y,width,height); // dimensiones
-		chk.addChangeListener(this); // evento
+		// Crea el componente checkbox con un mensaje según parámetro
+		JCheckBox jCheckBox = new JCheckBox(msg);
 
-		add(chk); // añade el checkbox al marco
-		return chk; // retorna el checkbox
+		// Establece las dimensiones y posiciones específicas del checkbox en el marco
+		jCheckBox.setBounds(new Rectangle(position.getX(), position.getY(), dimension.getWidth(), dimension.getHeight()));
+
+		// Añade un evento a este componente
+		jCheckBox.addChangeListener(this);
+
+		// Añade el checkbox al marco
+		add(jCheckBox);
+
+		// Retorna el checkbox
+		return jCheckBox;
 	}
 }

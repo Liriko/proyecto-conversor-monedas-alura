@@ -196,6 +196,7 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
     /**
      * Crea un elemento Scroll dentro de un área de texto específico de acuerdo a una posición y dimensión
      * específicas. En esta clase no tiene uso.
+     *
      * @param textArea             El área de texto dentro del marco
      * @param position  Posición específica dentro del área de texto
      * @param dimension Dimensión específica dentro del área de texto
@@ -204,12 +205,19 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
     public void createScrollPane(JTextArea textArea, PositionInFrame position, DimensionInFrame dimension) {
     }
 
-    /*
-        estableceCheckbox no tiene uso en esta clase, pero debe implementarse porque es parte
-        de la interfaz Front. Como no tiene utilidad, el cuerpo de este método solo retorna null.
+
+    /**
+     * Crea un elemento checkBox con una posición y dimensión específica.
+     * En esta clase no tiene uso.
+     *
+     * @param msg Mensaje que mostrará el checkbox.
+     * @param position Posición del checkbox en coordenadas X y Y
+     * @param dimension Dimensión del checkbox según base y altura
+     * @return el checkbox
      */
     @Override
-    public JCheckBox creaCheckbox(String msg, int x, int y, int width, int height) {
+    public JCheckBox createCheckBox(String msg, PositionInFrame position,
+                                    DimensionInFrame dimension) {
         return null;
     }
 
