@@ -11,13 +11,14 @@ public class DimensionInFrame {
 
     /**
      * Crea una nueva dimensión con el ancho y la altura especificados.
-     * @param width el ancho de la dimensión
-     * @param height la altura de la dimensión
-     * @throws IllegalArgumentException si el ancho o la altura son negativos
+     *
+     * @param width el ancho de la dimensión, debe ser mayor que 0
+     * @param height la altura de la dimensión, debe ser mayor que 0
+     * @throws IllegalArgumentException si el ancho o la altura son menores o iguales a 0
      */
     public DimensionInFrame(int width, int height) {
         if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Las dimensiones no pueden ser negativas");
+            throw new IllegalArgumentException("Las dimensiones no pueden ser negativas ni iguales a 0");
         }
         this.width = width;
         this.height = height;
@@ -32,8 +33,8 @@ public class DimensionInFrame {
     }
 
     /**
-     * Obtiene el larcho de la dimensión
-     * @return el largo
+     * Obtiene la altura de la dimensión
+     * @return la altura
      */
     public int getHeight() {
         return height;
