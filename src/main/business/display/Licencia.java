@@ -96,7 +96,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 				Boolean.TRUE);
 
 		// logo
-		setLogo(LOGO_ALURA, new PositionInFrame(300, 225), new DimensionInFrame(300, 120));
+		createLogoLabel(LOGO_ALURA, new PositionInFrame(300, 225), new DimensionInFrame(300, 120));
 	}
 
 	// cambios de estado
@@ -161,7 +161,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	 * @param dimension la dimensión del logo en el marco, basado en ancho y largo
 	 */
 	@Override
-	public void setLogo(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
+	public void createLogoLabel(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
 
 		// Establece el logo como imagen
 		ImageIcon imageIcon = new ImageIcon(logoPath);

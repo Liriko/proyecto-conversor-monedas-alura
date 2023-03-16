@@ -158,7 +158,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
         // Configuración de etiquetas, botones y otros componentes del Front ********************************
 
         // Logo
-        setLogo(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
+        createLogoLabel(LOGO, new PositionInFrame(5, 5), new DimensionInFrame(250, 140));
 
         // Etiquetas
         setLabel(LABEL_VALUE + ":",
@@ -379,7 +379,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
      * @param dimension  La dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
-    public void setLogo(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
+    public void createLogoLabel(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
 
         // Establece el logo como imagen
         ImageIcon imageIcon = new ImageIcon(logoPath);

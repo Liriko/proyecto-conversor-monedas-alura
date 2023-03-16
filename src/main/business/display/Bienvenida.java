@@ -52,7 +52,7 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
         setIcon(ICONO);
 
         // configura el logo
-        setLogo(LOGO, new PositionInFrame(25, 15), new DimensionInFrame(300, 100));
+        createLogoLabel(LOGO, new PositionInFrame(25, 15), new DimensionInFrame(300, 100));
 
         // etiquetas
         setLabel(SUB_MENU_CURRENCY_CONVERTER,
@@ -349,7 +349,7 @@ public class Bienvenida extends JFrame implements ActionListener, UserInterface 
      * @param dimension  La dimensión del logo en el marco, basado en ancho y largo
      */
     @Override
-    public void setLogo(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
+    public void createLogoLabel(String logoPath, PositionInFrame position, DimensionInFrame dimension) {
 
         // logo
         ImageIcon imageIcon = new ImageIcon(logoPath);
