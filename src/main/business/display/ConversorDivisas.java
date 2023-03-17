@@ -67,7 +67,7 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
         createFrame(SUB_MENU_CURRENCY_CONVERTER, new Color(147, 82, 210));
         setIcon(ICONO);
 
-        nombre = Bienvenida.nombre; // obtiene nombre desde bienvenida
+        nombre = Welcome.name; // obtiene nombre desde bienvenida
 
         // Inicio configuración de menú ********************************************************************
 
@@ -1065,11 +1065,11 @@ public class ConversorDivisas extends JFrame implements ActionListener, UserInte
 
         if (e.getSource() == menuItemNuevo) {
 
-            Bienvenida ventanaBienvenida = new Bienvenida();
-            ventanaBienvenida.setBounds(0, 0, 350, 450);
-            ventanaBienvenida.setVisible(true);
-            ventanaBienvenida.setLocationRelativeTo(null);
-            ventanaBienvenida.setResizable(false);
+            Welcome ventanaWelcome = new Welcome();
+            ventanaWelcome.setBounds(0, 0, 350, 450);
+            ventanaWelcome.setVisible(true);
+            ventanaWelcome.setLocationRelativeTo(null);
+            ventanaWelcome.setResizable(false);
             this.setVisible(false);
 
         }

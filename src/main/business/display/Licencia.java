@@ -53,7 +53,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 
 		// configura el resto de los componentes que componen el marco
 
-		this.nombre = Bienvenida.nombre; // asigna nombre desde la bienvenida
+		this.nombre = Welcome.name; // asigna nombre desde la bienvenida
 
 		// etiqueta
 		setLabel(TEXT_FIELD_LICENCE,
@@ -123,11 +123,11 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 			this.setVisible(false); // esconde la pantalla de licencia
 			
 		} else if(e.getSource() == btn_noAcepto){ // si presiona botó no acepto
-			Bienvenida ventanaBienvenida = new Bienvenida(); // instancia bienvenida
-			ventanaBienvenida.setBounds(0,0,350,450); // dimensiones
-			ventanaBienvenida.setVisible(true); // bienvenida visible
-			ventanaBienvenida.setLocationRelativeTo(null); // posición relativa
-			ventanaBienvenida.setResizable(false); // ventana redimensionable
+			Welcome ventanaWelcome = new Welcome(); // instancia bienvenida
+			ventanaWelcome.setBounds(0,0,350,450); // dimensiones
+			ventanaWelcome.setVisible(true); // bienvenida visible
+			ventanaWelcome.setLocationRelativeTo(null); // posición relativa
+			ventanaWelcome.setResizable(false); // ventana redimensionable
 			this.setVisible(false); // esconde pantalla licencia
 		}
 	}

@@ -1,5 +1,11 @@
 package src.main.constants;
 
+import src.main.utils.DimensionInFrame;
+import src.main.utils.FontType;
+import src.main.utils.PositionInFrame;
+
+import java.awt.*;
+
 /**
  * Clase final para evitar su extensión.
  */
@@ -116,5 +122,46 @@ public final class Constant {
     public static final String ICONO = "/src/main/resources/icon.png";
     public static final String LOGO = "src/main/resources/logo-conversor.png";
     public static final String LOGO_ALURA = "src/main/resources/alura.png";
+
+    // Constantes para la interfaz gráfica de WELCOME
+    public static final Color COLOR_BACKGROUND_FRAME = new Color(147, 82, 210);
+    public static final Color COLOR_BACKGROUND_SUB_MENU_CURRENCY = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_INPUT_NAME = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_FOOTER = new Color(255, 255, 255);
+    public static final Color COLOR_FONT_TEXT_FIELD_NAME = new Color(224, 224, 224);
+    public static final Color COLOR_BACKGROUND_TEXT_FIELD_NAME = new Color(50, 50, 255);
+    public static final Color COLOR_FONT_BUTTON_ENTER = new Color(0, 0, 255);
+    public static final Color COLOR_BACKGROUND_BUTTON_ENTER = new Color(255, 255, 255);
+
+    public static final PositionInFrame POSITION_LABEL_LOGO = new PositionInFrame(25, 15);
+    public static final PositionInFrame POSITION_SUB_MENU_CURRENCY = new PositionInFrame(85, 135);
+    public static final PositionInFrame POSITION_LABEL_INPUT_NAME = new PositionInFrame(45, 212);
+    public static final PositionInFrame POSITION_LABEL_FOOTER = new PositionInFrame(55, 375);
+    public static final PositionInFrame POSITION_TEXT_FIELD_NAME = new PositionInFrame(45, 240);
+    public static final PositionInFrame POSITION_BUTTON_ENTER = new PositionInFrame(125, 280);
+
+    public static final DimensionInFrame DIMENSION_LABEL_LOGO = new DimensionInFrame(300, 100);
+    public static final DimensionInFrame DIMENSION_SUB_MENU_CURRENCY = new DimensionInFrame(300, 30);
+    public static final DimensionInFrame DIMENSION_LABEL_INPUT_NAME = new DimensionInFrame(200, 30);
+    public static final DimensionInFrame DIMENSION_LABEL_FOOTER = new DimensionInFrame(300, 30);
+    public static final DimensionInFrame DIMENSION_TEXT_FIELD_NAME  = new DimensionInFrame(255, 25);
+    public static final DimensionInFrame DIMENSION_BUTTON_ENTER  = new DimensionInFrame(100, 30);
+
+    public static final FontType FONT_SUB_MENU_CURRENCY = new FontType(FONT_ANDALE_MONO, 18);
+    public static final FontType FONT_LABEL_INPUT_NAME = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_FOOTER = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_TEXT_FIELD_NAME = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_BUTTON_ENTER = new FontType(FONT_ANDALE_MONO, 14);
+
+    public static final String MSG_INPUT_NAME = "Debes ingresar tu nombre";
+    public static final int COORDENATE_X_LICENSE_WINDOW = 0;
+    public static final int COORDENATE_Y_LICENSE_WINDOW = 0;
+    public static final int WIDTH_LICENSE_WINDOW = 610;
+    public static final int HEIGHT_LICENSE_WINDOW = 380;
+
+    public static final int COORDENATE_X_WELCOME_WINDOW = 0;
+    public static final int COORDENATE_Y_WELCOME_WINDOW = 0;
+    public static final int WIDTH_WELCOME_WINDOW = 350;
+    public static final int HEIGHT_WELCOME_WINDOW = 450;
 
 }

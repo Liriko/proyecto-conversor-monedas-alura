@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Created-By: Jorge Salgado
-Main-Class: src.main.business.display.Bienvenida
+Main-Class: src.main.business.display.Welcome
 X-COMMENT: Aplicación del cálculo de Vacaciones para Coca-Cola
