@@ -19,7 +19,7 @@ public final class Constant {
     public static final String HEADER_WELCOME = "Bienvenido/a";
 
     // Etiquetas
-    public static final String LABEL_A = "A";
+    public static final String LABEL_TO_CHANGE_TO = "A";
     public static final String LABEL_LASTNAME = "Apellido Paterno";
     public static final String LABEL_FOOTER = "© 2023 Challenge Alura Latam Oracle-ONE";
     public static final String LABEL_INPUT_NAME = "Ingrese su nombre";
@@ -119,7 +119,7 @@ public final class Constant {
     public static final String FONT_ANDALE_MONO = "Andale Mono";
 
     // Imágenes y recursos
-    public static final String ICONO = "/src/main/resources/icon.png";
+    public static final String ICON = "/src/main/resources/icon.png";
     public static final String LOGO = "src/main/resources/logo-conversor.png";
     public static final String LOGO_ALURA = "src/main/resources/alura.png";
 
@@ -163,5 +163,134 @@ public final class Constant {
     public static final int COORDENATE_Y_WELCOME_WINDOW = 0;
     public static final int WIDTH_WELCOME_WINDOW = 350;
     public static final int HEIGHT_WELCOME_WINDOW = 450;
+
+    public static final int COORDENATE_X_TEMPERATURE_WINDOW = 0;
+    public static final int COORDENATE_Y_TEMPERATURE_WINDOW = 0;
+    public static final int WIDTH_TEMPERATURE_WINDOW = 640;
+    public static final int HEIGHT_TEMPERATURE_WINDOW = 535;
+
+    // Constantes para la interfaz gráfica de Currency Y Temperature Converters
+
+    public static final Color COLOR_FONT_MENU_OPTIONS = new Color(255, 255, 255);
+    public static final Color COLOR_FONT_MENU_CONVERTERS = new Color(255, 255, 255);
+    public static final Color COLOR_FONT_MENU_ABOUT_ME = new Color(255, 255, 255);
+    public static final Color COLOR_FONT_MENU_ITEM_BACKGROUND_COLOR = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_RED_BACKGROUND = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_BLACK_BACKGROUND = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_PURPLE_BACKGROUND = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_NEW = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_AUTHOR = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_EXIT = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_SUB_MENU_LIMPIAR_CAMPOS = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_TEXTFIELD_NAME = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_TEXTFIELD_VALUE = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_TEXTFIELD_LASTNAME = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_TEXTFIELD_SURNAME = new Color(255, 0, 0);
+    public static final Color COLOR_FONT_BUTTON_CALCULATE = new Color(0, 0, 0);
+    public static final Color COLOR_FONT_COMBOBOX_CONVERTER = new Color(224, 224, 224);
+    public static final Color COLOR_FONT_COMBOBOX_CONVERTER_PAIR = new Color(224, 224, 224);
+    public static final Color COLOR_FONT_TEXT_FIELD_CURRENCY_RESULT = new Color(225, 0, 0);
+
+    public static final Color COLOR_BACKGROUND_MENU_BAR = new Color(147, 82, 210);
+    public static final Color COLOR_BACKGROUND_MENU_OPTIONS = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_MENU_CONVERTERS = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_MENU_ABOUT_ME = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_MENU_ITEM_BACKGROUND_COLOR = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_MENU_ITEM_CURRENCY_CONVERTER = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_MENU_ITEM_TEMPERATURE_CONVERTER = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_LABEL_VALUE = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_TITLE = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_SUBTITLE = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_NAME = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_LASTNAME = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_SURNAME = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_TO_CHANGE_FROM = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_TO_CHANGE_TO = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_TEXT_FIELD_CALCULATION_RESULT = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_LABEL_CONVERTER_FOOTER = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_TEXTFIELD_NAME = new Color(224, 224, 224);
+    public static final Color COLOR_BACKGROUND_TEXTFIELD_VALUE = new Color(224, 224, 224);
+    public static final Color COLOR_BACKGROUND_TEXTFIELD_LASTNAME = new Color(224, 224, 224);
+    public static final Color COLOR_BACKGROUND_TEXTFIELD_SURNAME = new Color(224, 224, 224);
+    public static final Color COLOR_BACKGROUND_BUTTON_CALCULATE = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_COMBOBOX_CONVERTER = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_COMBOBOX_CONVERTER_PAIR = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_TEXT_FIELD_CURRENCY_RESULT = new Color(224, 224, 224);
+    public static final Color COLOR_BACKGROUND_PURPLE = new Color(51, 0, 51);
+    public static final Color COLOR_BACKGROUND_RED = new Color(255, 0, 0);
+    public static final Color COLOR_BACKGROUND_BLACK = new Color(0, 0, 0);
+
+    public static final FontType FONT_MENU_OPTIONS = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_MENU_CONVERTERS = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_MENU_ABOUT_ME = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_MENU_ITEM_BACKGROUND_COLOR = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_MENU_ITEM_CURRENCY_CONVERTER = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_MENU_ITEM_TEMPERATURE_CONVERTER = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_RED_BACKGROUND = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_BLACK_BACKGROUND = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_PURPLE_BACKGROUND = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_NEW = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_AUTHOR = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_EXIT = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_SUB_MENU_LIMPIAR_CAMPOS = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_LABEL_VALUE = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_TITLE = new FontType(FONT_ANDALE_MONO, 32);
+    public static final FontType FONT_LABEL_SUBTITLE = new FontType(FONT_ANDALE_MONO, 24);
+    public static final FontType FONT_LABEL_NAME = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_LASTNAME = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_SURNAME = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_TO_CHANGE_FROM = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_TO_CHANGE_TO = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_TEXT_FIELD_CALCULATION_RESULT = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_LABEL_CONVERTER_FOOTER = new FontType(FONT_ANDALE_MONO, 12);
+    public static final FontType FONT_TEXTFIELD_NAME = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_TEXTFIELD_VALUE = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_TEXTFIELD_LASTNAME = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_TEXTFIELD_SURNAME = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_BUTTON_CALCULATE = new FontType(FONT_ANDALE_MONO, 20);
+    public static final FontType FONT_COMBOBOX_CONVERTER = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_COMBOBOX_CONVERTER_PAIR = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_TEXT_FIELD_CURRENCY_RESULT = new FontType(FONT_ANDALE_MONO, 11);
+
+    public static final DimensionInFrame DIMENSION_LOGO = new DimensionInFrame(250, 140);
+    public static final DimensionInFrame DIMENSION_LABEL_VALUE = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_TITLE = new DimensionInFrame(300, 50);
+    public static final DimensionInFrame DIMENSION_LABEL_SUBTITLE = new DimensionInFrame(900, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_NAME = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_LASTNAME = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_SURNAME = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_TO_CHANGE_FROM = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_TO_CHANGE_TO = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_TEXT_FIELD_CALCULATION_RESULT = new DimensionInFrame(180, 25);
+    public static final DimensionInFrame DIMENSION_LABEL_CONVERTER_FOOTER = new DimensionInFrame(500, 30);
+    public static final DimensionInFrame DIMENSION_TEXTFIELD_NAME = new DimensionInFrame(150, 25);
+    public static final DimensionInFrame DIMENSION_TEXTFIELD_VALUE = new DimensionInFrame(125, 25);
+    public static final DimensionInFrame DIMENSION_TEXTFIELD_LASTNAME = new DimensionInFrame(150, 25);
+    public static final DimensionInFrame DIMENSION_TEXTFIELD_SURNAME = new DimensionInFrame(150, 25);
+    public static final DimensionInFrame DIMENSION_BUTTON_CALCULATE = new DimensionInFrame(125, 45);
+    public static final DimensionInFrame DIMENSION_COMBOBOX_CONVERTER = new DimensionInFrame(220, 25);
+    public static final DimensionInFrame DIMENSION_COMBOBOX_CONVERTER_PAIR = new DimensionInFrame(220, 25);
+    public static final DimensionInFrame DIMENSION_SCROLL_PANE = new DimensionInFrame(386, 90);
+
+    public static final PositionInFrame POSITION_LOGO = new PositionInFrame(5, 5);
+    public static final PositionInFrame POSITION_LABEL_VALUE = new PositionInFrame(480, 188);
+    public static final PositionInFrame POSITION_LABEL_TITLE = new PositionInFrame(280, 30);
+    public static final PositionInFrame POSITION_LABEL_SUBTITLE = new PositionInFrame(45, 140);
+    public static final PositionInFrame POSITION_LABEL_NAME = new PositionInFrame(25, 188);
+    public static final PositionInFrame POSITION_LABEL_LASTNAME = new PositionInFrame(25, 248);
+    public static final PositionInFrame POSITION_LABEL_SURNAME = new PositionInFrame(25, 308);
+    public static final PositionInFrame POSITION_LABEL_TO_CHANGE_FROM = new PositionInFrame(220, 188);
+    public static final PositionInFrame POSITION_LABEL_TO_CHANGE_TO = new PositionInFrame(220, 248);
+    public static final PositionInFrame POSITION_TEXT_FIELD_CALCULATION_RESULT = new PositionInFrame(220, 307);
+    public static final PositionInFrame POSITION_LABEL_CONVERTER_FOOTER = new PositionInFrame(195, 445);
+    public static final PositionInFrame POSITION_TEXTFIELD_NAME = new PositionInFrame(25, 213);
+    public static final PositionInFrame POSITION_TEXTFIELD_VALUE = new PositionInFrame(480, 213);
+    public static final PositionInFrame POSITION_TEXTFIELD_LASTNAME = new PositionInFrame(25, 273);
+    public static final PositionInFrame POSITION_TEXTFIELD_SURNAME = new PositionInFrame(25, 334);
+    public static final PositionInFrame POSITION_BUTTON_CALCULATE = new PositionInFrame(480, 258);
+    public static final PositionInFrame POSITION_COMBOBOX_CONVERTER = new PositionInFrame(220, 213);
+    public static final PositionInFrame POSITION_COMBOBOX_CONVERTER_PAIR = new PositionInFrame(220, 273);
+    public static final PositionInFrame POSITION_SCROLL_PANE = new PositionInFrame(220, 333);
+
 
 }

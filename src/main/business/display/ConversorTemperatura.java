@@ -68,7 +68,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
     public ConversorTemperatura() {
 
         createFrame(SUB_MENU_TEMPERATURE_CONVERTER, new Color(147, 82, 210));
-        setIcon(ICONO);
+        setIcon(ICON);
 
         nombre = Welcome.name; // obtiene nombre desde bienvenida
 
@@ -203,7 +203,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
                 new Color(255, 255, 255),
                 new FontType(FONT_ANDALE_MONO, 12));
 
-        setLabel(LABEL_A + ":",
+        setLabel(LABEL_TO_CHANGE_TO + ":",
                 new PositionInFrame(220, 248),
                 new DimensionInFrame(180, 25),
                 new Color(255, 255, 255),
@@ -873,7 +873,7 @@ public class ConversorTemperatura extends JFrame implements ActionListener, User
 
 
         if (e.getSource() == menuItemConversorDivisa) {
-            ConversorDivisas ventanaConversorDivisa = new ConversorDivisas(); // instancia principal
+            CurrencyConverter ventanaConversorDivisa = new CurrencyConverter(); // instancia principal
             ventanaConversorDivisa.setBounds(0, 0, 640, 535); // dimensiones
             ventanaConversorDivisa.setVisible(true); // principal visible
             ventanaConversorDivisa.setResizable(false); // ventana redimensionable

@@ -49,7 +49,7 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 
 		// configura el marco y su ícono
 		createFrame(LABEL_LICENCE, new Color(0, 0, 0));
-		setIcon(ICONO);
+		setIcon(ICON);
 
 		// configura el resto de los componentes que componen el marco
 
@@ -115,11 +115,11 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 	public void actionPerformed(ActionEvent e){
 		
 		if(e.getSource() == btn_continuar){ // si se presiona el botón continuar
-			ConversorDivisas ventanaConversorDivisas = new ConversorDivisas(); // instancia principal
-			ventanaConversorDivisas.setBounds(0,0,640,535); // dimensiones
-			ventanaConversorDivisas.setVisible(true); // principal visible
-			ventanaConversorDivisas.setResizable(false); // ventana redimensionable
-			ventanaConversorDivisas.setLocationRelativeTo(null); // posición relativa
+			CurrencyConverter ventanaCurrencyConverter = new CurrencyConverter(); // instancia principal
+			ventanaCurrencyConverter.setBounds(0,0,640,535); // dimensiones
+			ventanaCurrencyConverter.setVisible(true); // principal visible
+			ventanaCurrencyConverter.setResizable(false); // ventana redimensionable
+			ventanaCurrencyConverter.setLocationRelativeTo(null); // posición relativa
 			this.setVisible(false); // esconde la pantalla de licencia
 			
 		} else if(e.getSource() == btn_noAcepto){ // si presiona botó no acepto

@@ -14,57 +14,13 @@ import java.util.Objects;
 
 public class Welcome extends JFrame implements ActionListener, UserInterface {
 
-    private final JTextField textFieldName;
-    private final JButton buttonEnter;
+    private JTextField textFieldName;
+    private JButton buttonEnter;
     public static String name = "";
 
     public Welcome() {
 
-        // Configurar el FRAME
-        createFrame(HEADER_WELCOME,
-                COLOR_BACKGROUND_FRAME);
-
-        setIcon(ICONO);
-
-        // Configurar el LOGO
-        createLogoLabel(LOGO,
-                POSITION_LABEL_LOGO,
-                DIMENSION_LABEL_LOGO);
-
-        // Configurar LABELS
-        setLabel(SUB_MENU_CURRENCY_CONVERTER,
-                POSITION_SUB_MENU_CURRENCY,
-                DIMENSION_SUB_MENU_CURRENCY,
-                COLOR_BACKGROUND_SUB_MENU_CURRENCY,
-                FONT_SUB_MENU_CURRENCY);
-
-        setLabel(LABEL_INPUT_NAME,
-                POSITION_LABEL_INPUT_NAME,
-                DIMENSION_LABEL_INPUT_NAME,
-                COLOR_BACKGROUND_LABEL_INPUT_NAME,
-                FONT_LABEL_INPUT_NAME);
-
-        setLabel(LABEL_FOOTER,
-                POSITION_LABEL_FOOTER,
-                DIMENSION_LABEL_FOOTER,
-                COLOR_BACKGROUND_LABEL_FOOTER,
-                FONT_LABEL_FOOTER);
-
-        // Configurar TEXTFIELDS
-        this.textFieldName = createTextField(POSITION_TEXT_FIELD_NAME,
-                DIMENSION_TEXT_FIELD_NAME,
-                FONT_TEXT_FIELD_NAME,
-                COLOR_FONT_TEXT_FIELD_NAME,
-                COLOR_BACKGROUND_TEXT_FIELD_NAME);
-
-        // Configurar BUTTONS
-        this.buttonEnter = createButton(BUTTON_ENTER,
-                POSITION_BUTTON_ENTER,
-                DIMENSION_BUTTON_ENTER,
-                FONT_BUTTON_ENTER,
-                COLOR_FONT_BUTTON_ENTER,
-                COLOR_BACKGROUND_BUTTON_ENTER,
-                Boolean.FALSE);
+        loadUserInterface();
     }
 
     /**
@@ -196,7 +152,7 @@ public class Welcome extends JFrame implements ActionListener, UserInterface {
      * En esta clase no tiene uso.
      *
      * @param msg               Mensaje que mostrará el checkbox.
-     * @param position          Posición del checkbox en coordenadas X y Y
+     * @param position          Posición del checkbox en coordenadas X e Y
      * @param dimension         Dimensión del checkbox según base y altura
      * @return el checkbox
      */
@@ -336,7 +292,7 @@ public class Welcome extends JFrame implements ActionListener, UserInterface {
     /**
      * Establece el ícono del Frame según una ruta específica
      *
-     * @param imagePath
+     * @param imagePath Ruta de la imagen específica
      */
     @Override
     public void setIcon(String imagePath) {
@@ -416,7 +372,7 @@ public class Welcome extends JFrame implements ActionListener, UserInterface {
     /**
      * Método principal que sirve como punto de entrada para esta aplicación.
      *
-     * @param args
+     * @param args standard param por main method
      */
     public static void main(String[] args) {
 
@@ -437,5 +393,56 @@ public class Welcome extends JFrame implements ActionListener, UserInterface {
 
         // Establece la propiedad de reajustable del objeto
         ventanaWelcome.setResizable(false);
+    }
+
+    public void loadUserInterface(){
+
+        // Configurar el FRAME
+        createFrame(HEADER_WELCOME,
+                COLOR_BACKGROUND_FRAME);
+
+        setIcon(ICON);
+
+        // Configurar el LOGO
+        createLogoLabel(LOGO,
+                POSITION_LABEL_LOGO,
+                DIMENSION_LABEL_LOGO);
+
+        // Configurar LABELS
+        setLabel(SUB_MENU_CURRENCY_CONVERTER,
+                POSITION_SUB_MENU_CURRENCY,
+                DIMENSION_SUB_MENU_CURRENCY,
+                COLOR_BACKGROUND_SUB_MENU_CURRENCY,
+                FONT_SUB_MENU_CURRENCY);
+
+        setLabel(LABEL_INPUT_NAME,
+                POSITION_LABEL_INPUT_NAME,
+                DIMENSION_LABEL_INPUT_NAME,
+                COLOR_BACKGROUND_LABEL_INPUT_NAME,
+                FONT_LABEL_INPUT_NAME);
+
+        setLabel(LABEL_FOOTER,
+                POSITION_LABEL_FOOTER,
+                DIMENSION_LABEL_FOOTER,
+                COLOR_BACKGROUND_LABEL_FOOTER,
+                FONT_LABEL_FOOTER);
+
+        // Configurar TEXTFIELDS
+        this.textFieldName = createTextField(
+                POSITION_TEXT_FIELD_NAME,
+                DIMENSION_TEXT_FIELD_NAME,
+                FONT_TEXT_FIELD_NAME,
+                COLOR_FONT_TEXT_FIELD_NAME,
+                COLOR_BACKGROUND_TEXT_FIELD_NAME);
+
+        // Configurar BUTTONS
+        this.buttonEnter = createButton(
+                BUTTON_ENTER,
+                POSITION_BUTTON_ENTER,
+                DIMENSION_BUTTON_ENTER,
+                FONT_BUTTON_ENTER,
+                COLOR_FONT_BUTTON_ENTER,
+                COLOR_BACKGROUND_BUTTON_ENTER,
+                Boolean.FALSE);
     }
 }
