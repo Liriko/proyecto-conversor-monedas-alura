@@ -6,9 +6,6 @@ Se ha incluído en el proyecto el fichero .jar para su ejecución directa.
 De esta manera podrán hacer pruebas directas sobre la aplicación:
 https://github.com/Liriko/proyecto-conversor-monedas-alura/blob/master/proyecto_conversor_monedas_jar.rar
 
-Pueden encontrar un video aquí:
-(https://github.com/Liriko/proyecto-conversor-monedas-alura/blob/master/test%20divisas%202.mp4)
-
 # Paso a paso de la aplicación
   A continuación podrán visualizar el paso a paso de este conversor
 
