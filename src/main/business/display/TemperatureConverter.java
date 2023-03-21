@@ -1,23 +1,27 @@
 package src.main.business.display; // declara el paquete donde estarán ubicadas nuestras pantallas de usuario
 
-import src.main.interfaces.UserInterface; // importa mi interfaz Front para implementarla en esta clase
+import src.main.interfaces.UserInterface;
 import src.main.model.currency.*;
-import src.main.business.logic.CurrencyManager; // importa gestor de divisas para el cambio de moneda
+import src.main.model.temperature.Celsius;
+import src.main.model.temperature.Fahrenheit;
+import src.main.model.temperature.Kelvin;
+import src.main.model.temperature.Temperature;
+import src.main.business.logic.TemperatureManager;
 import src.main.utils.DimensionInFrame;
 import src.main.utils.FontType;
 import src.main.utils.PositionInFrame;
 
-import static src.main.constants.Constant.*; // importa mis constantes para su libre uso en esta clase
-
-import javax.swing.*; // importa librería gráfica para configurar la pantalla
-import java.awt.event.*; // importa librería para implementer interfaz ActionListener
-import java.awt.*; // importa librería para manipular eventos
-import java.util.Objects; // importa librería util.Objects para usar requireNonNull
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 import java.util.Set;
 
-public class CurrencyConverter extends JFrame implements ActionListener, UserInterface {
+import static src.main.constants.Constant.*;
 
-    private JMenuItem menuItemTemperatureConverter;
+public class TemperatureConverter extends JFrame implements ActionListener, UserInterface {
+    private JMenuItem menuItemCurrencyConverter;
     private JMenuItem menuItemAuthor;
     private JMenuItem menuItemRedColorBackground;
     private JMenuItem menuItemBlackColorBackground;
@@ -33,8 +37,8 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
     private JTextField textFieldSurName;
 
     // Combobox
-    private JComboBox comboBoxCurrency;
-    private JComboBox comboBoxCurrencyPair;
+    private JComboBox comboBoxTemperature;
+    private JComboBox comboBoxTemperaturePair;
 
     // Botón
 
@@ -44,14 +48,14 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
     private JTextArea textArea;
 
     String name;
-    CurrencyManager currencyManager = new CurrencyManager();
+    TemperatureManager temperatureManager = new TemperatureManager();
 
     /**
      * Constructor que carga la interfaz de usuario a través del método loadUserInterface.
      */
-    public CurrencyConverter() {
+    public TemperatureConverter() {
 
-        loadUserInterace();
+        loadUserInterface();
     }
 
     /**
@@ -60,7 +64,7 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
      * @param combobox  Componenente de la clase JComboBox
      * @param manager   Gestor encargado del manejo de objetos que se listarán en el compontente JComboBox
      */
-    public void addCurrency(JComboBox combobox, CurrencyManager manager) {
+    public void addTemperature(JComboBox combobox, TemperatureManager manager) {
 
         combobox.addItem(ITEM_OPTION_SELECT);
 
@@ -68,7 +72,7 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
 
         for (String key : keys) {
 
-            Currency value = manager.getMap().get(key);
+            Temperature value = manager.getMap().get(key);
             combobox.addItem(value.getName());
         }
     }
@@ -76,18 +80,52 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
     /**
      * Método encargado del cambio de divisas
      *
-     * @param currency      Divisa a cambiar
-     * @param value         Valor a cambiar
-     * @param currencyPair  Divisa a obtener
-     * @param ccy           Símbolo de la divisa
+     * @param temperature       Temperatura a cambiar
+     * @param value             Valor a cambiar
+     * @param temperaturePair   Temperatura a obtener
+     * @param grade             Grado de la temperatura
+     * @param gradePair         Grado de la temperatura par
      * @return valor de retorno correspondiente al cambio de divisas
      */
-    public double currencyChange(Currency currency, double value, Currency currencyPair, char ccy) {
+    public double cambioTemperatura(Temperature temperature, double value, Temperature temperaturePair,
+                                    char grade, char gradePair) {
 
-        double result;
+        double result = 0;
 
-        if (ccy == SYMBOL_USD) result = currencyPair.getValueInUSD() * value;
-        else result = Math.round(((value / currency.getValueInUSD()) * currencyPair.getValueInUSD()) * 100d) / 100d;
+        switch (grade) {
+
+            case SYMBOL_CELSIUS -> {
+
+                switch (gradePair) {
+
+                    case SYMBOL_FAHRENHEIT ->
+                            result = Math.round((((value * 9) / 5) + temperaturePair.getvalorCelcius()) * 100d) / 100d;
+
+                    case SYMBOL_KELVIN -> result = Math.round((temperaturePair.getvalorCelcius() + value) * 100d) / 100d;
+                }
+            }
+            case SYMBOL_FAHRENHEIT -> {
+
+                switch (gradePair) {
+
+                    case SYMBOL_CELSIUS ->
+                            result = Math.round((((value - temperature.getvalorCelcius()) * 5) / 9) * 100d) / 100d;
+
+                    case SYMBOL_KELVIN -> result = Math.round((((value + 459.67) * 5) / 9) * 100d) / 100d;
+                }
+            }
+            case SYMBOL_KELVIN -> {
+
+                switch (gradePair) {
+
+                    case SYMBOL_CELSIUS -> result = Math.round((value - temperature.getvalorCelcius()) * 100d) / 100d;
+
+                    case SYMBOL_FAHRENHEIT -> result = Math.round((value * 1.8 - 459.67) * 100d) / 100d;
+                }
+            }
+            default ->
+                    result = Math.round(((value / temperature.getvalorCelcius()) * temperaturePair.getvalorCelcius()) * 100d) / 100d;
+        }
 
         return result;
     }
@@ -95,22 +133,22 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
     /**
      * Método encargado de preparar el mensaje de respuesta.
      *
-     * @param userName      Nombre del usuario
-     * @param userLastName  Apellido paterno del usuario
-     * @param userSurName   Apellido materno del usuario
-     * @param currency      Divisa a cambiar
-     * @param currencyPair  Divisa a obtener
-     * @param ccy           Símbolo de la divisa
-     * @param value         Valor de la divisa a cambiar
-     * @param result        Resultado de la operación de cambio de divisas
+     * @param userName          Nombre del usuario
+     * @param userLastName      Apellido paterno del usuario
+     * @param userSurName       Apellido materno del usuario
+     * @param temperature       Temperatura a cambiar
+     * @param temperaturePair   Temperatura a obtener
+     * @param grade             Grado de la temperatura
+     * @param value             Valor de la temperatura a cambiar
+     * @param result            Resultado de la operación de cambio de temperatura
      */
     public void setText(String userName, String userLastName, String userSurName,
-                        String currency, String currencyPair, char ccy, double value, double result) {
+                        String temperature, String temperaturePair, char grade, double value, double result) {
 
         textArea.setText("\n El usuario " + userName + " " + userLastName + " " + userSurName
-                + "\n cambió " + value + " " + currency
-                + "\n por " + currencyPair
-                + "\n y recibe a cambio " + ccy + "" + result);
+                + "\n cambió " + value + " °" + temperature
+                + "\n por " + temperaturePair
+                + "\n y recibe a cambio " + result + " °" + grade);
     }
 
     /**
@@ -179,8 +217,8 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
         JLabel jLabel = new JLabel(name);
 
         // Establece la posición y la dimensión de la etiqueta
-        jLabel.setBounds(position.getX(), position.getY(), dimension.getWidth(),
-                dimension.getHeight());
+        jLabel.setBounds(new Rectangle(position.getX(), position.getY(),
+                dimension.getWidth(), dimension.getHeight()));
 
         // Establece el tipo de letra de la etiqueta
         jLabel.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
@@ -332,26 +370,26 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
                                       Color fontColor) {
 
         // Crea el elemento campo de texto
-        JTextField textField = new JTextField();
+        JTextField jTextField = new JTextField();
 
         // Establece la posición y dimensión específicas del campo de texto dentro del marco
-        textField.setBounds(new Rectangle(position.getX(), position.getY(),
+        jTextField.setBounds(new Rectangle(position.getX(), position.getY(),
                 dimension.getWidth(), dimension.getHeight()));
 
         // Establece el tipo de letra o fuente del campo de texto
-        textField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
+        jTextField.setFont(new Font(fontType.getFontName(), Font.BOLD, fontType.getFontSize()));
 
         // Establece el color de fondo del campo de texto
-        textField.setBackground(backgroundColor);
+        jTextField.setBackground(backgroundColor);
 
         // Establece el color de la letra del campo de texto
-        textField.setForeground(fontColor);
+        jTextField.setForeground(fontColor);
 
         // Añade el campo de texto al marco principal
-        add(textField);
+        add(jTextField);
 
         // Retorna el campo de texto
-        return textField;
+        return jTextField;
     }
 
     /**
@@ -480,26 +518,24 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
             double value = 0;
             double result = 0;
             boolean fail = Boolean.FALSE;
+            boolean isAbsoluteZero = Boolean.FALSE;
 
-            Dollar dollar = (Dollar) currencyManager.getCurrency(ITEM_CURRENCY_USD);
-            Euro euro = (Euro) currencyManager.getCurrency(ITEM_CURRENCY_EUR);
-            PoundSterling libra = (PoundSterling) currencyManager.getCurrency(ITEM_CURRENCY_GBP);
-            ChileanPeso peso = (ChileanPeso) currencyManager.getCurrency(ITEM_CURRENCY_CLP);
-            SouthKoreanWon won = (SouthKoreanWon) currencyManager.getCurrency(ITEM_CURRENCY_KRW);
-            JapaneseYen yen = (JapaneseYen) currencyManager.getCurrency(ITEM_CURRENCY_JPY);
+            Fahrenheit fahrenheit = (Fahrenheit) temperatureManager.getTemperature(ITEM_TEMPERATURE_FAHRENHEIT);
+            Kelvin kelvin = (Kelvin) temperatureManager.getTemperature(ITEM_TEMPERATURE_KELVIN);
+            Celsius celsius = (Celsius) temperatureManager.getTemperature(ITEM_TEMPERATURE_CELSIUS);
 
             String userName = this.textFieldName.getText();
             String userLastName = this.textFieldLastName.getText();
             String userSurName = this.textFieldSurName.getText();
 
-            String currency = "";
-            String currencyPair = "";
-            char ccy;
-            char ccyPair = 'a';
+            String temperature = "";
+            String temperaturePair = "";
+            char grade;
+            char gradePair = 'a';
 
             try {
 
-                if (textFieldValue != null){
+                if (textFieldValue != null) {
 
                     value = Double.parseDouble(textFieldValue.getText());
                 }
@@ -514,340 +550,149 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
                         MSG_ERROR, JOptionPane.ERROR_MESSAGE);
             } else {
 
-                if (value < 0) {
+                if (Objects.equals(comboBoxTemperature.getSelectedItem(), ITEM_OPTION_SELECT) ||
+                        Objects.equals(comboBoxTemperaturePair.getSelectedItem(), ITEM_OPTION_SELECT)) {
 
-                    JOptionPane.showMessageDialog(null, MSG_INVALID_VALUE_LOWER_THAN_ZERO,
+                    JOptionPane.showMessageDialog(null, MSG_INVALID_EQUAL_TEMPERATURE_PAIR,
                             MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                 } else {
 
-                    if (Objects.equals(comboBoxCurrency.getSelectedItem(), ITEM_OPTION_SELECT) ||
-                            Objects.equals(comboBoxCurrencyPair.getSelectedItem(), ITEM_OPTION_SELECT)) {
+                    switch (Objects.requireNonNull(comboBoxTemperature.getSelectedItem()).toString()) {
 
-                        JOptionPane.showMessageDialog(null, MSG_INVALID_CURRENCY_PAIR,
-                                MSG_ERROR, JOptionPane.ERROR_MESSAGE);
-                    } else {
+                        case ITEM_TEMPERATURE_CELSIUS -> {
 
-                        switch (Objects.requireNonNull(comboBoxCurrency.getSelectedItem()).toString()) {
+                            temperature = celsius.getName();
+                            grade = celsius.getUnit();
+                            isAbsoluteZero = isLowerThanAbsoluteZero(value, ITEM_TEMPERATURE_CELSIUS);
 
-                            case ITEM_CURRENCY_USD -> {
+                            if (isAbsoluteZero) {
 
-                                currency = dollar.getName();
-                                ccy = dollar.getCurrencySymbol();
+                                JOptionPane.showMessageDialog(null, MSG_ABS_ZERO_INPUT,
+                                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                switch (Objects.requireNonNull(comboBoxCurrencyPair.getSelectedItem()).toString()) {
+                                switch (Objects.requireNonNull(comboBoxTemperaturePair.getSelectedItem()).toString()) {
 
-                                    case ITEM_CURRENCY_EUR -> {
+                                    case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
-                                        currencyPair = euro.getName();
-                                        ccyPair = euro.getCurrencySymbol();
+                                        temperaturePair = fahrenheit.getName();
+                                        gradePair = fahrenheit.getUnit();
 
-                                        result = this.currencyChange(dollar,
-                                                value, euro, ccy);
+                                        result = this.cambioTemperatura(celsius,
+                                                value, fahrenheit, grade, gradePair);
 
                                     }
-                                    case ITEM_CURRENCY_GBP -> {
+                                    case ITEM_TEMPERATURE_KELVIN -> {
 
-                                        currencyPair = libra.getName();
-                                        ccyPair = libra.getCurrencySymbol();
+                                        temperaturePair = kelvin.getName();
+                                        gradePair = kelvin.getUnit();
 
-                                        result = this.currencyChange(dollar,
-                                                value, libra, ccy);
+                                        result = this.cambioTemperatura(celsius,
+                                                value, kelvin, grade, gradePair);
                                     }
-                                    case ITEM_CURRENCY_CLP -> {
-
-                                        currencyPair = peso.getName();
-                                        ccyPair = peso.getCurrencySymbol();
-
-                                        result = this.currencyChange(dollar,
-                                                value, peso, ccy);
-                                    }
-                                    case ITEM_CURRENCY_KRW -> {
-
-                                        currencyPair = won.getName();
-                                        ccyPair = won.getCurrencySymbol();
-
-                                        result = this.currencyChange(dollar,
-                                                value, won, ccy);
-                                    }
-                                    case ITEM_CURRENCY_JPY -> {
-
-                                        currencyPair = yen.getName();
-                                        ccyPair = yen.getCurrencySymbol();
-
-                                        result = this.currencyChange(dollar,
-                                                value, yen, ccy);
-                                    } default -> fail = Boolean.TRUE;
+                                    default -> fail = Boolean.TRUE;
                                 }
                             }
-                            case ITEM_CURRENCY_EUR -> {
 
-                                currency = euro.getName();
-                                ccy = euro.getCurrencySymbol();
+                        }
+                        case ITEM_TEMPERATURE_FAHRENHEIT -> {
 
-                                switch (Objects.requireNonNull(comboBoxCurrencyPair.getSelectedItem()).toString()) {
+                            temperature = fahrenheit.getName();
+                            grade = fahrenheit.getUnit();
+                            isAbsoluteZero = isLowerThanAbsoluteZero(value, ITEM_TEMPERATURE_FAHRENHEIT);
 
-                                    case ITEM_CURRENCY_USD -> {
+                            if (isAbsoluteZero) {
 
-                                        currencyPair = dollar.getName();
-                                        ccyPair = dollar.getCurrencySymbol();
+                                JOptionPane.showMessageDialog(null, MSG_ABS_ZERO_INPUT,
+                                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
+                            } else {
 
-                                        result = this.currencyChange(euro,
-                                                value, dollar, ccy);
+                                switch (Objects.requireNonNull(comboBoxTemperaturePair.getSelectedItem()).toString()) {
+
+                                    case ITEM_TEMPERATURE_CELSIUS -> {
+
+                                        temperaturePair = celsius.getName();
+                                        gradePair = celsius.getUnit();
+
+                                        result = this.cambioTemperatura(fahrenheit,
+                                                value, celsius, grade, gradePair);
                                     }
-                                    case ITEM_CURRENCY_GBP -> {
+                                    case ITEM_TEMPERATURE_KELVIN -> {
 
-                                        currencyPair = libra.getName();
-                                        ccyPair = libra.getCurrencySymbol();
+                                        temperaturePair = kelvin.getName();
+                                        gradePair = kelvin.getUnit();
 
-                                        result = this.currencyChange(euro,
-                                                value, libra, ccy);
+                                        result = this.cambioTemperatura(fahrenheit,
+                                                value, kelvin, grade, gradePair);
                                     }
-                                    case ITEM_CURRENCY_CLP -> {
-
-                                        currencyPair = peso.getName();
-                                        ccyPair = peso.getCurrencySymbol();
-
-                                        result = this.currencyChange(euro,
-                                                value, peso, ccy);
-                                    }
-                                    case ITEM_CURRENCY_KRW -> {
-
-                                        currencyPair = won.getName();
-                                        ccyPair = won.getCurrencySymbol();
-
-                                        result = this.currencyChange(euro,
-                                                value, won, ccy);
-                                    }
-                                    case ITEM_CURRENCY_JPY -> {
-
-                                        currencyPair = yen.getName();
-                                        ccyPair = yen.getCurrencySymbol();
-
-                                        result = this.currencyChange(euro,
-                                                value, yen, ccy);
-                                    } default -> fail = Boolean.TRUE;
-                                }
-                            }
-                            case ITEM_CURRENCY_GBP -> {
-
-                                currency = libra.getName();
-                                ccy = libra.getCurrencySymbol();
-
-                                switch (Objects.requireNonNull(comboBoxCurrencyPair.getSelectedItem()).toString()) {
-
-                                    case ITEM_CURRENCY_USD -> {
-
-                                        currencyPair = dollar.getName();
-                                        ccyPair = dollar.getCurrencySymbol();
-
-                                        result = this.currencyChange(libra,
-                                                value, dollar, ccy);
-                                    }
-                                    case ITEM_CURRENCY_EUR -> {
-
-                                        currencyPair = euro.getName();
-                                        ccyPair = euro.getCurrencySymbol();
-
-                                        result = this.currencyChange(libra,
-                                                value, euro, ccy);
-                                    }
-                                    case ITEM_CURRENCY_CLP -> {
-
-                                        currencyPair = peso.getName();
-                                        ccyPair = peso.getCurrencySymbol();
-
-                                        result = this.currencyChange(libra,
-                                                value, peso, ccy);
-                                    }
-                                    case ITEM_CURRENCY_KRW -> {
-
-                                        currencyPair = won.getName();
-                                        ccyPair = won.getCurrencySymbol();
-
-                                        result = this.currencyChange(libra,
-                                                value, won, ccy);
-                                    }
-                                    case ITEM_CURRENCY_JPY -> {
-
-                                        currencyPair = yen.getName();
-                                        ccyPair = yen.getCurrencySymbol();
-
-                                        result = this.currencyChange(libra,
-                                                value, yen, ccy);
-                                    } default -> fail = Boolean.TRUE;
-                                }
-                            }
-                            case ITEM_CURRENCY_CLP -> {
-
-                                currency = peso.getName();
-                                ccy = libra.getCurrencySymbol(); // Esto no es un error, es un control de daños.
-
-                                switch (Objects.requireNonNull(comboBoxCurrencyPair.getSelectedItem()).toString()) {
-
-                                    case ITEM_CURRENCY_USD -> {
-
-                                        currencyPair = dollar.getName();
-                                        ccyPair = dollar.getCurrencySymbol();
-
-                                        result = this.currencyChange(peso,
-                                                value, dollar, ccy);
-                                    }
-                                    case ITEM_CURRENCY_EUR -> {
-
-                                        currencyPair = euro.getName();
-                                        ccyPair = euro.getCurrencySymbol();
-
-                                        result = this.currencyChange(peso,
-                                                value, euro, ccy);
-                                    }
-                                    case ITEM_CURRENCY_GBP -> {
-
-                                        currencyPair = libra.getName();
-                                        ccyPair = libra.getCurrencySymbol();
-
-                                        result = this.currencyChange(peso,
-                                                value, libra, ccy);
-                                    }
-                                    case ITEM_CURRENCY_KRW -> {
-
-                                        currencyPair = won.getName();
-                                        ccyPair = won.getCurrencySymbol();
-
-                                        result = this.currencyChange(peso,
-                                                value, won, ccy);
-                                    }
-                                    case ITEM_CURRENCY_JPY -> {
-
-                                        currencyPair = yen.getName();
-                                        ccyPair = yen.getCurrencySymbol();
-
-                                        result = this.currencyChange(peso,
-                                                value, yen, ccy);
-                                    } default -> fail = Boolean.TRUE;
-                                }
-                            }
-                            case ITEM_CURRENCY_KRW -> {
-
-                                currency = won.getName();
-                                ccy = won.getCurrencySymbol();
-
-                                switch (Objects.requireNonNull(comboBoxCurrencyPair.getSelectedItem()).toString()) {
-
-                                    case ITEM_CURRENCY_USD -> {
-
-                                        currencyPair = dollar.getName();
-                                        ccyPair = dollar.getCurrencySymbol();
-
-                                        result = this.currencyChange(won,
-                                                value, dollar, ccy);
-                                    }
-                                    case ITEM_CURRENCY_EUR -> {
-
-                                        currencyPair = euro.getName();
-                                        ccyPair = euro.getCurrencySymbol();
-
-                                        result = this.currencyChange(won,
-                                                value, euro, ccy);
-                                    }
-                                    case ITEM_CURRENCY_GBP -> {
-
-                                        currencyPair = libra.getName();
-                                        ccyPair = libra.getCurrencySymbol();
-
-                                        result = this.currencyChange(won,
-                                                value, libra, ccy);
-                                    }
-                                    case ITEM_CURRENCY_CLP -> {
-
-                                        currencyPair = peso.getName();
-                                        ccyPair = peso.getCurrencySymbol();
-
-                                        result = this.currencyChange(won,
-                                                value, peso, ccy);
-                                    }
-                                    case ITEM_CURRENCY_JPY -> {
-
-                                        currencyPair = yen.getName();
-                                        ccyPair = yen.getCurrencySymbol();
-
-                                        result = this.currencyChange(won,
-                                                value, yen, ccy);
-                                    } default -> fail = Boolean.TRUE;
-                                }
-                            }
-                            case ITEM_CURRENCY_JPY -> {
-
-                                currency = yen.getName();
-                                ccy = yen.getCurrencySymbol();
-
-                                switch (Objects.requireNonNull(comboBoxCurrencyPair.getSelectedItem()).toString()) {
-
-                                    case ITEM_CURRENCY_USD -> {
-
-                                        currencyPair = dollar.getName();
-                                        ccyPair = dollar.getCurrencySymbol();
-
-                                        result = this.currencyChange(yen,
-                                                value, dollar, ccy);
-                                    }
-                                    case ITEM_CURRENCY_EUR -> {
-
-                                        currencyPair = euro.getName();
-                                        ccyPair = euro.getCurrencySymbol();
-
-                                        result = this.currencyChange(yen,
-                                                value, euro, ccy);
-                                    }
-                                    case ITEM_CURRENCY_GBP -> {
-
-                                        currencyPair = libra.getName();
-                                        ccyPair = libra.getCurrencySymbol();
-
-                                        result = this.currencyChange(yen,
-                                                value, libra, ccy);
-                                    }
-                                    case ITEM_CURRENCY_CLP -> {
-
-                                        currencyPair = peso.getName();
-                                        ccyPair = peso.getCurrencySymbol();
-
-                                        result = this.currencyChange(yen,
-                                                value, peso, ccy);
-                                    }
-                                    case ITEM_CURRENCY_KRW -> {
-
-                                        currencyPair = won.getName();
-                                        ccyPair = won.getCurrencySymbol();
-
-                                        result = this.currencyChange(yen,
-                                                value, won, ccy);
-                                    } default -> fail = Boolean.TRUE;
+                                    default -> fail = Boolean.TRUE;
                                 }
                             }
                         }
+                        case ITEM_TEMPERATURE_KELVIN -> {
 
-                        if (fail){
-                            JOptionPane.showMessageDialog(null, MSG_INVALID_EQUAL_CURRENCY_PAIR,
+                            temperature = kelvin.getName();
+                            grade = kelvin.getUnit();
+                            isAbsoluteZero = isLowerThanAbsoluteZero(value, ITEM_TEMPERATURE_KELVIN);
+
+                            if (isAbsoluteZero) {
+
+                                JOptionPane.showMessageDialog(null, MSG_ABS_ZERO_INPUT,
+                                        MSG_ERROR, JOptionPane.ERROR_MESSAGE);
+                            } else {
+
+                                switch (Objects.requireNonNull(comboBoxTemperaturePair.getSelectedItem()).toString()) {
+
+                                    case ITEM_TEMPERATURE_FAHRENHEIT -> {
+
+                                        temperaturePair = fahrenheit.getName();
+                                        gradePair = fahrenheit.getUnit();
+
+                                        result = this.cambioTemperatura(kelvin,
+                                                value, fahrenheit, grade, gradePair);
+                                    }
+                                    case ITEM_TEMPERATURE_CELSIUS -> {
+
+                                        temperaturePair = celsius.getName();
+                                        gradePair = celsius.getUnit();
+
+                                        result = this.cambioTemperatura(kelvin,
+                                                value, celsius, grade, gradePair);
+                                    }
+                                    default -> fail = Boolean.TRUE;
+                                }
+                            }
+                        }
+                    }
+
+                    if(isAbsoluteZero){
+
+                        JOptionPane.showMessageDialog(null, ABSOLUTE_ZERO_ERROR_MSG);
+                    } else {
+
+                        if (fail) {
+                            JOptionPane.showMessageDialog(null, MSG_INVALID_EQUAL_TEMPERATURE_PAIR,
                                     MSG_ERROR, JOptionPane.ERROR_MESSAGE);
                         } else {
-                            setText(userName, userLastName, userSurName, currency, currencyPair,
-                                    ccyPair, value, result);
+                            setText(userName, userLastName, userSurName, temperature, temperaturePair,
+                                    gradePair, value, result);
                         }
                     }
                 }
             }
         }
 
-        if (e.getSource() == menuItemTemperatureConverter) {
-            TemperatureConverter ventanaTemperatureConverter = new TemperatureConverter(); // instancia principal
-            ventanaTemperatureConverter.setBounds(
-                    COORDENATE_X_TEMPERATURE_WINDOW,
-                    COORDENATE_Y_TEMPERATURE_WINDOW,
-                    WIDTH_TEMPERATURE_WINDOW,
-                    HEIGHT_TEMPERATURE_WINDOW); // dimensiones
-            ventanaTemperatureConverter.setVisible(true); // principal visible
-            ventanaTemperatureConverter.setResizable(false); // ventana redimensionable
-            ventanaTemperatureConverter.setLocationRelativeTo(null); // posición relativa
+
+        if (e.getSource() == menuItemCurrencyConverter) {
+            CurrencyConverter ventanaConversorDivisa = new CurrencyConverter(); // instancia principal
+            ventanaConversorDivisa.setBounds(
+                    COORDENATE_X_CURRENCY_WINDOW,
+                    COORDENATE_Y_CURRENCY_WINDOW,
+                    WIDTH_CURRENCY_WINDOW,
+                    HEIGHT_CURRENCY_WINDOW); // dimensiones
+            ventanaConversorDivisa.setVisible(true); // principal visible
+            ventanaConversorDivisa.setResizable(false); // ventana redimensionable
+            ventanaConversorDivisa.setLocationRelativeTo(null); // posición relativa
             this.setVisible(false); // esconde la pantalla de licencia
         }
 
@@ -895,24 +740,43 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
 
         if (e.getSource() == menuItemReset) {
 
-            assert textFieldName != null;
             textFieldName.setText("");
-            assert textFieldLastName != null;
             textFieldLastName.setText("");
-            assert textFieldSurName != null;
             textFieldSurName.setText("");
-            comboBoxCurrencyPair.setSelectedIndex(0);
-            comboBoxCurrency.setSelectedIndex(0);
+            comboBoxTemperaturePair.setSelectedIndex(0);
+            comboBoxTemperature.setSelectedIndex(0);
             assert textFieldValue != null;
             textFieldValue.setText("");
-            textArea.setText(TEXT_FIELD_CURRENCY_RESULT);
+            textArea.setText(TEXT_FIELD_TEMPERATURE_RESULT);
         }
+    }
+
+
+    /**
+     * Método responsable de validar si el valor es menor que el cero absoluto
+     *
+     * @param value Valor a validar
+     * @param grade Símbolo correspondiente al tipo de temperatura
+     * @return valor booleano, es más bajo que el creo absoluto o no
+     */
+    public boolean isLowerThanAbsoluteZero(double value, String grade) {
+
+        boolean isLower;
+
+        isLower = switch (grade) {
+            case ITEM_TEMPERATURE_CELSIUS -> (-273.15d > value) ? Boolean.TRUE : Boolean.FALSE;
+            case ITEM_TEMPERATURE_FAHRENHEIT -> (-459.67d > value) ? Boolean.TRUE : Boolean.FALSE;
+            case ITEM_TEMPERATURE_KELVIN -> (0 > value) ? Boolean.TRUE : Boolean.FALSE;
+            default -> Boolean.FALSE;
+        };
+
+        return isLower;
     }
 
     /**
      * Método responsable de la carga de la interfaz de usuario
      */
-    public void loadUserInterace(){
+    public void loadUserInterface(){
 
         createFrame(SUB_MENU_CURRENCY_CONVERTER, COLOR_BACKGROUND_FRAME);
         setIcon(ICON);
@@ -948,15 +812,15 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
                 COLOR_BACKGROUND_MENU_ITEM_BACKGROUND_COLOR,
                 FONT_MENU_ITEM_BACKGROUND_COLOR);
 
-        JMenuItem jMenuItemCurrencyConverter = createItemMenu(
-                SUB_MENU_CURRENCY_CONVERTER,
-                FONT_MENU_ITEM_CURRENCY_CONVERTER,
-                COLOR_BACKGROUND_MENU_ITEM_CURRENCY_CONVERTER);
-
-        menuItemTemperatureConverter = createItemMenu(
+        JMenuItem jMenuItemTemperatureConverter = createItemMenu(
                 SUB_MENU_TEMPERATURE_CONVERTER,
                 FONT_MENU_ITEM_TEMPERATURE_CONVERTER,
                 COLOR_BACKGROUND_MENU_ITEM_TEMPERATURE_CONVERTER);
+
+        menuItemCurrencyConverter = createItemMenu(
+                SUB_MENU_CURRENCY_CONVERTER,
+                FONT_MENU_ITEM_CURRENCY_CONVERTER,
+                COLOR_BACKGROUND_MENU_ITEM_CURRENCY_CONVERTER);
 
         menuItemRedColorBackground = createItemMenu(
                 SUB_MENU_RED_BACKGROUND,
@@ -1002,8 +866,8 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
         jMenuOptions.add(menuItemExit); // añade el menu item salir al menu de opciones
         jMenuOptions.add(menuItemReset); // añade el menu item reset al menu de opciones
 
-        jMenuConverters.add(jMenuItemCurrencyConverter); // añade el menu item de conversor de divisa al menu de conversores
-        jMenuConverters.add(menuItemTemperatureConverter); // añade menu item conversor temperatura a menu conversores
+        jMenuConverters.add(jMenuItemTemperatureConverter); // añade el menu item de conversor de temperaturas al menu de conversores
+        jMenuConverters.add(menuItemCurrencyConverter); // añade menu item conversor de divisa a menu conversores
 
         jMenuAboutMe.add(menuItemAuthor); // añade el menu item autor al menu "sobre mi"
 
@@ -1118,14 +982,14 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
                 Boolean.FALSE);
 
         // ComboBox
-        comboBoxCurrency = createComboBox(
+        comboBoxTemperature = createComboBox(
                 POSITION_COMBOBOX_CONVERTER,
                 DIMENSION_COMBOBOX_CONVERTER,
                 COLOR_BACKGROUND_COMBOBOX_CONVERTER,
                 COLOR_FONT_COMBOBOX_CONVERTER,
                 FONT_COMBOBOX_CONVERTER);
 
-        comboBoxCurrencyPair = createComboBox(
+        comboBoxTemperaturePair = createComboBox(
                 POSITION_COMBOBOX_CONVERTER_PAIR,
                 DIMENSION_COMBOBOX_CONVERTER_PAIR,
                 COLOR_BACKGROUND_COMBOBOX_CONVERTER_PAIR,
@@ -1145,17 +1009,14 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
                 POSITION_SCROLL_PANE,
                 DIMENSION_SCROLL_PANE);
 
-        // Se añaden las divisas a la lista de divisas
-        this.currencyManager.addCurrency(ITEM_CURRENCY_USD, new Dollar(ITEM_CURRENCY_USD, 1.00d));
-        this.currencyManager.addCurrency(ITEM_CURRENCY_EUR, new Euro(ITEM_CURRENCY_EUR, 0.94d));
-        this.currencyManager.addCurrency(ITEM_CURRENCY_GBP, new PoundSterling(ITEM_CURRENCY_GBP, 0.84d));
-        this.currencyManager.addCurrency(ITEM_CURRENCY_CLP, new ChileanPeso(ITEM_CURRENCY_CLP, 802.50d));
-        this.currencyManager.addCurrency(ITEM_CURRENCY_KRW, new SouthKoreanWon(ITEM_CURRENCY_KRW, 1306.03d));
-        this.currencyManager.addCurrency(ITEM_CURRENCY_JPY, new JapaneseYen(ITEM_CURRENCY_JPY, 136.53d));
+        // Se añaden las temperaturas a la lista de temperaturas
+        this.temperatureManager.addTemperature(ITEM_TEMPERATURE_CELSIUS, new Celsius(ITEM_TEMPERATURE_CELSIUS, 0d));
+        this.temperatureManager.addTemperature(ITEM_TEMPERATURE_KELVIN, new Kelvin(ITEM_TEMPERATURE_KELVIN, 273.15d));
+        this.temperatureManager.addTemperature(ITEM_TEMPERATURE_FAHRENHEIT, new Fahrenheit(ITEM_TEMPERATURE_FAHRENHEIT, 32d));
 
         // Poblar ComboBox
-        addCurrency(comboBoxCurrency, currencyManager);
-        addCurrency(comboBoxCurrencyPair, currencyManager);
+        addTemperature(comboBoxTemperature, temperatureManager);
+        addTemperature(comboBoxTemperaturePair, temperatureManager);
     }
 
     /**
@@ -1165,10 +1026,10 @@ public class CurrencyConverter extends JFrame implements ActionListener, UserInt
      */
     public static void main(String[] args) {
 
-        CurrencyConverter ventanaCurrencyConverter = new CurrencyConverter();
-        ventanaCurrencyConverter.setBounds(0, 0, 640, 535);
-        ventanaCurrencyConverter.setVisible(true);
-        ventanaCurrencyConverter.setResizable(false);
-        ventanaCurrencyConverter.setLocationRelativeTo(null);
+        TemperatureConverter ventanaTemperatureConverter = new TemperatureConverter();
+        ventanaTemperatureConverter.setBounds(0, 0, 640, 535);
+        ventanaTemperatureConverter.setVisible(true);
+        ventanaTemperatureConverter.setResizable(false);
+        ventanaTemperatureConverter.setLocationRelativeTo(null);
     }
 }

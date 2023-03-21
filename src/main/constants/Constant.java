@@ -169,6 +169,11 @@ public final class Constant {
     public static final int WIDTH_TEMPERATURE_WINDOW = 640;
     public static final int HEIGHT_TEMPERATURE_WINDOW = 535;
 
+    public static final int COORDENATE_X_CURRENCY_WINDOW = 0;
+    public static final int COORDENATE_Y_CURRENCY_WINDOW = 0;
+    public static final int WIDTH_CURRENCY_WINDOW = 640;
+    public static final int HEIGHT_CURRENCY_WINDOW = 535;
+
     // Constantes para la interfaz gráfica de Currency Y Temperature Converters
 
     public static final Color COLOR_FONT_MENU_OPTIONS = new Color(255, 255, 255);
@@ -292,5 +297,5 @@ public final class Constant {
     public static final PositionInFrame POSITION_COMBOBOX_CONVERTER_PAIR = new PositionInFrame(220, 273);
     public static final PositionInFrame POSITION_SCROLL_PANE = new PositionInFrame(220, 333);
 
-
+    public static final String ABSOLUTE_ZERO_ERROR_MSG = "Favor vuelva a intentarlo";
 }
