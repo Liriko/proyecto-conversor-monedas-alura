@@ -13,118 +13,64 @@ import java.awt.*; // importa librería para manipular eventos
 import java.awt.event.*; // importa librería para implementer interfaz ActionListener
 import java.util.Objects; // importa librería util.Objects para usar requireNonNull
 
-/*
-	Autor: Jorge Daniel Salgado Pons
-	Fecha: 25-02-2023
+public class License extends JFrame implements ActionListener, ChangeListener, UserInterface {
 
-	Propósito: Esta clase presenta la Licencia de uso al usuario
-	Aquí el usuario tiene dos opciones;
-	O bien no acepta la licencia y es devuelto a la clase Bienvenida.
-	O bien acepta la licencia y procede a la siguiente pantalla.
+	private JCheckBox checkBoxIAccept; // declara caja de chequeo
+	private JButton buttonContinue; // declara botón
+	private JButton buttonIDontAccept; // declara botón
+	String name; // Evitar declarar String vacíos, es redundante (String nombre = "")
 
-	Nuestra clase Licencia es una clase hija de la clase JFrame e implementa
-	la interfaz ActionListener de la librería awt.event.* y
-	la interfaz ChangeListener de la librería swing.event.* y también
-	implementa una interfaz propia llamada Front que diseñé para mejorar
-	las implementaciones de interfaz gráfica.
-*/
-public class Licencia extends JFrame implements ActionListener, ChangeListener, UserInterface {
+	/**
+	 * Método responsable de la carga de interfaz de usuario
+	 */
+	public License(){
 
-	private final JCheckBox chk_acepto; // declara caja de chequeo
-	private final JButton btn_continuar; // declara botón
-	private final JButton btn_noAcepto; // declara botón
-	String nombre; // Evitar declarar String vacíos, es redundante (String nombre = "")
-
-	/*
-        En el constructor de esta clase vamos a establecer el marco sobre el cual
-        vamos a trabajar nuestra interfaz gráfica.
-
-        Para ello necesitaremos títulos, colores, íconos, logos, dimensiones, y todos los
-        elementos necesarios para poder mostrar por pantalla nuestra interfaz.
-
-        Estas funcionalidades son propias de la interfaz Front que he diseñado de manera
-        paralela a este desarrollo.
-    */
-	public Licencia(){
-
-		// configura el marco y su ícono
-		createFrame(LABEL_LICENCE, new Color(0, 0, 0));
-		setIcon(ICON);
-
-		// configura el resto de los componentes que componen el marco
-
-		this.nombre = Welcome.name; // asigna nombre desde la bienvenida
-
-		// etiqueta
-		setLabel(TEXT_FIELD_LICENCE,
-				new PositionInFrame(215, 5),
-				new DimensionInFrame(200, 30),
-				new Color(0, 0, 0),
-				new FontType(FONT_ANDALE_MONO, 14));
-
-		// area de texto
-		JTextArea textArea_01 = createTextArea(TEXT_FIELD_LICENCE_DETAIL, Boolean.FALSE,
-				new FontType(FONT_ANDALE_MONO, 9),
-				new Color(0, 0, 0),
-				new Color(0, 0, 0));
-
-		// scroll
-		createScrollPane(textArea_01,
-				new PositionInFrame(10, 40),
-				new DimensionInFrame(575, 200));
-
-		// checkbox
-		this.chk_acepto = createCheckBox("Yo, " + nombre + ", acepto",
-				new PositionInFrame(10, 250),
-				new DimensionInFrame(300, 30));
-
-		// botones
-		this.btn_continuar = createButton(BUTTON_CONTINUE,
-				new PositionInFrame(10, 290),
-				new DimensionInFrame(100, 30),
-				new FontType(null, 0),
-				new Color(0, 0, 0),
-				new Color(0, 0, 0),
-				Boolean.FALSE);
-
-		this.btn_noAcepto = createButton(BUTTON_DECLINE,
-				new PositionInFrame(120, 290),
-				new DimensionInFrame(100, 30),
-				new FontType(null, 0),
-				new Color(0, 0, 0),
-				new Color(0, 0, 0),
-				Boolean.TRUE);
-
-		// logo
-		createLogoLabel(LOGO_ALURA, new PositionInFrame(300, 225), new DimensionInFrame(300, 120));
+		loadUserInterface();
 	}
 
-	// cambios de estado
+	/**
+	 * Método responsable de los cambios de estado de la aplicación
+	 *
+	 * @param e el objeto ChangeEvent
+	 */
 	public void stateChanged(ChangeEvent e){
 		
-		if(chk_acepto.isSelected()){ // sí se aceptan los términos
-			btn_continuar.setEnabled(true); // habilita el botón continuar
-			btn_noAcepto.setEnabled(false); // des-habilita el botón no acepto
+		if(checkBoxIAccept.isSelected()){ // sí se aceptan los términos
+			buttonContinue.setEnabled(true); // habilita el botón continuar
+			buttonIDontAccept.setEnabled(false); // des-habilita el botón no acepto
 		} else {
-			btn_continuar.setEnabled(false); // des-habilita el botón continuar
-			btn_noAcepto.setEnabled(true); // habilita el botón no acepto
+			buttonContinue.setEnabled(false); // des-habilita el botón continuar
+			buttonIDontAccept.setEnabled(true); // habilita el botón no acepto
 		}
 	}
 
-	// evento
+
+	/**
+	 * Método responsable de los eventos de la aplicación
+	 *
+	 * @param e el evento a ser procesado
+	 */
 	public void actionPerformed(ActionEvent e){
 		
-		if(e.getSource() == btn_continuar){ // si se presiona el botón continuar
+		if(e.getSource() == buttonContinue){ // si se presiona el botón continuar
 			CurrencyConverter ventanaCurrencyConverter = new CurrencyConverter(); // instancia principal
-			ventanaCurrencyConverter.setBounds(0,0,640,535); // dimensiones
+			ventanaCurrencyConverter.setBounds(
+					COORDENATE_X_CURRENCY_WINDOW,
+					COORDENATE_Y_CURRENCY_WINDOW,
+					WIDTH_CURRENCY_WINDOW,
+					HEIGHT_CURRENCY_WINDOW); // dimensiones
 			ventanaCurrencyConverter.setVisible(true); // principal visible
 			ventanaCurrencyConverter.setResizable(false); // ventana redimensionable
 			ventanaCurrencyConverter.setLocationRelativeTo(null); // posición relativa
 			this.setVisible(false); // esconde la pantalla de licencia
 			
-		} else if(e.getSource() == btn_noAcepto){ // si presiona botó no acepto
+		} else if(e.getSource() == buttonIDontAccept){ // si presiona botó no acepto
 			Welcome ventanaWelcome = new Welcome(); // instancia bienvenida
-			ventanaWelcome.setBounds(0,0,350,450); // dimensiones
+			ventanaWelcome.setBounds(
+					COORDENATE_X_WELCOME_WINDOW,
+					COORDENATE_Y_WELCOME_WINDOW,
+					WIDTH_WELCOME_WINDOW,
+					HEIGHT_WELCOME_WINDOW); // dimensiones
 			ventanaWelcome.setVisible(true); // bienvenida visible
 			ventanaWelcome.setLocationRelativeTo(null); // posición relativa
 			ventanaWelcome.setResizable(false); // ventana redimensionable
@@ -132,23 +78,42 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 		}
 	}
 
+	/**
+	 * Método utilizado como punto de entrada para la ejecución de la aplicación.
+	 *
+	 * @param args parámetro por defecto del método main.
+	 */
 	public static void main(String[] args){
 		
-		Licencia ventanaLicencia = new Licencia(); // instancia licencia
+		License ventanaLicencia = new License(); // instancia licencia
 		
-		ventanaLicencia.setBounds(0,0,600,360); // dimensiones
+		ventanaLicencia.setBounds(
+				COORDENATE_X_LICENSE_WINDOW,
+				COORDENATE_Y_LICENSE_WINDOW,
+				WIDTH_LICENSE_WINDOW_OPT,
+				HEIGHT_LICENSE_WINDOW_OPT); // dimensiones
 		ventanaLicencia.setVisible(true); // ventana visible
 		ventanaLicencia.setResizable(false); // ventana redimensionable
 		ventanaLicencia.setLocationRelativeTo(null); // posición relativa
 	}
 
+	/**
+	 * Método responsable de la creación de los marcos
+	 *
+	 * @param title 			Título del marco
+	 * @param colorBackground	Color de fondo del marco
+	 */
 	@Override
-	public void createFrame(String titulo, Color colorBackground) {
+	public void createFrame(String title, Color colorBackground) {
 		setLayout(null); // marco de trabajo
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // operación de cierre por defecto
-		setTitle(titulo); // título
+		setTitle(title); // título
 	}
 
+	/**
+	 * Método encargado de la carga del ícono en la aplicación
+	 * @param imagePath ruta de la imagen
+	 */
 	@Override
 	public void setIcon(String imagePath) {
 		setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource(imagePath))).getImage()); // ícono
@@ -409,5 +374,63 @@ public class Licencia extends JFrame implements ActionListener, ChangeListener, 
 
 		// Retorna el checkbox
 		return jCheckBox;
+	}
+
+	public void loadUserInterface(){
+
+		// configura el marco y su ícono
+		createFrame(LABEL_LICENCE, COLOR_BACKGROUND_LICENSE_FRAME);
+		setIcon(ICON);
+
+		// configura el resto de los componentes que componen el marco
+
+		this.name = Welcome.name; // asigna nombre desde la bienvenida
+
+		// etiqueta
+		setLabel(TEXT_FIELD_LICENCE,
+				POSITION_LICENSE_TEXTFIELD,
+				DIMENSION_LICENSE_TEXTFIELD,
+				COLOR_BACKGROUND_LICENSE_TEXTFIELD,
+				FONT_LICENSE_TEXTFIELD);
+
+		// area de texto
+		JTextArea textArea = createTextArea(
+				TEXT_FIELD_LICENCE_DETAIL,
+				Boolean.FALSE,
+				FONT_LICENSE_DETAIL,
+				COLOR_FONT_LICENSE_DETAIL,
+				COLOR_BACKGROUND_LICENSE_DETAIL);
+
+		// scroll
+		createScrollPane(textArea,
+				POSITION_LICENSE_SCROLL_PANE,
+				DIMENSION_LICENSE_SCROLL_PANE);
+
+		// checkbox
+		this.checkBoxIAccept = createCheckBox("Yo, " + name + ", acepto",
+				POSITION_LICENSE_CHECKBOX_I_ACCEPT,
+				DIMENSION_LICENSE_CHECKBOX_I_ACCEPT);
+
+		// botones
+		this.buttonContinue = createButton(BUTTON_CONTINUE,
+				POSITION_LICENSE_BUTTON_CONTINUE,
+				DIMENSION_LICENSE_BUTTON_CONTINUE,
+				FONT_BUTTON_CONTINUE,
+				COLOR_FONT_BUTTON_CONTINUE,
+				COLOR_BACKGROUND_BUTTON_CONTINUE,
+				Boolean.FALSE);
+
+		this.buttonIDontAccept = createButton(BUTTON_DECLINE,
+				POSITION_LICENSE_BUTTON_DECLINE,
+				DIMENSION_LICENSE_BUTTON_DECLINE,
+				FONT_BUTTON_DECLINE,
+				COLOR_FONT_BUTTON_DECLINE,
+				COLOR_BACKGROUND_BUTTON_DECLINE,
+				Boolean.TRUE);
+
+		// logo
+		createLogoLabel(LOGO_ALURA,
+				POSITION_LICENSE_LOGO_ALURA,
+				DIMENSION_LICENSE_LOGO_ALURA);
 	}
 }

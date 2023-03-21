@@ -128,10 +128,11 @@ public final class Constant {
     public static final Color COLOR_BACKGROUND_SUB_MENU_CURRENCY = new Color(255, 255, 255);
     public static final Color COLOR_BACKGROUND_LABEL_INPUT_NAME = new Color(255, 255, 255);
     public static final Color COLOR_BACKGROUND_LABEL_FOOTER = new Color(255, 255, 255);
-    public static final Color COLOR_FONT_TEXT_FIELD_NAME = new Color(224, 224, 224);
-    public static final Color COLOR_BACKGROUND_TEXT_FIELD_NAME = new Color(50, 50, 255);
-    public static final Color COLOR_FONT_BUTTON_ENTER = new Color(0, 0, 255);
     public static final Color COLOR_BACKGROUND_BUTTON_ENTER = new Color(255, 255, 255);
+    public static final Color COLOR_BACKGROUND_TEXT_FIELD_NAME = new Color(50, 50, 255);
+
+    public static final Color COLOR_FONT_BUTTON_ENTER = new Color(0, 0, 255);
+    public static final Color COLOR_FONT_TEXT_FIELD_NAME = new Color(224, 224, 224);
 
     public static final PositionInFrame POSITION_LABEL_LOGO = new PositionInFrame(25, 15);
     public static final PositionInFrame POSITION_SUB_MENU_CURRENCY = new PositionInFrame(85, 135);
@@ -158,6 +159,9 @@ public final class Constant {
     public static final int COORDENATE_Y_LICENSE_WINDOW = 0;
     public static final int WIDTH_LICENSE_WINDOW = 610;
     public static final int HEIGHT_LICENSE_WINDOW = 380;
+
+    public static final int WIDTH_LICENSE_WINDOW_OPT = 600;
+    public static final int HEIGHT_LICENSE_WINDOW_OPT = 360;
 
     public static final int COORDENATE_X_WELCOME_WINDOW = 0;
     public static final int COORDENATE_Y_WELCOME_WINDOW = 0;
@@ -298,4 +302,35 @@ public final class Constant {
     public static final PositionInFrame POSITION_SCROLL_PANE = new PositionInFrame(220, 333);
 
     public static final String ABSOLUTE_ZERO_ERROR_MSG = "Favor vuelva a intentarlo";
+
+    // Constantes para la interfaz gráfica de LICENSE
+    public static final Color COLOR_BACKGROUND_LICENSE_FRAME = new Color(0, 0, 0);
+    public static final Color COLOR_BACKGROUND_LICENSE_TEXTFIELD = new Color(0, 0, 0);
+    public static final Color COLOR_BACKGROUND_LICENSE_DETAIL = new Color(0, 0, 0);
+    public static final Color COLOR_BACKGROUND_BUTTON_CONTINUE = new Color(0, 0, 0);
+    public static final Color COLOR_BACKGROUND_BUTTON_DECLINE = new Color(0, 0, 0);
+
+    public static final Color COLOR_FONT_LICENSE_DETAIL = new Color(0, 0, 0);
+    public static final Color COLOR_FONT_BUTTON_CONTINUE = new Color(0, 0, 0);
+    public static final Color COLOR_FONT_BUTTON_DECLINE = new Color(0, 0, 0);
+
+    public static final FontType FONT_LICENSE_TEXTFIELD = new FontType(FONT_ANDALE_MONO, 14);
+    public static final FontType FONT_LICENSE_DETAIL = new FontType(FONT_ANDALE_MONO, 9);
+    public static final FontType FONT_BUTTON_CONTINUE = new FontType(null, 0);
+    public static final FontType FONT_BUTTON_DECLINE = new FontType(null, 0);
+
+    public static final PositionInFrame POSITION_LICENSE_TEXTFIELD = new PositionInFrame(215, 5);
+    public static final PositionInFrame POSITION_LICENSE_SCROLL_PANE = new PositionInFrame(10, 40);
+    public static final PositionInFrame POSITION_LICENSE_CHECKBOX_I_ACCEPT = new PositionInFrame(10, 250);
+    public static final PositionInFrame POSITION_LICENSE_BUTTON_CONTINUE = new PositionInFrame(10, 290);
+    public static final PositionInFrame POSITION_LICENSE_BUTTON_DECLINE = new PositionInFrame(120, 290);
+    public static final PositionInFrame POSITION_LICENSE_LOGO_ALURA = new PositionInFrame(300, 225);
+
+    public static final DimensionInFrame DIMENSION_LICENSE_TEXTFIELD = new DimensionInFrame(200, 30);
+    public static final DimensionInFrame DIMENSION_LICENSE_SCROLL_PANE = new DimensionInFrame(575, 200);
+    public static final DimensionInFrame DIMENSION_LICENSE_CHECKBOX_I_ACCEPT = new DimensionInFrame(300, 30);
+    public static final DimensionInFrame DIMENSION_LICENSE_BUTTON_CONTINUE = new DimensionInFrame(100, 30);
+    public static final DimensionInFrame DIMENSION_LICENSE_BUTTON_DECLINE = new DimensionInFrame(100, 30);
+    public static final DimensionInFrame DIMENSION_LICENSE_LOGO_ALURA = new DimensionInFrame(300, 120);
+
 }

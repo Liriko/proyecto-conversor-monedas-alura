@@ -346,7 +346,7 @@ public class Welcome extends JFrame implements ActionListener, UserInterface {
             } else {
 
                 // Instancia un objeto de la clase Licencia
-                Licencia ventanaLicencia = new Licencia();
+                License ventanaLicencia = new License();
 
                 // Establece las dimensiones de la nueva ventana.
                 ventanaLicencia.setBounds(COORDENATE_X_LICENSE_WINDOW,
