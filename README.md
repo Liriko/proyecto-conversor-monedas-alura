@@ -10,7 +10,7 @@ https://github.com/Liriko/proyecto-conversor-monedas-alura/blob/master/proyecto_
   A continuación podrán visualizar el paso a paso de este conversor
 
   # 01 - Iniciando la aplicación - Bienvenida
-  ![Bienvenida](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/images/ev01.png)
+  ![Bienvenida](https://raw.githubusercontent.com/Liriko/proyecto-conversor-monedas-alura/master/resources/ev01.png)
   
   Nada más iniciar la aplicación se nos presenta la bienvenida al gestor de conversor, donde podremos digitar nuestro nombre, o no, para pasar a la siguiente pantalla.
   
